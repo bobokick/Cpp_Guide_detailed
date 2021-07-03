@@ -327,7 +327,7 @@ strs.deallocate(p, 5);
 
 标准库还为allocator类定义了两种算法，可以在未构造对象的内存中创建对象，它们都定义在头文件memory中。
 
-![allocator2](image/2021-05-24-14-31-52.png)
+![allocator2](../image/2021-05-24-14-31-52.png)
 
 ### 6.3 内存与对象操作组合的管理方法
 
@@ -769,7 +769,7 @@ weak_ptr是一种不控制所指向对象生存期的智能指针，它指向由
 
 以下是weak_ptr所支持的操作：
 
-![weak_ptr](image/2021-05-25-15-16-59.png)
+![weak_ptr](../image/2021-05-25-15-16-59.png)
 
 我们只能用shared_ptr或者weak_ptr指针来拷贝和赋值weak_ptr的指针。
 

@@ -3613,7 +3613,7 @@ void Cls::prints() { cout << "pure func\n"; }
 
 所有含有纯虚函数成员(包括继承的成员)的类都是抽象基类(abstract base class)。
 
-我们不能用任何方法来创建一个抽象基类的对象。
+我们不能用任何方法来创建一个抽象基类的对象，不过可以创建指向抽象基类的指针或者引用。
 
 ```c++
 struct Cls
@@ -3622,8 +3622,19 @@ struct Cls
 };
 void Cls::prints() { cout << "pure func\n"; }
 
-// 错误：不能创建抽象基类的对象
+// 抽象基类Cls的派生类Der，该类覆盖了纯虚函数。
+struct Der: Cls
+{ void prints() override { cout << "overrided\n"; } };
+
+// 错误：不能创建抽象基类Cls的对象
 Cls obj;
-auto p = new Cls();
+Cls* p = new Cls();
+// 正确：可以创建抽象基类Cls的指针，引用。
+Der dobj;
+Cls* p2 = new Der();
+Cls& r = dobj;
+// 输出overrided
+p2->prints();
+r.prints();
 ```
 

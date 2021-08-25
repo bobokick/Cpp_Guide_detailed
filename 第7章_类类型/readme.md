@@ -1348,8 +1348,7 @@ r.prints(5);
 
 ###### 7.35332 虚函数的访问权限
 
-要注意，一个类的虚函数的访问权限只决定该类的指针或引用对于该函数的访问，不会影响到其基类的指针或引用对于该类该虚函数的使用。
-也就是说一个类的虚函数的访问权限只影响其静态使用，不影响其动态使用。
+要注意，一个虚函数能否被访问是由其动态类型中的静态类型部分对于该虚函数的访问权限所决定的，与其他部分对于该虚函数的访问权限无关。
 
 ```c++
 struct Ba 
@@ -1357,6 +1356,7 @@ struct Ba
     virtual void prints(string val) 
     {cout << val << " stringBa\n";}
 };
+// 公有继承Ba
 struct De:Ba
 {
 private:
@@ -1364,15 +1364,28 @@ private:
     void prints(string val) override
     {cout << val << " stringDe\n";}
 };
+// 私有继承Ba
+class De2:Ba
+{
+public:
+    // 覆盖的函数为公有函数
+    void prints(string val) override
+    {cout << val << " stringDe2\n";}
+};
 De obj;
+De2 obj2;
 De &dr = obj;
 Ba &r = obj;
+// 错误：obj2中的Ba部分为私有，不可访问，无法绑定到Ba上。
+Ba &r2 = obj2;
 // 错误：dr的类型为De，prints在De中为私有函数
 dr.prints("strs");
 // 正确：r的类型为Ba，prints在Ba中为公有函数，\
 且De类中的prints访问权限不会影响其动态使用，所以输出为\
 strs stringDe
 r.prints("strs");
+// 错误：obj2中的Ba部分为私有，不可访问。
+r2.prints("strs");
 ```
 
 ###### 7.35333 调用指定版本的虚函数
@@ -2251,7 +2264,49 @@ class Bad2 : Last { /* */ }; //错误：Last是final的
 **派生类向基类的隐式转换**
 
 基类和其派生类之间，其实也是存在某种关联的，派生类继承其基类的所有成员，且派生类的作用域也是在其基类的作用域内的。
-所以，对于一个派生类对象来说，该对象以及该对象的引用和指针都能隐式转换为其任意基类(包括其所有的直接和间接基类，或者虚基类)的对象以及该基类的引用或指针。
+所以，对于一个派生类对象来说，该对象以及该对象的引用和指针都能隐式转换为其任意基类(包括其所有的直接和间接基类，或者虚基类)的对象以及该基类的引用或指针，前提是**该派生类对象的这个基类部分在使用的位置是可访问的(与这个基类部分的基类本身的成员是不是可访问的无关)**。
+
+```c++
+class Ba{};
+class De: public Ba{};
+class De2: protected Ba{ friend void test2(); };
+class De3:Ba{ friend void test2(); };
+
+De obj;
+De2 obj2;
+De3 obj3;
+void test()
+{
+    // 以下三种定义语句都正确：obj中的Ba部分为公有继承，函数test是可以访问到其Ba部分的。
+    Ba *ptr = &obj;
+    Ba &r = obj;
+    Ba bobj = obj;
+    // 以下三种定义语句都错误：obj2中的Ba部分为受保护继承，函数test不能访问到其Ba部分。
+    Ba *ptr2 = &obj2;
+    Ba &r2 = obj2;
+    Ba bobj2 = obj2;
+    // 以下三种定义语句都错误：obj3中的Ba部分为私有继承，函数test不能访问到其Ba部分。
+    Ba *ptr3 = &obj3;
+    Ba &r3 = obj3;
+    Ba bobj3 = obj3;
+}
+
+void test2()
+{
+    // 以下三种定义语句都正确：obj中的Ba部分为公有继承，函数test2是可以访问到其Ba部分的。
+    Ba *ptr = &obj;
+    Ba &r = obj;
+    Ba bobj = obj;
+    // 以下三种定义语句都正确：obj2中的Ba部分为受保护继承，但是函数test是De2的友元，所以可以访问到其Ba部分。
+    Ba *ptr2 = &obj2;
+    Ba &r2 = obj2;
+    Ba bobj2 = obj2;
+    // 以下三种定义语句都正确：虽然obj3中的Ba部分为私有继承，但是函数test是De3的友元，所以可以访问到其Ba部分。
+    Ba *ptr3 = &obj3;
+    Ba &r3 = obj3;
+    Ba bobj3 = obj3;
+}
+```
 
 > 派生类可以隐式转换为其基类，但是反过来是不行的，基类不能隐式转换为其派生类。
 > 虽然基类可以显式转换为派生类，但是只支持转换为派生类的引用与指针，且转换时可能会出现未定义行为。

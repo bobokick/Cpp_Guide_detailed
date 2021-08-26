@@ -2264,49 +2264,7 @@ class Bad2 : Last { /* */ }; //错误：Last是final的
 **派生类向基类的隐式转换**
 
 基类和其派生类之间，其实也是存在某种关联的，派生类继承其基类的所有成员，且派生类的作用域也是在其基类的作用域内的。
-所以，对于一个派生类对象来说，该对象以及该对象的引用和指针都能隐式转换为其任意基类(包括其所有的直接和间接基类，或者虚基类)的对象以及该基类的引用或指针，前提是**该派生类对象的这个基类部分在使用的位置是可访问的(与这个基类部分的基类本身的成员是不是可访问的无关)**。
-
-```c++
-class Ba{};
-class De: public Ba{};
-class De2: protected Ba{ friend void test2(); };
-class De3:Ba{ friend void test2(); };
-
-De obj;
-De2 obj2;
-De3 obj3;
-void test()
-{
-    // 以下三种定义语句都正确：obj中的Ba部分为公有继承，函数test是可以访问到其Ba部分的。
-    Ba *ptr = &obj;
-    Ba &r = obj;
-    Ba bobj = obj;
-    // 以下三种定义语句都错误：obj2中的Ba部分为受保护继承，函数test不能访问到其Ba部分。
-    Ba *ptr2 = &obj2;
-    Ba &r2 = obj2;
-    Ba bobj2 = obj2;
-    // 以下三种定义语句都错误：obj3中的Ba部分为私有继承，函数test不能访问到其Ba部分。
-    Ba *ptr3 = &obj3;
-    Ba &r3 = obj3;
-    Ba bobj3 = obj3;
-}
-
-void test2()
-{
-    // 以下三种定义语句都正确：obj中的Ba部分为公有继承，函数test2是可以访问到其Ba部分的。
-    Ba *ptr = &obj;
-    Ba &r = obj;
-    Ba bobj = obj;
-    // 以下三种定义语句都正确：obj2中的Ba部分为受保护继承，但是函数test是De2的友元，所以可以访问到其Ba部分。
-    Ba *ptr2 = &obj2;
-    Ba &r2 = obj2;
-    Ba bobj2 = obj2;
-    // 以下三种定义语句都正确：虽然obj3中的Ba部分为私有继承，但是函数test是De3的友元，所以可以访问到其Ba部分。
-    Ba *ptr3 = &obj3;
-    Ba &r3 = obj3;
-    Ba bobj3 = obj3;
-}
-```
+所以，对于一个派生类对象来说，该对象以及该对象的引用和指针都能隐式转换为其任意基类(包括其所有的直接和间接基类，或者虚基类)的对象以及该基类的引用或指针，前提是==该派生类对象的这个基类部分在使用的位置是可访问的(与这个基类部分的基类本身的成员是不是可访问的无关)==。
 
 > 派生类可以隐式转换为其基类，但是反过来是不行的，基类不能隐式转换为其派生类。
 > 虽然基类可以显式转换为派生类，但是只支持转换为派生类的引用与指针，且转换时可能会出现未定义行为。
@@ -2412,6 +2370,48 @@ cout << dr2.Dins << "\n";
 * 只有当D公有地继承B时，用户代码才能使用派生类向基类的转换；如果D继承B的方式是受保护的或者私有的，则用户代码不能使用该转换
 * 不论D以什么方式继承B, D的成员函数和友元都能使用派生类向基类的转换；派生类向其直接基类的类型转换对于派生类的成员和友元來说，永远是可访问的。
 * 如果D继承B的方式是公有的或者受保护的，则D的派生类的成员和友元可以使用D向B的类型转换；反之，如果D继承B的方式是私有的，则D的派生类的成员和友元不能使用该类型转换。
+
+```c++
+class Ba{};
+class De: public Ba{};
+class De2: protected Ba{ friend void test2(); };
+class De3:Ba{ friend void test2(); };
+
+De obj;
+De2 obj2;
+De3 obj3;
+void test()
+{
+    // 以下三种定义语句都正确：obj中的Ba部分为公有继承，函数test是可以访问到其Ba部分的。
+    Ba *ptr = &obj;
+    Ba &r = obj;
+    Ba bobj = obj;
+    // 以下三种定义语句都错误：obj2中的Ba部分为受保护继承，函数test不能访问到其Ba部分。
+    Ba *ptr2 = &obj2;
+    Ba &r2 = obj2;
+    Ba bobj2 = obj2;
+    // 以下三种定义语句都错误：obj3中的Ba部分为私有继承，函数test不能访问到其Ba部分。
+    Ba *ptr3 = &obj3;
+    Ba &r3 = obj3;
+    Ba bobj3 = obj3;
+}
+
+void test2()
+{
+    // 以下三种定义语句都正确：obj中的Ba部分为公有继承，函数test2是可以访问到其Ba部分的。
+    Ba *ptr = &obj;
+    Ba &r = obj;
+    Ba bobj = obj;
+    // 以下三种定义语句都正确：obj2中的Ba部分为受保护继承，但是函数test是De2的友元，所以可以访问到其Ba部分。
+    Ba *ptr2 = &obj2;
+    Ba &r2 = obj2;
+    Ba bobj2 = obj2;
+    // 以下三种定义语句都正确：虽然obj3中的Ba部分为私有继承，但是函数test是De3的友元，所以可以访问到其Ba部分。
+    Ba *ptr3 = &obj3;
+    Ba &r3 = obj3;
+    Ba bobj3 = obj3;
+}
+```
 
 > 总而言之，对于调用位置来说，如果基类的公有成员是可访问的，则其派生类就可以转换为该基类；反之则不行。
 

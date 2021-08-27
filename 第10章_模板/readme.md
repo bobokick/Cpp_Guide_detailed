@@ -244,11 +244,12 @@ Cls<15,8,123,25,8> obj;
 因为编译器不会在模板定义时去确认成员，所以默认情况下，编译器会认为通过作用域运算符访问的成员为静态成员，所以为了能够访问类类型成员，我们就要显式指定访问的是类类型成员。
 
 我们通过使用关键字typename来实现显式访问类类型成员，使用形式为：
-> typename 模板类型形参名(或者是模板类形参实例)::类类型成员名
+> typename 模板类型形参名(或模板类形参实例)::类类型成员名
 
-typename要紧跟形参名，所以static等修饰限定符要放在typename之前。
+typename要紧跟在该模板类型形参名或模板类形参实例后面，所以static等修饰限定符要放在typename之前。
 
 ```c++
+#include <vector>
 template<typename ty> 
 void prints(ty obj) 
 {
@@ -256,6 +257,10 @@ void prints(ty obj)
     ty::cls_int val2 = 35;
     // 正确：显式指定cls_int为类类型成员。
     typename ty::cls_int val = 35;
+    // 错误：编译器认为iterator为静态成员，所以出错。
+    typename std::vector<numType>::iterator iter;
+    // 正确：显式指定iterator为类类型成员。
+    typename std::vector<numType>::iterator iter2;
     cout << obj.ins + val;
 }
 struct Cls

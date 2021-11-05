@@ -848,7 +848,7 @@ char *pc = reinterpret_cast<char*>(ip);
 
 >type(expr)
 
-C语言风格(c语言只有这一种强制转换)的强制类型转换：
+C语言风格(C语言只有这一种强制转换)的强制类型转换：
 
 >(type)expr
 

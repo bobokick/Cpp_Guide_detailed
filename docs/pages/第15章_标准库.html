@@ -1,0 +1,390 @@
+<!DOCTYPE html><html><head>
+      <title>&#x7B2C;15&#x7AE0;_&#x6807;&#x51C6;&#x5E93;</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///c:\Users\bbk\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.6.3\node_modules\@shd101wyy\mume\dependencies\katex\katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <ul>
+<li><a href="#%E7%AC%AC%E5%8D%81%E4%BA%94%E7%AB%A0-%E6%A0%87%E5%87%86%E5%BA%93">&#x7B2C;&#x5341;&#x4E94;&#x7AE0; &#x6807;&#x51C6;&#x5E93;</a>
+<ul>
+<li><a href="#151-%E6%A0%87%E5%87%86%E5%BA%93%E6%A6%82%E5%BF%B5">15.1 &#x6807;&#x51C6;&#x5E93;&#x6982;&#x5FF5;</a></li>
+<li><a href="#152-%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%93%8D%E4%BD%9C">15.2 &#x8F93;&#x5165;&#x8F93;&#x51FA;&#x64CD;&#x4F5C;</a>
+<ul>
+<li><a href="#1521-%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%A6%82%E5%BF%B5">15.21 &#x8F93;&#x5165;&#x8F93;&#x51FA;&#x6982;&#x5FF5;</a>
+<ul>
+<li><a href="#15211-%E6%9D%A1%E4%BB%B6%E7%8A%B6%E6%80%81">15.211 &#x6761;&#x4EF6;&#x72B6;&#x6001;</a></li>
+<li><a href="#15212-%E6%93%8D%E7%BA%B5%E7%AC%A6">15.212 &#x64CD;&#x7EB5;&#x7B26;</a>
+<ul>
+<li><a href="#152121-%E8%BE%93%E5%87%BA%E8%A1%A5%E7%99%BD">15.2121 &#x8F93;&#x51FA;&#x8865;&#x767D;</a></li>
+</ul>
+</li>
+<li><a href="#15213-%E6%9C%AA%E6%A0%BC%E5%BC%8F%E5%8C%96io">15.213 &#x672A;&#x683C;&#x5F0F;&#x5316;IO</a>
+<ul>
+<li><a href="#152131-%E5%8D%95%E5%AD%97%E8%8A%82%E6%93%8D%E4%BD%9C">15.2131 &#x5355;&#x5B57;&#x8282;&#x64CD;&#x4F5C;</a></li>
+<li><a href="#152132-%E5%A4%9A%E5%AD%97%E8%8A%82%E6%93%8D%E4%BD%9C">15.2132 &#x591A;&#x5B57;&#x8282;&#x64CD;&#x4F5C;</a></li>
+</ul>
+</li>
+<li><a href="#15214-%E6%B5%81%E9%9A%8F%E6%9C%BA%E8%AE%BF%E9%97%AE">15.214 &#x6D41;&#x968F;&#x673A;&#x8BBF;&#x95EE;</a></li>
+</ul>
+</li>
+<li><a href="#1522-fstream">15.22 fstream</a></li>
+<li><a href="#1523-stringstream">15.23 stringstream</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 class="mume-header" id="%E7%AC%AC%E5%8D%81%E4%BA%94%E7%AB%A0-%E6%A0%87%E5%87%86%E5%BA%93">&#x7B2C;&#x5341;&#x4E94;&#x7AE0; &#x6807;&#x51C6;&#x5E93;</h1>
+
+<h2 class="mume-header" id="151-%E6%A0%87%E5%87%86%E5%BA%93%E6%A6%82%E5%BF%B5">15.1 &#x6807;&#x51C6;&#x5E93;&#x6982;&#x5FF5;</h2>
+
+<p>C++&#x6807;&#x51C6;&#x5E93;&#xFF08;standard library&#xFF09;&#x662F;C++&#x59D4;&#x5458;&#x4F1A;&#x6240;&#x63D0;&#x4F9B;&#x7684;&#x7531;C++&#x8BED;&#x8A00;&#x6240;&#x7F16;&#x5199;&#x7684;&#x4E00;&#x7CFB;&#x5217;&#x5934;&#x6587;&#x4EF6;&#x3002;<br>
+&#x8FD9;&#x4E9B;&#x5E93;&#x6269;&#x5C55;&#x4E86;&#x5F88;&#x591A;C++&#x7684;&#x64CD;&#x4F5C;&#xFF0C;&#x6BD4;&#x5982;C++&#x8BED;&#x8A00;&#x5E76;&#x672A;&#x5B9A;&#x4E49;&#x4EFB;&#x4F55;&#x8F93;&#x5165;&#x8F93;&#x51FA;&#x64CD;&#x4F5C;&#xFF0C;&#x6240;&#x4EE5;&#x8F93;&#x5165;&#x8F93;&#x51FA;&#x64CD;&#x4F5C;&#x662F;&#x7531;&#x6807;&#x51C6;&#x5E93;&#x6765;&#x63D0;&#x4F9B;&#x7684;&#xFF0C;C++&#x6807;&#x51C6;&#x5E93;&#x8FD8;&#x63D0;&#x4F9B;&#x4E86;&#x5176;&#x4ED6;&#x8BB8;&#x591A;&#x7684;&#x529F;&#x80FD;&#x3002;</p>
+<p>&#x56E0;&#x4E3A;&#x6807;&#x51C6;&#x5E93;&#x662F;&#x5B98;&#x65B9;&#x6240;&#x63D0;&#x4F9B;&#x7684;&#x5934;&#x6587;&#x4EF6;&#xFF0C;&#x4E0D;&#x662F;&#x8BED;&#x8A00;&#x81EA;&#x5E26;&#x7684;&#x8BED;&#x8A00;&#x7279;&#x6027;&#xFF0C;&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x5728;&#x4F7F;&#x7528;&#x6807;&#x51C6;&#x5E93;&#x65F6;&#x5FC5;&#x987B;&#x8981;&#x7528;<code>#include</code>&#x9884;&#x5904;&#x7406;&#x6307;&#x4EE4;&#x6765;&#x5305;&#x542B;&#x6240;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x7684;&#x6807;&#x51C6;&#x5E93;&#x5934;&#x6587;&#x4EF6;&#x3002;</p>
+<blockquote>
+<p>&#x5BF9;&#x4E8E;&#x6807;&#x51C6;&#x5E93;&#x5934;&#x6587;&#x4EF6;&#x6765;&#x8BF4;&#xFF0C;<code>#include</code>&#x9884;&#x5904;&#x7406;&#x6307;&#x4EE4;&#x540E;&#x7684;&#x6587;&#x4EF6;&#x540D;&#x662F;&#x7528;&#x7B26;&#x53F7;<code>&lt;&gt;</code>&#x800C;&#x4E0D;&#x662F;<code>&quot;&quot;</code>&#x6765;&#x5305;&#x542B;&#x3002;</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp"><span class="token comment">// c++&#x8F93;&#x5165;&#x8F93;&#x51FA;&#x6807;&#x51C6;&#x5E93;&#x6587;&#x4EF6;</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+</pre><p>&#x56E0;&#x4E3A;C++&#x662F;&#x4ECE;C&#x8BED;&#x8A00;&#x7684;&#x57FA;&#x7840;&#x4E0A;&#x62D3;&#x5C55;&#x800C;&#x6765;&#x7684;&#xFF0C;&#x6240;&#x4EE5;C++&#x8BED;&#x8A00;&#x4E5F;&#x517C;&#x5BB9;&#x4E86;C&#x8BED;&#x8A00;&#x7684;&#x6807;&#x51C6;&#x5E93;&#x3002;<br>
+&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x4F7F;&#x7528;C&#x8BED;&#x8A00;&#x6807;&#x51C6;&#x5E93;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x6709;C++&#x4FEE;&#x6539;&#x540E;&#x7684;C&#x8BED;&#x8A00;&#x6807;&#x51C6;&#x5E93;&#xFF0C;&#x8FD9;&#x4E9B;&#x7ECF;&#x8FC7;C++&#x4FEE;&#x6539;&#x540E;&#x7684;C&#x8BED;&#x8A00;&#x6807;&#x51C6;&#x5E93;&#x548C;&#x539F;&#x59CB;&#x6807;&#x51C6;&#x5E93;&#x7684;&#x5185;&#x5BB9;&#x662F;&#x4E00;&#x6837;&#x7684;&#xFF0C;&#x53EA;&#x4E0D;&#x8FC7;&#x4ECE;&#x547D;&#x540D;&#x89C4;&#x8303;&#x4E0A;&#x6765;&#x8BB2;&#x66F4;&#x7B26;&#x5408;C++&#x8BED;&#x8A00;&#x7684;&#x8981;&#x6C42;&#x3002;<br>
+&#x4FEE;&#x6539;&#x540E;&#x7684;C&#x8BED;&#x8A00;&#x6807;&#x51C6;&#x5E93;&#x4E0E;&#x539F;&#x59CB;&#x7684;C&#x8BED;&#x8A00;&#x6807;&#x51C6;&#x5E93;&#x6709;&#x4EE5;&#x4E0B;&#x533A;&#x522B;&#xFF1A;</p>
+<ul>
+<li>&#x4FEE;&#x6539;&#x540E;&#x7684;C&#x8BED;&#x8A00;&#x6807;&#x51C6;&#x5E93;&#x7684;&#x6240;&#x6709;&#x5934;&#x6587;&#x4EF6;&#x540D;&#x90FD;&#x5728;&#x5176;&#x6700;&#x524D;&#x9762;&#x52A0;&#x4E0A;&#x4E86;&#x5B57;&#x6BCD;<code>c</code>&#xFF0C;&#x800C;&#x4E14;&#x672B;&#x5C3E;&#x4E5F;&#x4E0D;&#x7528;&#x518D;&#x52A0;<code>.h</code>&#x3002;</li>
+<li>&#x4FEE;&#x6539;&#x540E;&#x7684;C&#x8BED;&#x8A00;&#x6807;&#x51C6;&#x5E93;&#x4E2D;&#x5B9A;&#x4E49;&#x7684;&#x540D;&#x5B57;&#x4ECE;&#x5C5E;&#x4E8E;&#x547D;&#x540D;&#x7A7A;&#x95F4;std&#xFF0C;&#x800C;&#x539F;&#x59CB;&#x6807;&#x51C6;&#x5E93;&#x4E2D;&#x7684;&#x5219;&#x4E0D;&#x7136;&#x3002;</li>
+</ul>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp"><span class="token comment">// C&#x8BED;&#x8A00;&#x8F93;&#x5165;&#x8F93;&#x51FA;&#x6807;&#x51C6;&#x5E93;&#x6587;&#x4EF6;</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+<span class="token comment">// &#x7ECF;&#x8FC7;C++&#x4FEE;&#x6539;&#x540E;&#x7684;C&#x8BED;&#x8A00;&#x8F93;&#x5165;&#x8F93;&#x51FA;&#x6807;&#x51C6;&#x5E93;&#x6587;&#x4EF6;</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;cstdio&gt;</span></span>
+</pre><p>&#x5BF9;&#x4E8E;C++&#x6807;&#x51C6;&#x5E93;&#x6765;&#x8BF4;&#xFF0C;&#x6211;&#x4EEC;&#x6240;&#x5E38;&#x7528;&#x7684;&#x64CD;&#x4F5C;&#x5206;&#x4E3A;&#x4EE5;&#x4E0B;&#x51E0;&#x4E2A;&#x90E8;&#x5206;&#xFF1A;</p>
+<ul>
+<li>&#x8F93;&#x5165;&#x8F93;&#x51FA;&#x64CD;&#x4F5C;(io&#x64CD;&#x4F5C;)</li>
+<li>&#x5BB9;&#x5668;
+<ul>
+<li>&#x987A;&#x5E8F;&#x5BB9;&#x5668;</li>
+<li>&#x5173;&#x8054;&#x5BB9;&#x5668;</li>
+</ul>
+</li>
+<li>&#x8FED;&#x4EE3;&#x5668;</li>
+<li>&#x6CDB;&#x578B;&#x7B97;&#x6CD5;</li>
+<li>&#x591A;&#x7C7B;&#x578B;&#x96C6;&#x5408;
+<ul>
+<li>tuple&#x7C7B;&#x578B;</li>
+</ul>
+</li>
+<li>&#x4F4D;&#x96C6;&#x5408;
+<ul>
+<li>bitset&#x7C7B;&#x578B;</li>
+</ul>
+</li>
+<li>&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;</li>
+<li>&#x968F;&#x673A;&#x6570;</li>
+<li>&#x5185;&#x5B58;&#x7BA1;&#x7406;</li>
+</ul>
+<h2 class="mume-header" id="152-%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%93%8D%E4%BD%9C">15.2 &#x8F93;&#x5165;&#x8F93;&#x51FA;&#x64CD;&#x4F5C;</h2>
+
+<h3 class="mume-header" id="1521-%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%A6%82%E5%BF%B5">15.21 &#x8F93;&#x5165;&#x8F93;&#x51FA;&#x6982;&#x5FF5;</h3>
+
+<p><img src="../image/2021-06-27-15-45-53.png" alt="io"></p>
+<h4 class="mume-header" id="15211-%E6%9D%A1%E4%BB%B6%E7%8A%B6%E6%80%81">15.211 &#x6761;&#x4EF6;&#x72B6;&#x6001;</h4>
+
+<p><img src="../image/2021-06-27-15-48-18.png" alt="csta"><br>
+<img src="../image/2021-06-27-15-48-46.png" alt="csta2"></p>
+<h4 class="mume-header" id="15212-%E6%93%8D%E7%BA%B5%E7%AC%A6">15.212 &#x64CD;&#x7EB5;&#x7B26;</h4>
+
+<p><img src="../image/2021-06-27-15-54-00.png" alt="man"><br>
+<img src="../image/2021-06-27-15-54-23.png" alt="man2"></p>
+<h5 class="mume-header" id="152121-%E8%BE%93%E5%87%BA%E8%A1%A5%E7%99%BD">15.2121 &#x8F93;&#x51FA;&#x8865;&#x767D;</h5>
+
+<p><img src="../image/2021-06-27-15-56-23.png" alt="sf"></p>
+<h4 class="mume-header" id="15213-%E6%9C%AA%E6%A0%BC%E5%BC%8F%E5%8C%96io">15.213 &#x672A;&#x683C;&#x5F0F;&#x5316;IO</h4>
+
+<h5 class="mume-header" id="152131-%E5%8D%95%E5%AD%97%E8%8A%82%E6%93%8D%E4%BD%9C">15.2131 &#x5355;&#x5B57;&#x8282;&#x64CD;&#x4F5C;</h5>
+
+<p><img src="../image/2021-06-27-15-58-31.png" alt="suio"></p>
+<h5 class="mume-header" id="152132-%E5%A4%9A%E5%AD%97%E8%8A%82%E6%93%8D%E4%BD%9C">15.2132 &#x591A;&#x5B57;&#x8282;&#x64CD;&#x4F5C;</h5>
+
+<p><img src="../image/2021-06-27-15-59-25.png" alt="muio"><br>
+<img src="../image/2021-06-27-15-59-52.png" alt="muio2"></p>
+<h4 class="mume-header" id="15214-%E6%B5%81%E9%9A%8F%E6%9C%BA%E8%AE%BF%E9%97%AE">15.214 &#x6D41;&#x968F;&#x673A;&#x8BBF;&#x95EE;</h4>
+
+<p><img src="../image/2021-06-27-16-01-13.png" alt="st"></p>
+<h3 class="mume-header" id="1522-fstream">15.22 fstream</h3>
+
+<p><img src="../image/2021-06-27-15-49-41.png" alt="fstream"></p>
+<p><img src="../image/2021-06-27-15-50-11.png" alt="fm"></p>
+<h3 class="mume-header" id="1523-stringstream">15.23 stringstream</h3>
+
+<p><img src="../image/2021-06-27-15-50-46.png" alt="ss"></p>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

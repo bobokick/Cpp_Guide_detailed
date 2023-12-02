@@ -1,0 +1,1945 @@
+<!DOCTYPE html><html><head>
+      <title>第5章_函数</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///c:\Users\yu.he\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.8.9\crossnote\dependencies\katex\katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<div class="md-toc">
+<details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#第五章-函数" class="md-toc-link"><p>第五章 函数</p>
+</a>
+          </summary>
+        <div>
+          <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#51-函数基本概念介绍" class="md-toc-link"><p>5.1 函数基本概念介绍</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#511-函数的结构" class="md-toc-link">
+            <p>5.11 函数的结构</p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#512-函数的声明" class="md-toc-link"><p>5.12 函数的声明</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#5121-函数声明形式" class="md-toc-link">
+            <p>5.121 函数声明形式</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#5122-尾置返回类型" class="md-toc-link">
+            <p>5.122 尾置返回类型</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#5123-函数首部" class="md-toc-link">
+            <p>5.123 函数首部</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#513-函数的定义" class="md-toc-link"><p>5.13 函数的定义</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#5131-函数定义形式" class="md-toc-link">
+            <p>5.131 函数定义形式</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#5132-已删除函数" class="md-toc-link">
+            <p>5.132 已删除函数</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#514-函数的使用" class="md-toc-link">
+            <p>5.14 函数的使用</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#515-函数调用的执行过程" class="md-toc-link">
+            <p>5.15 函数调用的执行过程</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#52-函数分类" class="md-toc-link"><p>5.2 函数分类</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#521-递归函数" class="md-toc-link">
+            <p>5.21 递归函数</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#522-内联函数" class="md-toc-link">
+            <p>5.22 内联函数</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#523-constexpr函数" class="md-toc-link">
+            <p>5.23 constexpr函数</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#53-函数参数详解" class="md-toc-link"><p>5.3 函数参数详解</p>
+</a>
+          </summary>
+        <div>
+          <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#531-参数传递分类" class="md-toc-link"><p>5.31 参数传递分类</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#5311-值传递" class="md-toc-link">
+            <p>5.311 值传递</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#5312-引用传递" class="md-toc-link">
+            <p>5.312 引用传递</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#532-默认实参" class="md-toc-link"><p>5.32 默认实参</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#5321-默认实参的形参表形式" class="md-toc-link">
+            <p>5.321 默认实参的形参表形式</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#5322-含默认实参函数的使用" class="md-toc-link">
+            <p>5.322 含默认实参函数的使用</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#533-可变形参的函数" class="md-toc-link"><p>5.33 可变形参的函数</p>
+</a>
+          </summary>
+        <div>
+          <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#5331-initializer_list形参" class="md-toc-link"><p>5.331 initializer_list形参</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#53311-initializer_list形参的形参表形式" class="md-toc-link">
+            <p>5.3311 initializer_list形参的形参表形式</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#53312-含initializer_list形参的使用" class="md-toc-link">
+            <p>5.3312 含initializer_list形参的使用</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#5332-省略符形参" class="md-toc-link"><p>5.332 省略符形参</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#53321-省略符形参的形参表形式" class="md-toc-link">
+            <p>5.3321 省略符形参的形参表形式</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#53322-含省略符形参的使用" class="md-toc-link">
+            <p>5.3322 含省略符形参的使用</p>
+
+          </a></div>
+        </div>
+      </details>
+    
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#534-特殊类型形参分析" class="md-toc-link"><p>5.34 特殊类型形参分析</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#5341-const形参" class="md-toc-link">
+            <p>5.341 const形参</p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#5342-数组形参" class="md-toc-link"><p>5.342 数组形参</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#53421-数组形式和数组指针形式形参" class="md-toc-link">
+            <p>5.3421 数组形式和数组指针形式形参</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#53422-数组引用形式形参" class="md-toc-link">
+            <p>5.3422 数组引用形式形参</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#5343-函数形参" class="md-toc-link">
+            <p>5.343 函数形参</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#5344-main函数形参" class="md-toc-link">
+            <p>5.344 main函数形参</p>
+
+          </a></div>
+        </div>
+      </details>
+    
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#54-函数返回过程详解" class="md-toc-link"><p>5.4 函数返回过程详解</p>
+</a>
+          </summary>
+        <div>
+          <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#541-return语句" class="md-toc-link"><p>5.41 return语句</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#5411-return语句的形式" class="md-toc-link">
+            <p>5.411 return语句的形式</p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#5412-return语句的执行过程" class="md-toc-link"><p>5.412 return语句的执行过程</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#54121-返回值" class="md-toc-link">
+            <p>5.4121 返回值</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#54122-返回引用" class="md-toc-link">
+            <p>5.4122 返回引用</p>
+
+          </a></div>
+        </div>
+      </details>
+    
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#542-特殊返回类型分析" class="md-toc-link"><p>5.42 特殊返回类型分析</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#5421-数组返回类型" class="md-toc-link">
+            <p>5.421 数组返回类型</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#5422-函数返回类型" class="md-toc-link">
+            <p>5.422 函数返回类型</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#5423-main函数返回类型" class="md-toc-link">
+            <p>5.423 main函数返回类型</p>
+
+          </a></div>
+        </div>
+      </details>
+    
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#55-函数重载" class="md-toc-link"><p>5.5 函数重载</p>
+</a>
+          </summary>
+        <div>
+          <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#551-函数重载与重复定义" class="md-toc-link"><p>5.51 函数重载与重复定义</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#5511-形参名不同" class="md-toc-link">
+            <p>5.511 形参名不同</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#5512-返回类型不同" class="md-toc-link">
+            <p>5.512 返回类型不同</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#5513-类型别名形参" class="md-toc-link">
+            <p>5.513 类型别名形参</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#5514-顶层const形参" class="md-toc-link">
+            <p>5.514 顶层const形参</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#5515-constexpr修饰符" class="md-toc-link">
+            <p>5.515 constexpr修饰符</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#552-函数匹配" class="md-toc-link"><p>5.52 函数匹配</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#5521-编译器寻找重载函数的过程" class="md-toc-link">
+            <p>5.521 编译器寻找重载函数的过程</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#5522-重载函数匹配的过程" class="md-toc-link">
+            <p>5.522 重载函数匹配的过程</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#5523-最佳匹配的确定" class="md-toc-link">
+            <p>5.523 最佳匹配的确定</p>
+
+          </a></div>
+        </div>
+      </details>
+    
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#56-可调用对象" class="md-toc-link"><p>5.6 可调用对象</p>
+</a>
+          </summary>
+        <div>
+          <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#561-可调用对象的相关概念" class="md-toc-link"><p>5.61 可调用对象的相关概念</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#5611-调用形式" class="md-toc-link">
+            <p>5.611 调用形式</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#5612-可调用对象的使用" class="md-toc-link">
+            <p>5.612 可调用对象的使用</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#562-重载函数调用运算符类的对象" class="md-toc-link">
+            <p>5.62 重载函数调用运算符类的对象</p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#563-lambda表达式" class="md-toc-link"><p>5.63 lambda表达式</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#5631-lambda表达式的定义形式" class="md-toc-link">
+            <p>5.631 lambda表达式的定义形式</p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#5632-捕获列表" class="md-toc-link"><p>5.632 捕获列表</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#56321-捕获方式" class="md-toc-link">
+            <p>5.6321 捕获方式</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#56322-捕获列表用法" class="md-toc-link">
+            <p>5.6322 捕获列表用法</p>
+
+          </a></div>
+        </div>
+      </details>
+    
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#564-bind创建的对象" class="md-toc-link"><p>5.64 bind创建的对象</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#5641-可调用对象的创建" class="md-toc-link">
+            <p>5.641 可调用对象的创建</p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#5642-bind中的实参表的参数" class="md-toc-link"><p>5.642 bind中的实参表的参数</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#56421-普通实参" class="md-toc-link">
+            <p>5.6421 普通实参</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#56422-占位符" class="md-toc-link">
+            <p>5.6422 占位符</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#5643-可调用对象的使用" class="md-toc-link">
+            <p>5.643 可调用对象的使用</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#565-不同类型的可调用对象的统一" class="md-toc-link"><p>5.65 不同类型的可调用对象的统一</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#5651-函数表介绍" class="md-toc-link">
+            <p>5.651 函数表介绍</p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#5652-function类" class="md-toc-link"><p>5.652 function类</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#56521-function类的操作" class="md-toc-link">
+            <p>5.6521 function类的操作</p>
+
+          </a></div>
+        </div>
+      </details>
+    
+        </div>
+      </details>
+    
+        </div>
+      </details>
+    
+        </div>
+      </details>
+    
+</div>
+<h2 id="第五章-函数">第五章 函数 </h2>
+<h3 id="51-函数基本概念介绍">5.1 函数基本概念介绍 </h3>
+<p>函数(function)是C++中派生类型中的一种，它是指一个有名字的代码块(复合语句)，我们可以通过调用该函数来执行相应的代码，所以函数是可调用对象中的一种。一个函数有0个或多个参数，而且通常会产生一个结果。函数可以重载，也就是说同一个名字可以对应几个不同的函数。</p>
+<blockquote>
+<p>函数不是变量，它是一种特殊的对象，不能被初始化和赋值。<br>
+不同函数对象的函数首部是独一无二的。一个函数对象的类型是由它的返回类型和形参表所决定的。</p>
+</blockquote>
+<h4 id="511-函数的结构">5.11 函数的结构 </h4>
+<p>一个函数定义通常包括以下几个部分：</p>
+<ul>
+<li>返回类型(return type)</li>
+<li>函数名字</li>
+<li>形参表</li>
+<li>函数体</li>
+</ul>
+<p>以下是函数各部分的简介：</p>
+<ol>
+<li>返回类型是指该函数调用后所返回的结果类型。</li>
+<li>函数名字是一个函数的标识符，调用函数必须明确该函数的名字。
+<blockquote>
+<p>在同一作用域中，函数名字能够和非可调用对象的对象名或者类型名重名</p>
+</blockquote>
+</li>
+<li>形参表是指由0个或多个形参(parameter)组成的列表，每个形参都是由该形参类型与其形参名组成，形参之间要用逗号分隔。该列表必须是由圆括号括起的。</li>
+<li>函数体是一个复合语句，函数中的具体代码都写在里面。</li>
+</ol>
+<blockquote>
+<p>函数的函数体中不能定义函数或函数模板，但是可以声明函数。<br>
+函数体中既可以声明，也可以定义类类型和类模板。</p>
+</blockquote>
+<p>函数的返回类型和形参类型不能为auto和函数类型；除此之外，函数的返回类型还不能是数组类型(但可以是数组指针类型)。</p>
+<p>形参是指函数在形参表里所声明的非静态局部变量，所有形参的作用域是从该形参声明表达式开始到所属函数的声明或定义的末尾。<br>
+所以一个函数的形参与其函数体的作用域中的局部变量之间，函数的形参与形参之间都不能重名。<br>
+形参的作用是能够在调用函数时向该函数传递数据。</p>
+<blockquote>
+<p>形参名是可选的，但是由于我们无法使用未命名的形参，所以函数的形参一般都应该有个名字。</p>
+</blockquote>
+<blockquote>
+<p>返回类型和形参类型都可以包含各种类型修饰符，如const等，但是都不能包含存储类说明符。<br>
+但是函数本身可以用存储类说明符来指定储存类型，比如<code>static void prints() {}</code>指的是一个文件内函数，文件外无法被引用。</p>
+</blockquote>
+<h4 id="512-函数的声明">5.12 函数的声明 </h4>
+<p>函数声明也称作函数原型（function prototype）。和其他名字一样，函数的名字也必须在使用之前声明。类似于变量，函数只能定义一次，但可以声明多次。</p>
+<p>函数的声明无须函数体(有函数体就是定义了)，因为不含函数体，所以函数形参名不必与定义中相同，甚至还可以不用写形参名。</p>
+<h5 id="5121-函数声明形式">5.121 函数声明形式 </h5>
+<p>以下是函数的声明：</p>
+<blockquote>
+<ul>
+<li>返回类型 函数名字 形参表;</li>
+<li>auto 函数名字 形参表 -&gt; 返回类型;</li>
+</ul>
+</blockquote>
+<p>这两种声明形式都一样，只不过第二种形式是在C++11新标准中新增的，叫做用尾置返回类型(trailing return type)。</p>
+<h5 id="5122-尾置返回类型">5.122 尾置返回类型 </h5>
+<p>尾置返回类型和普通返回类型的最大区别也就是:<br>
+尾置返回类型在形参声明之后，所以可以用函数形参来自动推断该函数的返回类型；而普通返回类型是在形参声明之前，所以就不能这样做。</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token comment">// 普通返回类型</span>
+<span class="token comment">// 错误：形参val和val2还未声明</span>
+<span class="token keyword keyword-decltype">decltype</span><span class="token punctuation">(</span>val <span class="token operator">+</span> val2<span class="token punctuation">)</span> <span class="token function">prints</span><span class="token punctuation">(</span><span class="token keyword keyword-double">double</span> val<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> val2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 尾置返回类型</span>
+<span class="token comment">// 正确：形参val和val2在返回类型之前已声明</span>
+<span class="token keyword keyword-auto">auto</span> <span class="token function">prints</span><span class="token punctuation">(</span><span class="token keyword keyword-double">double</span> val<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> val2<span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token keyword keyword-decltype">decltype</span><span class="token punctuation">(</span>val <span class="token operator">+</span> val2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><blockquote>
+<p>在尾置返回类型中，对于存储说明符和除了指针、引用、数组和<code>const</code>类型限定符的其他类型限定符(如<code>constexpr</code>，<code>virtual</code>等)，这些符号必须要放在<code>auto</code>之前，否则出错。</p>
+</blockquote>
+<h5 id="5123-函数首部">5.123 函数首部 </h5>
+<p>返回类型、函数名字和形参表共同形成了一个部分，叫做函数首部。<br>
+所以一个函数声明也就是声明了一个函数首部。一个函数首部说明了调用该函数所需的全部信息，不同的函数的函数首部都是独一无二的。</p>
+<blockquote>
+<p><strong>注意</strong>：函数首部的<mark>形参不能用constexpr进行修饰</mark>，constexpr只能用于函数或者非形参或静态数据成员变量的声明与定义。</p>
+</blockquote>
+<p>要注意函数的声明要与其定义一致，就是函数首部要一致(包括函数声明或定义前的类型限定符也要一致)：</p>
+<ul>
+<li>函数名要相同。</li>
+<li>返回类型(可以忽略顶层const)要相同。</li>
+<li>形参表中的形参数量，顺序和类型(可以忽略顶层const)都要相同。</li>
+</ul>
+<p>否则就变成了其他的函数的声明，无意义了。</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token keyword keyword-const">const</span> <span class="token keyword keyword-int">int</span> <span class="token function">ret</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> <span class="token keyword keyword-int">int</span> val<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 错误定义：不是同一个函数</span>
+<span class="token keyword keyword-int">int</span> <span class="token function">ret</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> val<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword keyword-return">return</span> val<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment">// 正确定义</span>
+<span class="token keyword keyword-const">const</span> <span class="token keyword keyword-int">int</span> <span class="token function">ret</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> <span class="token keyword keyword-int">int</span> val<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword keyword-return">return</span> val<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><h4 id="513-函数的定义">5.13 函数的定义 </h4>
+<p>函数的定义和函数声明类似，只不过需要写上函数体。</p>
+<blockquote>
+<p>函数不能在函数中定义，但是可以在函数中声明。</p>
+</blockquote>
+<h5 id="5131-函数定义形式">5.131 函数定义形式 </h5>
+<p>函数的定义形式和声明形式一样，分两种：</p>
+<blockquote>
+<ul>
+<li>返回类型 函数名字 形参表 函数体</li>
+<li>auto 函数名字 形参表 -&gt; 返回类型 函数体</li>
+</ul>
+</blockquote>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token comment">// val 的阶乘是 val* (val - 1) * (val - 2) .. .* ( (val - (val - 1) ) * 1) </span>
+<span class="token keyword keyword-int">int</span> <span class="token function">fact</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> val<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-int">int</span> ret <span class="token operator">=</span> <span class="token number">1</span>； <span class="token comment">//局部变量，用于保存计算结果</span>
+    <span class="token keyword keyword-while">while</span> <span class="token punctuation">(</span>val <span class="token operator">&gt;</span> <span class="token number">1</span><span class="token punctuation">)</span>
+        ret <span class="token operator">*=</span> val<span class="token operator">--</span><span class="token punctuation">;</span> <span class="token comment">//把ret和val的乘积賦给ret,然后将val减1</span>
+    <span class="token keyword keyword-return">return</span> ret； <span class="token comment">//返回结果</span>
+<span class="token punctuation">}</span>
+</code></pre><blockquote>
+<p>函数的声明和定义中，函数形参表与函数名字、函数体和箭头符(-&gt;)之间可以有0个或多个空白符分隔。<br>
+函数的声明和定义中，返回类型与函数体之间可以有0个或多个空白符分隔。<br>
+函数形参表中每个形参与逗号或者圆括号之间可以有0个或多个空白符分隔。</p>
+</blockquote>
+<p>不管是函数的声明还是定义，函数的形参列表可以为空，但是不能省略，也就是必须要有一对圆括号，空形参列表的声明形式为：</p>
+<blockquote>
+<ul>
+<li>返回类型 函数名字 ();</li>
+<li>返回类型 函数名字 (void);</li>
+</ul>
+</blockquote>
+<p>第二种形式是C语言形式，C++也继承了。</p>
+<h5 id="5132-已删除函数">5.132 已删除函数 </h5>
+<p>所有函数都有一种特殊的定义形式，可以将其定义为删除的函数，这种形式就是在函数声明的后面加上赋值符<code>=</code>和关键字<code>delete</code>：</p>
+<blockquote>
+<p>函数的声明 = delete;</p>
+</blockquote>
+<p>当一个函数被定义成已删除时，是不能调用该函数的，否则会编译错误。</p>
+<blockquote>
+<p>要注意已删除函数是已经定义的函数，所以不能为已删除函数再定义了，否则会重复定义。</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token comment">// 定义了一个已删除函数</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">prints</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword keyword-delete">delete</span><span class="token punctuation">;</span>
+<span class="token comment">// 错误：不能重复定义</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">prints</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> cout <span class="token operator">&lt;&lt;</span> <span class="token string">"print\n"</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token comment">// 错误：不能调用已删除函数。</span>
+<span class="token function">prints</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><h4 id="514-函数的使用">5.14 函数的使用 </h4>
+<p>我们可以通过调用运算符(call operator)来执行函数。形式为：</p>
+<blockquote>
+<p>函数名 (实参表)</p>
+</blockquote>
+<p>调用运算符<code>()</code>内是实参(argument)列表(实参表最外边不能有圆括号)，实参是我们用来初始化函数形参的对象(包括临时对象)，实参可以是任何非声明或定义表达式。</p>
+<blockquote>
+<p>调用运算符和函数、其他表达式之间可以有0个或多个空白符分隔。<br>
+函数实参表中每个实参与逗号或者圆括号之间可以有0个或多个空白符分隔。<br>
+函数形参表中每个形参与逗号或者圆括号之间可以有0个或多个空白符分隔。</p>
+</blockquote>
+<p>调用函数时，该函数一般会返回一个对象(包括临时对象)，该对象的类型就是此函数的返回类型。</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-int">int</span> j <span class="token operator">=</span> <span class="token function">fact</span> <span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span> <span class="token punctuation">;</span> <span class="token comment">// j 等于 120，即 fact (5)的结果</span>
+    cout « <span class="token string">"5! is "</span> « j « endl<span class="token punctuation">;</span> 
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><blockquote>
+<p>实参可以是函数调用。<br>
+如果想传一个实参但是又不想先建立对应类型的对象，可以在实参表里隐式或者显式调用(用圆括号或者花括号加参数调用)对应类型的构造函数来创建一个临时对象来进行传递。</p>
+</blockquote>
+<p>实参的数目通常要与其调用函数的形参数目一致，而且每个实参的位置要与形参的位置一致。也就是第一个实参初始化第一个形参，第二个实参初始化第二个形参，以此类推。</p>
+<blockquote>
+<p>实参的类型必须与对应的形参类型一样或者能隐式转换成对应形参的类型。</p>
+</blockquote>
+<blockquote>
+<p>尽管实参与形参存在对应关系，但是并没有规定实参的求值顺序。</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token function">fact</span><span class="token punctuation">(</span><span class="token string">"hello"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//错误：实参类型不正确 </span>
+<span class="token function">fact</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//错误：实参数量不足 </span>
+<span class="token function">fact</span><span class="token punctuation">(</span><span class="token number">42</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//错误：实参数量过多 </span>
+<span class="token function">fact</span><span class="token punctuation">(</span><span class="token number">3.14</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//正确：该实参能转换成int</span>
+</code></pre><h4 id="515-函数调用的执行过程">5.15 函数调用的执行过程 </h4>
+<ul>
+<li>用实参初始化函数对应的形参。</li>
+<li>将控制权转移给被调用函数。此时，主调函数(calling function)的执行被暂时中断，被调函数(called function)开始执行。</li>
+<li>被调函数执行的第一步是（隐式地）定义并初始化它的形参。</li>
+<li>然后执行被调函数函数体中的代码，直到遇到return语句或者到达函数体末尾。</li>
+<li>当遇到一条return语句或者到达函数体末尾时，函数结束执行过程，并将控制权从被调函数转移回主调函数，继续执行调用点以及调用点之后的代码。</li>
+<li>如果是遇到return语句才结束的，那么还会返回return语句中的值（如果有的话），该返回值用于初始化调用表达式的结果。</li>
+</ul>
+<h3 id="52-函数分类">5.2 函数分类 </h3>
+<p>函数按照作用分，可分为：</p>
+<ul>
+<li>普通函数</li>
+<li>递归函数</li>
+<li>内联函数
+<ul>
+<li>constexpr函数</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>内联函数、constexpr函数和普通函数一样都可以只声明不定义，只要不用就行。</p>
+</blockquote>
+<h4 id="521-递归函数">5.21 递归函数 </h4>
+<p>如果一个函数调用了它自身，不管这种调用是直接的还是间接的，都称该函数为递归函数(recursive function)。</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token comment">//计算val的阶乘，即1*2*3...* val</span>
+<span class="token comment">/* 我们递归地调用factorial函数
+以求得从val中减去1后
+新数字的阶乘。
+当val递减到1时，递归终止，返回1。
+*/</span>
+<span class="token keyword keyword-int">int</span> <span class="token function">factorial</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> val<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>val <span class="token operator">&gt;</span> <span class="token number">1</span><span class="token punctuation">)</span>
+        <span class="token keyword keyword-return">return</span> <span class="token function">factorial</span><span class="token punctuation">(</span>val<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">*</span> val<span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><blockquote>
+<p>当某递归函数运行时，每次都递归调用却没有终止条件时，这种函数就被说明其含有递归循环(recursion loop)。</p>
+</blockquote>
+<p>所以当定义一条正常的递归函数时，一定有某条路径是不包含递归调用的；否则，函数将“永远”递归下去。换句话说，函数将不断地调用它自身直到程序栈空间耗尽为止。</p>
+<h4 id="522-内联函数">5.22 内联函数 </h4>
+<p>函数调用的执行过程中，每次调用一个函数，都是要在内存空间上开辟一个临时空间(栈区)来存放该函数的数据，调用结束后释放其临时空间。所以函数调用一般比求等价表达式的值要慢一些。</p>
+<p>所以当我们定义一个简单的函数时，为了节省程序运行时间和空间，可以将其指定为内联函数(inline)。<br>
+内联函数的定义形式为：</p>
+<blockquote>
+<p>inline 函数定义</p>
+</blockquote>
+<p>内联函数是指将函数在它在每个调用点上“内联地”展开：</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token keyword keyword-inline">inline</span> <span class="token keyword keyword-const">const</span> string <span class="token function">SshorterString</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> string <span class="token operator">&amp;</span>s1<span class="token punctuation">,</span> <span class="token keyword keyword-const">const</span> string <span class="token operator">&amp;</span>s2<span class="token punctuation">)</span>
+<span class="token punctuation">{</span><span class="token keyword keyword-return">return</span> s1<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;=</span> s2<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">?</span> s1 <span class="token operator">:</span> s2<span class="token punctuation">}</span>
+
+<span class="token comment">// 在编译过程中展开成类似于下面的形式:\
+cout &lt;&lt; (s1.size() &lt;= s2.size() ? s1 : s2) &lt;&lt; endl;</span>
+cout <span class="token operator">&lt;&lt;</span> <span class="token function">shorterString</span> <span class="token punctuation">(</span>s1<span class="token punctuation">,</span> s2<span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+</code></pre><p>内联说明只是向编译器发出的一个请求，编译器可以选择忽略这个请求。一般来说，内联机制用于优化规模较小、流程直接、频繁调用的函数。而且不要定义内联递归函数，很多编译器都不支持内联递归函数。</p>
+<blockquote>
+<p>同一文件的同一个函数的声明和定义语句中是否含有关键字inline可以不一致，<mark>以函数的定义语句为主</mark>。</p>
+</blockquote>
+<p>内联函数因为其性质，所以可以在将要链接的各个<strong>不同文件中</strong>都定义其函数（不能在同一个文件定义多个首部相同或不满足重载的内联函数，会出现重定义错误）。</p>
+<p>调用该内联函数的调用点所使用的函数，是调用点对应文件里的该函数的定义版本，如果调用点对应文件里只有该函数的声明而没有定义，则会出错。<br>
+所以对于内联函数来说，要在每个文件中都有其定义。</p>
+<blockquote>
+<p>同一个内联函数在不同文件的定义应保持一致，尤其是函数首部一致，防止定义成了其他的内联函数，无意义了。</p>
+</blockquote>
+<h4 id="523-constexpr函数">5.23 constexpr函数 </h4>
+<p>constexpr函数之前也谈过，是指能用于初始化或赋值常量表达式的函数。</p>
+<p>定义constexpr函数的形式与其他函数一样，不过要遵循以下约定：</p>
+<ul>
+<li>函数的返回类型及所有形参的类型都得是字面值类型(所以该函数的返回类型不能为void)。</li>
+<li>函数体中必须有且只能有一条return语句。</li>
+</ul>
+<p>定义形式为：</p>
+<blockquote>
+<p>constexpr 函数定义</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token keyword keyword-constexpr">constexpr</span> <span class="token keyword keyword-int">int</span> <span class="token function">new_sz</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword keyword-return">return</span> <span class="token number">42</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token keyword keyword-constexpr">constexpr</span> <span class="token keyword keyword-int">int</span> foo <span class="token operator">=</span> <span class="token function">new_sz</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 正确：foo 是一个常量表达式</span>
+</code></pre><p>编译器一般是把对constexpr函数的调用转换成其结果值。<br>
+为了能在编译过程中随时展开，<mark>constexpr函数被隐式地指定为内联函数</mark>，所以和内联函数一样，要在多个不同文件中都定义其函数。</p>
+<blockquote>
+<p>同一文件的同一个constexpr函数的声明和定义语句都必须含有关键字constexpr，否则会编译出错。</p>
+</blockquote>
+<p>constexpr函数体内也可以包含其他语句，不过必须为以下几种：</p>
+<ol>
+<li>空语句、空复合语句和只含有空语句的复合语句。</li>
+<li>类型别名定义。</li>
+<li>命名空间别名定义以及命名空间相关的using操作等。</li>
+</ol>
+<p>constexpr函数的返回值可以不是一个常量表达式，当constexpr函数的所有实参都是常量表达式时，且它的return语句里的表达式也是常量表达式时，该函数的返回值才是常量表达式，否则返回值就不是常量表达式。</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token keyword keyword-int">int</span> no_c1 <span class="token operator">=</span> <span class="token number">88</span><span class="token punctuation">;</span>
+<span class="token comment">// 非constexpr函数</span>
+<span class="token keyword keyword-int">int</span> <span class="token function">get_no_c</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> num<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token keyword keyword-return">return</span> num<span class="token punctuation">;</span><span class="token punctuation">}</span>
+<span class="token keyword keyword-constexpr">constexpr</span> <span class="token keyword keyword-int">int</span> <span class="token function">get_cstex1</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> num1<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> num2<span class="token punctuation">)</span> 
+<span class="token punctuation">{</span> <span class="token keyword keyword-return">return</span> num1<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token comment">// return语句总为非常量表达式的constexpr函数get_cstex2</span>
+<span class="token keyword keyword-constexpr">constexpr</span> <span class="token keyword keyword-int">int</span> <span class="token function">get_cstex2</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> num1<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> num2<span class="token punctuation">)</span> 
+<span class="token punctuation">{</span> <span class="token keyword keyword-return">return</span> no_c1<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token comment">// 定义两个非常量表达式。</span>
+<span class="token keyword keyword-int">int</span> nc_num1 <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-const">const</span> <span class="token keyword keyword-int">int</span> cc1 <span class="token operator">=</span> <span class="token function">get_no_c</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 错误：nc_num1为非常量表达式，所以返回的不是常量表达式。</span>
+<span class="token keyword keyword-constexpr">constexpr</span> <span class="token keyword keyword-int">int</span> cst_num1 <span class="token operator">=</span> <span class="token function">get_cstex1</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span> nc_num1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 错误：return语句的表达式为非常量表达式，所以返回的不是常量表达式。</span>
+<span class="token keyword keyword-constexpr">constexpr</span> <span class="token keyword keyword-int">int</span> cst_num2 <span class="token operator">=</span> <span class="token function">get_cstex2</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 错误：cc1是常量，但不是常量表达式，所以返回的不是常量表达式。</span>
+<span class="token keyword keyword-constexpr">constexpr</span> <span class="token keyword keyword-int">int</span> cst_num3 <span class="token operator">=</span> <span class="token function">get_cstex1</span><span class="token punctuation">(</span>cc1<span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 正确：cst_num4初始化为5。</span>
+<span class="token keyword keyword-constexpr">constexpr</span> <span class="token keyword keyword-int">int</span> cst_num4 <span class="token operator">=</span> <span class="token function">get_cstex1</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><h3 id="53-函数参数详解">5.3 函数参数详解 </h3>
+<p>如前所述，每次调用函数时都会重新创建它的形参，并用传入的实参对形参进行初始化。</p>
+<blockquote>
+<p>形参初始化的机制与变量初始化一样。</p>
+</blockquote>
+<h4 id="531-参数传递分类">5.31 参数传递分类 </h4>
+<p>和其他变量一样，形参的类型决定了形参和实参交互的方式，一般来说，参数的传递可以分为两种：</p>
+<ul>
+<li>值传递</li>
+<li>引用传递</li>
+</ul>
+<h5 id="5311-值传递">5.311 值传递 </h5>
+<p>当实参的值被拷贝给形参时，形参和实参是两个相互独立的对象。我们说这样的实参被值传递(passed by value)或者函数被传值调用(called by value)；也就是说，形参和实参的内存地址不一样，只是两个值一样。</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token comment">//该函数接受一个指针，然后将指针所指的值置为0</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">reset</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> <span class="token operator">*</span>ip<span class="token punctuation">)</span>
+<span class="token punctuation">{</span> 
+   <span class="token operator">*</span>ip <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">//改变指针ip所指对象的值</span>
+   ip <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">//只改变了ip的局部拷贝，实参未被改。</span>
+<span class="token punctuation">}</span>
+<span class="token keyword keyword-int">int</span> i <span class="token operator">=</span> <span class="token number">42</span><span class="token punctuation">;</span>
+<span class="token function">reset</span> <span class="token punctuation">(</span><span class="token operator">&amp;</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//改变i的值而非i的地址</span>
+cout <span class="token operator">&lt;&lt;</span> <span class="token string">"i = "</span> <span class="token operator">&lt;&lt;</span> i <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span> <span class="token comment">// 输出 i = 0。</span>
+</code></pre><h5 id="5312-引用传递">5.312 引用传递 </h5>
+<p>当形参是引用类型时，我们说它对应的实参被引用传递(passed by reference)或者函数被传引用调用(called by reference)。和其他引用一样，引用形参也是它绑定的对象的别名；也就是说，引用形参是它对应的实参的别名(形参和实参的内存地址一样)。</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token comment">//该函数接受一个引用，然后将指针所指的值置为0</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">reset</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> <span class="token operator">&amp;</span>i<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+   i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">//改变了 i所引对象的值</span>
+<span class="token punctuation">}</span>
+<span class="token keyword keyword-int">int</span> j <span class="token operator">=</span> <span class="token number">42</span><span class="token punctuation">;</span>
+<span class="token function">reset</span> <span class="token punctuation">(</span>j<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// j采用传引用方式，它的值被改变</span>
+cout <span class="token operator">&lt;&lt;</span> <span class="token string">"j = "</span> <span class="token operator">&lt;&lt;</span> j <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span> <span class="token comment">// 输出 j = 0。</span>
+</code></pre><blockquote>
+<p>要改变所传的实参值、或者有些大的类类型对象以及容器对象在拷贝时比较低效，甚至有的类类型(比如IO类)根本就不支持拷贝操作。此时用引用传递是最好的。</p>
+</blockquote>
+<blockquote>
+<p>如果函数无须改变引用形参的值，最好将其声明为常量引用。</p>
+</blockquote>
+<h4 id="532-默认实参">5.32 默认实参 </h4>
+<p>当函数的某个形参经常会被用同一个值初始化，我们又不想每次调用都要自己传递这个常用值时，我们就可以对该形参设置默认实参。<br>
+所以默认实参的作用就像上面说的，简化调用操作。</p>
+<p>默认实参作为形参的初始值，可以是任意非声明定义的表达式。<br>
+默认实参必须要出现在形参列表中。<br>
+我们可以为一个或多个形参定义默认实参(传值和传引用形参都能有)。</p>
+<p>不过需要注意的是，一旦某个形参被赋予了默认实参，它后面的所有形参都必须有默认实参，也就是有默认实参的形参要放在形参表末尾。</p>
+<blockquote>
+<p>默认实参不能是使用该默认实参的函数本身的调用，否则会出错。<br>
+但是可以是该函数名相同的函数的调用(也就是可以调用该函数的重载)，此时该默认实参是不会匹配到自己所属的那一个函数。</p>
+</blockquote>
+<h5 id="5321-默认实参的形参表形式">5.321 默认实参的形参表形式 </h5>
+<p>有默认实参的形参表的形式为：</p>
+<blockquote>
+<p>(形参类型1 形参名1 = 默认实参1, 形参类型2 形参名2 = 默认实参2, 形参类型3 形参名3 = 默认实参3, ...)</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token keyword keyword-typedef">typedef</span> string<span class="token double-colon punctuation">::</span>size_type sz<span class="token punctuation">;</span>
+string <span class="token function">screen</span><span class="token punctuation">(</span>sz ht <span class="token operator">=</span> <span class="token number">24</span><span class="token punctuation">,</span> sz wid <span class="token operator">=</span> <span class="token number">80</span><span class="token punctuation">,</span> <span class="token keyword keyword-char">char</span> backgrnd <span class="token operator">=</span> <span class="token char">''</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><blockquote>
+<p>函数形参只能用拷贝初始化来设定默认实参(也就是必须要有赋值符<code>=</code>)，用不了直接初始化。</p>
+</blockquote>
+<blockquote>
+<p>当形参为类类型时，如果想用此形参类型的默认构造函数来生成一个临时对象来当做该形参的默认实参，则应该在赋值符<code>=</code>后加空花括号来调用默认构造函数(注意不能用空圆括号)。</p>
+</blockquote>
+<p>函数的<mark>局部变量，包括其他形参都不能作为该函数的默认实参</mark>，除此以外，只要表达式的类型能隐式转换成形参所需的类型，就能作为该形参的默认实参。</p>
+<p>对于函数声明来说，和函数定义一样，默认实参可以用在函数声明中，在同一个的作用域中同一个函数的一个形参只能被赋予一次默认实参。换句话说，函数的后续声明只能为之前那些没有默认值的形参添加默认实参，此时该后续声明的默认实参可以不在形参表末尾。</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token keyword keyword-typedef">typedef</span> string<span class="token double-colon punctuation">::</span>size_type sz<span class="token punctuation">;</span>
+string <span class="token function">screen</span><span class="token punctuation">(</span>sz ht<span class="token punctuation">,</span> sz wid<span class="token punctuation">,</span> <span class="token keyword keyword-char">char</span> backgrnd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 正确，表示高度和宽度的形参没有默认值</span>
+string <span class="token function">screen</span><span class="token punctuation">(</span>sz<span class="token punctuation">,</span> sz<span class="token punctuation">,</span> <span class="token keyword keyword-char">char</span> <span class="token operator">=</span> <span class="token char">''</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 错误，我们不能修改一个已经存在的默认值</span>
+string <span class="token function">screen</span><span class="token punctuation">(</span>sz<span class="token punctuation">,</span> sz<span class="token punctuation">,</span> <span class="token keyword keyword-char">char</span> <span class="token operator">=</span> <span class="token char">''</span> <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 错误：重复声明。</span>
+<span class="token comment">// 正确，可以按照如下形式添加默认实参：</span>
+string <span class="token function">screen</span> <span class="token punctuation">(</span>sz <span class="token operator">=</span> <span class="token number">24</span><span class="token punctuation">,</span> sz <span class="token operator">=</span> <span class="token number">80</span><span class="token punctuation">,</span> <span class="token keyword keyword-char">char</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 正确：添加默认</span>
+</code></pre><blockquote>
+<p>和普通函数声明一样，有默认实参的函数声明也可以不用写形参名字。</p>
+</blockquote>
+<blockquote>
+<p>每个调用点调用的函数的默认实参是按照当前调用点所有可见的该函数的声明和定义的默认实参的组合(包含其他文件中该函数的声明或定义)。</p>
+</blockquote>
+<h5 id="5322-含默认实参函数的使用">5.322 含默认实参函数的使用 </h5>
+<p>如果我们想使用默认实参，只要在调用函数的时候省略该实参就可以了，不使用时就按正常方式的调用写上实参就行。</p>
+<blockquote>
+<p>我们只能省略有默认实参的形参的实参，没有默认实参的一律不能省略，否则出错。</p>
+</blockquote>
+<p>函数调用时实参按其位置解析，默认实参负责填补函数调用缺少的尾部实参(靠右侧位置)。</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token keyword keyword-typedef">typedef</span> string<span class="token double-colon punctuation">::</span>size_type sz<span class="token punctuation">;</span>
+string <span class="token function">screen</span><span class="token punctuation">(</span>sz ht <span class="token operator">=</span> <span class="token number">24</span><span class="token punctuation">,</span> sz wid <span class="token operator">=</span> <span class="token number">80</span><span class="token punctuation">,</span> <span class="token keyword keyword-char">char</span> backgrnd <span class="token operator">=</span> <span class="token char">''</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+string window<span class="token punctuation">;</span>
+<span class="token comment">// 等价于 screen(24,80,'')</span>
+window <span class="token operator">=</span> <span class="token function">screen</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 等价于 screen(66, 80,'')</span>
+window <span class="token operator">=</span> <span class="token function">screen</span> <span class="token punctuation">(</span><span class="token number">66</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// screen(66,256,'')</span>
+window <span class="token operator">=</span> <span class="token function">screen</span><span class="token punctuation">(</span><span class="token number">66</span><span class="token punctuation">,</span> <span class="token number">256</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// screen(66,256,'#')</span>
+window <span class="token operator">=</span> <span class="token function">screen</span><span class="token punctuation">(</span><span class="token number">66</span><span class="token punctuation">,</span> <span class="token number">256</span><span class="token punctuation">,</span> <span class="token char">'#'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">//错误：只能省略尾部的实参</span>
+window <span class="token operator">=</span> <span class="token function">screen</span><span class="token punctuation">(</span><span class="token punctuation">,</span> <span class="token punctuation">,</span> <span class="token char">'?'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+window <span class="token operator">=</span> <span class="token function">screen</span><span class="token punctuation">(</span><span class="token char">'?'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 调用 screen ('?', 80, '')</span>
+</code></pre><h4 id="533-可变形参的函数">5.33 可变形参的函数 </h4>
+<p>有时我们无法提前预知应该向函数传递几个实参。<br>
+为了编写能处理不同数量实参的函数，一共有三种方法：</p>
+<ul>
+<li>如果所有的实参类型相同，可以用一个名为<code>initializer_list</code>的标准库类型</li>
+<li>如果实参的类型不同，我们可以
+<ul>
+<li>用一种特殊的形参类型（即省略符），不过这种功能一般只用于与C函数交互的接口程序。</li>
+<li>用可变参数模板来进行传递</li>
+</ul>
+</li>
+</ul>
+<p>可变参数模板将在之后的模板一章中介绍。</p>
+<h5 id="5331-initializer_list形参">5.331 initializer_list形参 </h5>
+<p>如果函数的实参数量未知但是全部实参的类型都相同，我们可以使用<code>initializer_list</code>类型的形参。<br>
+<code>initializer_list</code>类型定义在同名的头文件中，它是一种标准库类型，用于表示某种特定类型的值的数组。</p>
+<p><img src="../image/2021-05-21-23-56-02.png" alt="init_list"></p>
+<p><code>initializer_list</code>类型是类模板类型，<code>initializer_list</code>类型的对象中的元素是const类型，所以无法被赋值。</p>
+<p>一个函数的形参表可以有多个<code>initializer_list</code>形参，在含有<code>initializer_list</code>形参的函数也可以同时拥有其他形参。<br>
+<code>initializer_list</code>形参可以放在形参表的任何位置，也能有默认实参。</p>
+<h6 id="53311-initializer_list形参的形参表形式">5.3311 initializer_list形参的形参表形式 </h6>
+<p>有<code>initializer_list</code>形参的形参表的形式示例：</p>
+<blockquote>
+<p>(initializer_list&lt;基本类型1&gt; 形参1, 形参类型2 形参2, initializer_list&lt;基本类型2&gt; 形参3, ···)</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token keyword keyword-void">void</span> <span class="token function">error_msg</span><span class="token punctuation">(</span>initializer_list<span class="token operator">&lt;</span>string<span class="token operator">&gt;</span> il<span class="token punctuation">,</span> string ex_msg<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token keyword keyword-auto">auto</span> beg <span class="token operator">=</span> il<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> beg <span class="token operator">!=</span> il<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">++</span>beg<span class="token punctuation">)</span>
+        cout <span class="token operator">&lt;&lt;</span> <span class="token operator">*</span>beg <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span><span class="token punctuation">;</span>     
+    cout <span class="token operator">&lt;&lt;</span> <span class="token string">"\n"</span> <span class="token operator">&lt;&lt;</span> ex_msg <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><h6 id="53312-含initializer_list形参的使用">5.3312 含initializer_list形参的使用 </h6>
+<p>当要传递实参到<code>initializer_list</code>形参时，该实参必须是由<mark>花括号括起来的0个或多个值的序列</mark>，这些值的类型要与<code>initializer_list</code>形参的基本类型一致或者能隐式转换成该基本类型。</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token keyword keyword-void">void</span> <span class="token function">error_msg</span><span class="token punctuation">(</span>initializer_list<span class="token operator">&lt;</span>string<span class="token operator">&gt;</span> il<span class="token punctuation">,</span> string ex_msg<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token keyword keyword-auto">auto</span> beg <span class="token operator">=</span> il<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> beg <span class="token operator">!=</span> il<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">++</span>beg<span class="token punctuation">)</span>
+        cout <span class="token operator">&lt;&lt;</span> <span class="token operator">*</span>beg <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span><span class="token punctuation">;</span>     
+    cout <span class="token operator">&lt;&lt;</span> <span class="token string">"\n"</span> <span class="token operator">&lt;&lt;</span> ex_msg <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 错误：没有花括号，实参不匹配</span>
+<span class="token function">error_msg</span><span class="token punctuation">(</span><span class="token string">"error"</span><span class="token punctuation">,</span><span class="token string">"function"</span><span class="token punctuation">,</span> <span class="token string">"undefined"</span><span class="token punctuation">,</span> <span class="token string">"line_58"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 正确：输出：</span>
+<span class="token comment">// error function undefined</span>
+<span class="token comment">// line_58</span>
+<span class="token function">error_msg</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">"error"</span><span class="token punctuation">,</span><span class="token string">"function"</span><span class="token punctuation">,</span> <span class="token string">"undefined"</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token string">"line_58"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><blockquote>
+<p><code>initializer_list</code>形参对应的实参可以为空，但是必须要有花括号。</p>
+</blockquote>
+<h5 id="5332-省略符形参">5.332 省略符形参 </h5>
+<p>省略符形参是为了便于C++程序访问某些特殊的C代码而设置的，这些代码使用了名为<code>varargs</code>的C标准库功能。</p>
+<blockquote>
+<p>省略符形参应该仅仅用于C和C++通用的类型，特别应该注意的是，大多数类类型的对象在传递给省略符形参时都无法正确拷贝。</p>
+</blockquote>
+<h6 id="53321-省略符形参的形参表形式">5.3321 省略符形参的形参表形式 </h6>
+<p>省略符形参只能出现在形参列表的最后一个位置，且该位置的这一项只能有一个省略符<code>...</code>，不能含有形参类型与形参名。</p>
+<p>有省略符形参的形参表的形式为：</p>
+<blockquote>
+<p>(形参类型1 形参名1, 形参类型2 形参名2(可选<code>,</code>)...)</p>
+</blockquote>
+<p>省略符形参与前一个形参名之间的逗号<code>,</code>可有可不有，等价。</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token comment">/*以下都为正确的声明*/</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> <span class="token keyword keyword-double">double</span><span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> <span class="token keyword keyword-double">double</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><blockquote>
+<p><code>initializer_list</code>形参可以和省略符形参一起使用，只要遵守各自的规则就行。</p>
+</blockquote>
+<h6 id="53322-含省略符形参的使用">5.3322 含省略符形参的使用 </h6>
+<p>省略符形参接受0个或多个实参，当调用一个含有省略符形参的函数时，实参的数目必须要大于等于减去了省略符形参的形参数目。多余的实参都传递给了省略符形参，因为编译器不对省略符对应的实参进行类型检查，因此省略符对应的实参类型可以是任意不同类型的。</p>
+<blockquote>
+<p>省略符符号不能当做函数的实参。</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token keyword keyword-void">void</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> <span class="token keyword keyword-double">double</span><span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">test2</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-char">char</span> ins <span class="token operator">=</span> <span class="token char">'g'</span><span class="token punctuation">;</span>
+    <span class="token comment">// 调用错误，实参数目不能小于减去了省略符形参的形参数目</span>
+    <span class="token function">test</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 调用错误， 省略符符号不能当做函数的实参</span>
+    <span class="token function">test</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3.55</span><span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 调用正确，省略符对应的实参类型可以是任意不同类型的</span>
+    <span class="token function">test</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">4.15</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>ins<span class="token punctuation">,</span> <span class="token string">"string"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 调用正确，省略符形参可以接受0个实参。</span>
+    <span class="token function">test2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><h4 id="534-特殊类型形参分析">5.34 特殊类型形参分析 </h4>
+<p>函数形参的类型可以是各种类型，但是有几种类型比较特殊，接下来就来讲解这几种特殊类型的形参：</p>
+<ul>
+<li>const形参</li>
+<li>数组形参</li>
+<li>函数形参</li>
+<li>main函数形参</li>
+</ul>
+<h5 id="5341-const形参">5.341 const形参 </h5>
+<p>当某个形参的类型为const时，它的初始化规则和普通的const变量一样：</p>
+<p>(顶层const/非顶层const)实参能初始化(非顶层const/顶层const)形参；而底层const实参不能为非底层const形参初始化。</p>
+<h5 id="5342-数组形参">5.342 数组形参 </h5>
+<p>对于数组形参，我们可以写成三种形式：</p>
+<ul>
+<li>数组形式</li>
+<li>数组指针形式</li>
+<li>数组引用形式</li>
+</ul>
+<p>因为数组会被转换成指针，所以当我们为函数传递一个数组名时，实际上传递的是指向数组首元素的指针。</p>
+<h6 id="53421-数组形式和数组指针形式形参">5.3421 数组形式和数组指针形式形参 </h6>
+<p>我们可以将形参写成以下几种的形式：</p>
+<ul>
+<li>数组形式
+<blockquote>
+<p>类型说明符 (可选 类型修饰符) (可选 形参名) 维度</p>
+</blockquote>
+</li>
+<li>指向数组首元素的指针形式
+<blockquote>
+<p>类型说明符 (可选 类型修饰符) (可选 形参名) *<br>
+或<br>
+类型说明符 (可选 类型修饰符) *(可选 形参名) 维度</p>
+</blockquote>
+</li>
+</ul>
+<p>数组形式中第一维度的大小可以省略，但是符号<code>[]</code>不能省略。</p>
+<blockquote>
+<p>数组形式的形参可以像数组一样用下标运算符来访问该形参的元素；而数组指针形式的不行。</p>
+</blockquote>
+<blockquote>
+<p>当我们用数组形式定义多维数组形参时，编译器会一如既往地忽略掉第一个维度，所以最好不要把它包括在形参列表内。</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token comment">//matrix的声明看起来\
+是一个二维数组，实际上形参是指向含有10个整数的数组的指针。</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">print</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> matrix<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> rowSize<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">/* ... */</span><span class="token punctuation">}</span>
+</code></pre><pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token comment">//尽管形式不同，但这三个print函数是等价的//每个函数都有一个const int*类型的形参</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">print</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> <span class="token keyword keyword-int">int</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">print</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> <span class="token keyword keyword-int">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//可以看出来，函数的意图是作用于一个数组</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">print</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> <span class="token keyword keyword-int">int</span><span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//这里的维度表示我们期望数组含有多少元素，实际不一定。</span>
+</code></pre><pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token keyword keyword-int">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> j<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token function">print</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//正确：&amp;i的类型是int*。</span>
+<span class="token function">print</span><span class="token punctuation">(</span>j<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//正确：j转换成int*并指向j[0]。</span>
+</code></pre><h6 id="53422-数组引用形式形参">5.3422 数组引用形式形参 </h6>
+<p>C++语言允许将变量定义成数组的引用，基于同样的道理，形参也可以是数组的引用。此时，引用形参绑定到对应的实参上，也就是绑定到数组上。<br>
+形式为:</p>
+<blockquote>
+<p>类型说明符 (可选 类型修饰符) (&amp;(可选 形参名)) 维度</p>
+</blockquote>
+<p>符号<code>[]</code>不能省略。<br>
+维度的大小也不能省略，因为省略维度的类型无法匹配到其他任何数组（因为其他的数组都有维度，维度不一样匹配不了）。</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token comment">//错误：虽然能编译通过，但是arr不能接收数组，因为没指定维度的大小</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">print2</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> <span class="token punctuation">(</span><span class="token operator">&amp;</span>arr<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token keyword keyword-auto">auto</span> elem <span class="token operator">:</span> arr<span class="token punctuation">)</span> cout <span class="token operator">&lt;&lt;</span> elem <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword keyword-int">int</span> k<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">,</span><span class="token number">7</span><span class="token punctuation">,</span><span class="token number">8</span><span class="token punctuation">,</span><span class="token number">9</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-int">int</span> k2<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment">/**
+  错误：print2接受的变量类型为int (&amp;)[]，而k的类型则为int (&amp;)[10]，维度不一样不能匹配。
+*/</span>
+<span class="token function">print2</span><span class="token punctuation">(</span>k<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">/**
+  错误：print2接受的变量类型为int (&amp;)[]，而k2的类型则为int (&amp;)[3]，维度不一样不能匹配。
+*/</span>
+<span class="token function">print2</span><span class="token punctuation">(</span>k2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><blockquote>
+<p>和数组形式的形参一样，数组引用形参也可以像数组一样用下标运算符来访问该形参的元素。</p>
+</blockquote>
+<blockquote>
+<p>形参名两端的括号必不可少，否则就成了引用的数组了。</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token comment">//正确：形参是数组的引用，维度是类型的一部分</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">print</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> <span class="token punctuation">(</span><span class="token operator">&amp;</span>arr<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token keyword keyword-auto">auto</span> elem <span class="token operator">:</span> arr<span class="token punctuation">)</span>cout <span class="token operator">&lt;&lt;</span> elem <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment">//错误：虽然能编译通过，但是arr不能接收数组，因为没指定维度的大小</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">print2</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> <span class="token punctuation">(</span><span class="token operator">&amp;</span>arr<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token keyword keyword-auto">auto</span> elem <span class="token operator">:</span> arr<span class="token punctuation">)</span>cout <span class="token operator">&lt;&lt;</span> elem <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-int">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> j<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-int">int</span> k<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">,</span><span class="token number">7</span><span class="token punctuation">,</span><span class="token number">8</span><span class="token punctuation">,</span><span class="token number">9</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token function">print</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//错误：实参不是含有10个整數的数组。</span>
+<span class="token function">print</span><span class="token punctuation">(</span>j<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//错误：实参不是含有10个整数的数组。</span>
+<span class="token function">print</span><span class="token punctuation">(</span>k<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//正确：实参是含有10个整数的。</span>
+<span class="token comment">/**
+  以下都错误：因为print2不能接受数组。
+*/</span>
+<span class="token function">print2</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+<span class="token function">print2</span><span class="token punctuation">(</span>j<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">print2</span><span class="token punctuation">(</span>k<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><h5 id="5343-函数形参">5.343 函数形参 </h5>
+<p>之前说过，函数形参不能为函数类型，但是可以是函数指针类型。</p>
+<p>当我们把函数名作为一个值使用时，该函数名会自动地转换成指针，所以我们形参类型可以类似于函数。</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token comment">//第三个形参是函数类型，它会自动地转换成指向函数的指针</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">useBigger</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> string <span class="token operator">&amp;</span>s1<span class="token punctuation">,</span> <span class="token keyword keyword-const">const</span> string <span class="token operator">&amp;</span>s2<span class="token punctuation">,</span><span class="token keyword keyword-bool">bool</span> <span class="token function">pf</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> string<span class="token punctuation">,</span> <span class="token keyword keyword-const">const</span> string <span class="token operator">&amp;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//等价的声明：显式地将形参定义成指向函数的指针</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">useBigger</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> string <span class="token operator">&amp;</span>s1<span class="token punctuation">,</span> <span class="token keyword keyword-const">const</span> string <span class="token operator">&amp;</span>s2<span class="token punctuation">,</span><span class="token keyword keyword-bool">bool</span> <span class="token punctuation">(</span><span class="token operator">*</span>pf<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> string <span class="token operator">&amp;</span><span class="token punctuation">,</span> <span class="token keyword keyword-const">const</span> string <span class="token operator">&amp;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">//自动将函数lengthCompare转换成指向该函数的指针</span>
+<span class="token function">useBigger</span><span class="token punctuation">(</span>s1<span class="token punctuation">,</span> s2<span class="token punctuation">,</span> lengthCompare<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><h5 id="5344-main函数形参">5.344 main函数形参 </h5>
+<p>main函数是c++里的主函数，每个程序必须要有这个程序，操作系统时通过调用该函数来运行程序的。</p>
+<blockquote>
+<p>main函数不能被其他函数或者是自己所调用。</p>
+</blockquote>
+<p>一个程序中有且只有一个全局的main函数。</p>
+<p>一般情况下main函数的形参表为空，但是有时我们确实需要给main传递实参。</p>
+<p>所以main函数有两个可选的形参：</p>
+<ul>
+<li>第一个形参必须是<code>int</code>型，表示的是第二个形参所表示的数组中元素的数量。</li>
+<li>第二个形参必须是<code>char (*)[]</code>型或<code>char **</code>，表示的是一个元素都为指向字符串类型的指针的数组。</li>
+</ul>
+<p>所以main函数的定义形式为：</p>
+<blockquote>
+<p>int main((可选 int 形参名1, char(*形参名2)[])) 函数体</p>
+<p>int main((可选 int 形参名1, char** 形参名2)) 函数体</p>
+</blockquote>
+<blockquote>
+<p>main函数形参表要么为空，要么有规定的这两个形参(缺一不可)，其他情况编译器一律警告。</p>
+</blockquote>
+<blockquote>
+<p>main函数形参可以有默认实参。</p>
+</blockquote>
+<p>一种常见的情况是用户通过设置一组选项来确定函数所要执行的操作。<br>
+如在含有main函数的exe文件(prog.exe)的路径中向命令行输入<code>\prog -d -o ofile data0</code>，就可以向文件(prog.exe)里的main函数传递所输入的参数了。</p>
+<p>当实参传给main函数之后，第二个形参中的第一个元素是指向程序的名字或者一个空字符串，接下来的元素依次传递命令行提供的实参。最后一个指针之后的元素值保证为0。</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token comment">// 向命令行输入</span>
+<span class="token comment">// \prog -d -o ofile data0</span>
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> argc<span class="token punctuation">,</span> <span class="token keyword keyword-char">char</span> <span class="token operator">*</span>argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// 输出prog。或者也可以指向一个空字符串，为空。</span>
+    cout <span class="token operator">&lt;&lt;</span> argv<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token comment">// 输出-d</span>
+    cout <span class="token operator">&lt;&lt;</span> argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token comment">// 输出-o</span>
+    cout <span class="token operator">&lt;&lt;</span> argv<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token comment">// 输出ofile</span>
+    cout <span class="token operator">&lt;&lt;</span> argv<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token comment">// 输出data0</span>
+    cout <span class="token operator">&lt;&lt;</span> argv<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token comment">// 输出0</span>
+    cout <span class="token operator">&lt;&lt;</span> argv<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><blockquote>
+<p>所以当使用argv中的实参时，一定要记得可选的实参从元素1开始，元素0保存程序的名字，而非用户输入。</p>
+</blockquote>
+<h3 id="54-函数返回过程详解">5.4 函数返回过程详解 </h3>
+<p>之前说过是指该函数调用后所返回的结果类型，所有函数都需要一个return语句来指定返回的值。</p>
+<h4 id="541-return语句">5.41 return语句 </h4>
+<p>return语句是专用于函数中的一种跳转语句。<br>
+return语句的作用是终止当前在执行的函数并将控制权返回到调用该函数的地方，有可能会返回一个值到调用点。</p>
+<h5 id="5411-return语句的形式">5.411 return语句的形式 </h5>
+<p>return语句有两种形式：</p>
+<blockquote>
+<p>return;<br>
+return 表达式;</p>
+</blockquote>
+<p>return语句的第一种形式只能用于返回类型为void的函数中，该形式不返回任何值。</p>
+<p>但是返回类型为void的函数并不要求非得有return语句，因为在这类函数的最后一句后面会隐式地执行<code>return;</code><br>
+返回类型为void的函数也能使用第二种形式，不过此时return语句的表达式必须是返回void的函数的调用，否则出错。</p>
+<p>return语句的第二种形式可以用于所有返回类型不为void的函数中，该形式会返回所给的表达式的求值结果。<br>
+该求值结果要与其<mark>对应函数的返回类型相同，或者能隐式地转换成对应函数的返回类型</mark>，否则出错。</p>
+<blockquote>
+<p>return语句能出现在函数的任何位置，一个函数中的return语句数量没有限制，但所有的return语句都要符合上面的规则。</p>
+</blockquote>
+<blockquote>
+<p>当非void函数的控制流有可能未返回任何值时就结束了运行，有些编译器会检测出来这种错误，并予以警告</p>
+</blockquote>
+<blockquote>
+<p>除了constexpr函数，其他所有函数的函数体中都可以没有return语句，编译器会在函数结束时自动返回一个对应类型的未定义对象。<br>
+所以对于返回类型为非void的函数来说，如果没有return语句，编译器会警告。</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token comment">//因为含有不正确的返回值，所以这段代码无法通过编译</span>
+<span class="token keyword keyword-bool">bool</span> <span class="token function">str_subrange</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> string <span class="token operator">&amp;</span>strl<span class="token punctuation">,</span> <span class="token keyword keyword-const">const</span> string <span class="token operator">&amp;</span>str2<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+<span class="token comment">//大小相同：此时用普通的相等性判断结果作为返回值</span>
+<span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>strl<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> str2<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword keyword-return">return</span> strl <span class="token operator">==</span> str2<span class="token punctuation">;</span> <span class="token comment">//正确：==运算符返回布尔值</span>
+<span class="token comment">//得到较短string对象的大小</span>
+<span class="token comment">//检查两个string对象的对应字符是否相等，以较短的字符串长度为限</span>
+<span class="token keyword keyword-auto">auto</span> size <span class="token operator">=</span> <span class="token punctuation">(</span>strl<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> str2<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">?</span> strl<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">:</span> str2<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token keyword keyword-decltype">decltype</span><span class="token punctuation">(</span>size<span class="token punctuation">)</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">!=</span> size<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>strl<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">!=</span> str2<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword keyword-return">return</span><span class="token punctuation">;</span> <span class="token comment">//错误#1:没有返回值，编译器将报告这一错误</span>
+<span class="token comment">//错误#2：控制流可能尚未返回任何值就结束了函数的执行 </span>
+<span class="token comment">//编译器可能检查不出这一错</span>
+</code></pre><h5 id="5412-return语句的执行过程">5.412 return语句的执行过程 </h5>
+<p>当程序运行到一个return语句时，会算出该return语句后的结果并进行类型检查，无误后被调函数终止，并返回这个结果值。程序返回到调用点，此时调用函数的表达式的结果就是该结果值。</p>
+<p>被调函数返回的结果会根据其函数的返回类型而不同，一般返回形式和参数传递一样，分为两种：</p>
+<ul>
+<li>返回值</li>
+<li>返回引用</li>
+</ul>
+<p>根据函数的返回形式，其返回过程分为以下两种：</p>
+<ul>
+<li>返回值
+<ul>
+<li>如果return语句的表达式的结果是一个临时对象或者是该函数自己定义的非静态局部变量，则将该对象直接返回到调用点(不再生成其他临时对象)，作为函数调用的结果。</li>
+<li>如果return语句的表达式的结果是既不是临时对象也不是该函数自己定义的非静态局部变量，则调用点生成一个临时的与被调函数的返回类型一样的对象，然后这个return语句的表达式结果用于初始化该临时对象，该临时对象就作为函数调用的结果。</li>
+</ul>
+</li>
+<li>返回引用
+<ul>
+<li>直接将return语句的表达式结果返回(不管结果是局部变量、临时对象还是非局部变量等，都一律直接返回)到调用点(不再生成其他临时对象)，作为函数调用的结果。</li>
+</ul>
+</li>
+</ul>
+<h6 id="54121-返回值">5.4121 返回值 </h6>
+<p>函数的返回类型不是引用类型时，该函数的返回就是返回值，所以该函数调用的表达式的值为右值。</p>
+<p>函数返回过程中，返回值的方式是在调用点生成一个临时的与被调函数的返回类型一样的<mark>对象</mark>。</p>
+<h6 id="54122-返回引用">5.4122 返回引用 </h6>
+<p>当函数的返回类型是引用类型时，该函数的返回就是返回引用，所以该函数调用的表达式的值为左值。</p>
+<p>函数返回过程中，返回引用的方式是在调用点生成一个临时的与被调函数的返回类型一样的<mark>引用</mark>。</p>
+<blockquote>
+<p>当函数的返回类型为引用或指针时，return语句里的表达式的结果不能是非静态局部变量或者是非静态局部变量的地址。<br>
+因为函数完成后，它所占用的存储空间也随之被释放掉。因此，函数终止意味着非静态局部变量不再存在。</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token comment">//严重错误：这个函数试图返回局部对象的引用</span>
+<span class="token keyword keyword-const">const</span> string <span class="token operator">&amp;</span><span class="token function">manip</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    string ret<span class="token punctuation">;</span>
+    <span class="token comment">//以某种方式改变一下ret</span>
+    <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>ret<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword keyword-return">return</span> ret<span class="token punctuation">;</span> <span class="token comment">// 错误：返回局部对象的引用！</span>
+    <span class="token keyword keyword-else">else</span>
+        <span class="token keyword keyword-return">return</span> <span class="token string">"Empty"</span><span class="token punctuation">;</span> <span class="token comment">//错误："Empty"是一个局部临时量</span>
+<span class="token punctuation">}</span>
+</code></pre><h4 id="542-特殊返回类型分析">5.42 特殊返回类型分析 </h4>
+<p>函数返回类型可以是各种类型，但是有几种类型比较特殊：</p>
+<ul>
+<li>数组返回类型</li>
+<li>函数返回类型</li>
+<li>main函数返回类型</li>
+</ul>
+<h5 id="5421-数组返回类型">5.421 数组返回类型 </h5>
+<p>之前说过，函数的返回类型不能为数组类型，但是可以为数组指针类型。</p>
+<blockquote>
+<p>当数组作为函数的返回类型时，不会隐式转换成数组指针类型的，所以我们必须显式将返回类型指定为指针。</p>
+</blockquote>
+<h5 id="5422-函数返回类型">5.422 函数返回类型 </h5>
+<p>之前说过，函数的返回类型不能为函数类型，但是可以为函数指针类型。</p>
+<blockquote>
+<p>当函数作为函数的返回类型时，不会隐式转换成函数指针类型的，所以我们必须显式将返回类型指定为指针。</p>
+</blockquote>
+<h5 id="5423-main函数返回类型">5.423 main函数返回类型 </h5>
+<p>main函数的返回类型必须为int。</p>
+<p>虽然main函数的返回类型为int，但是我们允许main函数没有return语句直接结束。<br>
+如果程序到达了main函数的结尾处而且没有return语句，则编译器将隐式地插入一条返回值为0的return语句。</p>
+<p>当然我们也可以自己手动加。一般该函数的return语句在该函数的最后一句，且return返回值为0。</p>
+<p>main函数的返回值可以看做是状态指示器。返回0表示执行成功，返回其他值表示执行失败，其中非0值的具体含义依机器而定。</p>
+<p>为了使返回值与机器无关，<code>cstdlib</code>头文件定义了两个顶处理变量(<code>EXIT_SUCCESS</code>, <code>EXIT_FAILURE</code>)，我们可以使用这两个变量分别表示成功与失败。</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>some_failure<span class="token punctuation">)</span>
+        <span class="token keyword keyword-return">return</span> EXIT_FAILURE<span class="token punctuation">;</span>  <span class="token comment">// 定义在cstdlib头文件中。</span>
+    <span class="token keyword keyword-else">else</span>
+        <span class="token keyword keyword-return">return</span> EXIT_SUCCESS<span class="token punctuation">;</span> <span class="token comment">// 定义在cstdlib头文件。</span>
+<span class="token punctuation">}</span>
+</code></pre><h3 id="55-函数重载">5.5 函数重载 </h3>
+<p>如果冋一作用域内的几个函数名字相同但形参表不同，我们称之为重载(overloaded)函数。这些函数接受的形参类型不一样，但是执行的操作非常类似。当调用这些函数时，编译器会根据传递的实参类型推断想要的是哪个函数。</p>
+<p>形参表的不同有以下两点：</p>
+<ul>
+<li>两个形参表中形参数量不同。</li>
+<li>两个形参表中至少有一个形参的类型不同</li>
+<li>如果两个形参表中的形参的数量，类型相同，但是至少有一个形参的相对顺序不同。</li>
+</ul>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token keyword keyword-void">void</span> <span class="token function">print</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> <span class="token keyword keyword-char">char</span> <span class="token operator">*</span>cp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">print</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> <span class="token keyword keyword-int">int</span> <span class="token operator">*</span>beg<span class="token punctuation">,</span> <span class="token keyword keyword-const">const</span> <span class="token keyword keyword-int">int</span> <span class="token operator">*</span>end<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">print</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> <span class="token keyword keyword-int">int</span> ia<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> size_t size<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-int">int</span> j<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"Hello World"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 调用 print(const char*)</span>
+<span class="token function">print</span><span class="token punctuation">(</span>j<span class="token punctuation">,</span> <span class="token function">end</span><span class="token punctuation">(</span>j<span class="token punctuation">)</span><span class="token operator">-</span><span class="token function">begin</span><span class="token punctuation">(</span>j<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 调用print(const int*, size_t)</span>
+<span class="token function">print</span><span class="token punctuation">(</span><span class="token function">begin</span><span class="token punctuation">(</span>j<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">end</span><span class="token punctuation">(</span>j<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 调用print(const int*, const int*)</span>
+</code></pre><blockquote>
+<p>名字不同的函数，就算其他部分完全相同，也不是同一个函数。</p>
+</blockquote>
+<blockquote>
+<p>main函数不能重载。</p>
+</blockquote>
+<h4 id="551-函数重载与重复定义">5.51 函数重载与重复定义 </h4>
+<p>函数重载不是重复定义，只要满足了函数重载的规则：形参表的不同。定义的函数就是名字相同的另一个函数。</p>
+<p>以下这几种特征的不同不会满足函数重载的要求，所以会导致重复定义：</p>
+<ul>
+<li>形参名不同</li>
+<li>返回类型不同</li>
+<li>类型别名形参</li>
+<li>顶层const形参</li>
+<li>constexpr修饰符</li>
+</ul>
+<h5 id="5511-形参名不同">5.511 形参名不同 </h5>
+<p>形参表的不同与形参名无关，形参名与函数重载无关。</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token comment">//每对声明的是同一个函数</span>
+Record <span class="token function">lookup</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> Account <span class="token operator">&amp;</span>acct<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+Record <span class="token function">lookup</span> <span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> Accounts<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token comment">// 省略了形参的名字</span>
+</code></pre><h5 id="5512-返回类型不同">5.512 返回类型不同 </h5>
+<p>要注意如果两个函数除了返回类型外，其他所有的要素都相同的，那么是属于同一个函数，会导致重复定义。</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code>Record <span class="token function">lookup</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> Accounts<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token keyword keyword-bool">bool</span> <span class="token function">lookup</span> <span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> Account<span class="token operator">&amp;</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token comment">//错误：与上一个函数相比只有返回类型不同</span>
+</code></pre><h5 id="5513-类型别名形参">5.513 类型别名形参 </h5>
+<p>用类型别名的类型和源类型算同一个类型。</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token keyword keyword-typedef">typedef</span> Phone Telno<span class="token punctuation">;</span>
+Record <span class="token function">lookup</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> Phone<span class="token operator">&amp;</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+Record <span class="token function">lookup</span> <span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> Telno<span class="token operator">&amp;</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token comment">// Telno和Phone的类型相同。</span>
+</code></pre><h5 id="5514-顶层const形参">5.514 顶层const形参 </h5>
+<p>一个拥有顶层const的形参无法和另一个没有顶层const的形参区分开来。</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code>Record <span class="token function">lookup</span><span class="token punctuation">(</span>Phone<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+Record <span class="token function">lookup</span> <span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> Phone<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token comment">// 重复声明了Record lookup(Phone)</span>
+
+Record <span class="token function">lookup</span><span class="token punctuation">(</span>Phone<span class="token operator">*</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+Record <span class="token function">lookup</span> <span class="token punctuation">(</span>Phone<span class="token operator">*</span> <span class="token keyword keyword-const">const</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token comment">// 重复声明了Record lookup(Phone*)</span>
+</code></pre><blockquote>
+<p>但是如果形参是底层const，则可以实现函数重载。</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token comment">//对于接受引用或指针的函数来说，\
+对象是常量还是非常量对应的形参不同</span>
+<span class="token comment">//定义了4个独立的重载函数</span>
+Record <span class="token function">lookup</span> <span class="token punctuation">(</span>Account<span class="token operator">&amp;</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token comment">//函数作用于Account的引用。</span>
+Record <span class="token function">lookup</span> <span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> Account<span class="token operator">&amp;</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token comment">// 新函数，作用于常量引用</span>
+Record <span class="token function">lookup</span> <span class="token punctuation">(</span>Account<span class="token operator">*</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token comment">// 新函数，作用于指向Account的指针。</span>
+Record <span class="token function">lookup</span> <span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> Account<span class="token operator">*</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token comment">//新函数，作用于指向常量的指针。</span>
+</code></pre><h5 id="5515-constexpr修饰符">5.515 constexpr修饰符 </h5>
+<p>两个函数的定义只有constexpr修饰符不同会被认定为重复定义。</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token comment">// constexpr函数</span>
+<span class="token keyword keyword-constexpr">constexpr</span> <span class="token keyword keyword-int">int</span> <span class="token function">GetInt</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> obj<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token comment">// 普通函数，但constexpr函数与其重复定义</span>
+<span class="token comment">// 会编译错误</span>
+<span class="token keyword keyword-int">int</span> <span class="token function">GetInt</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> obj<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+</code></pre><h4 id="552-函数匹配">5.52 函数匹配 </h4>
+<p>定义了一组重载函数后，我们需要以合理的实参调用它们。</p>
+<p>函数匹配(function matching)是指一个过程，在这个过程中我们把函数调用与一组重载函数中的某一个关联起來，函数匹配也叫做重载确定(overload resolution)。</p>
+<p>编译器首先将调用的实参与重载集合中每一个函数的形参进行比较，然后根据比较的结果决定到底调用哪个函数。</p>
+<p>根据重载集合中每一个函数形参的匹配度，调用重载函数时有三种可能的结果：</p>
+<ul>
+<li>最佳匹配(best match)</li>
+<li>无匹配(no match)</li>
+<li>二义性调用(ambiguous call)</li>
+</ul>
+<p>最佳匹配：编译器找到一个与实参最佳匹配的函数，并生成调用该函数的代码。</p>
+<p>无匹配：找不到任何一个函数与调用的实参匹配，此时编译器发出无匹配的错误信息。</p>
+<p>二义性调用：有多于一个函数可以匹配，但是每一个都不是明显的最佳选择。此时编译器发出二义性调用的错误信息。</p>
+<blockquote>
+<p>要注意函数匹配是在编译阶段进行的，只要代码中出现了某个函数的调用，编译器在编译时就会开始对该函数进行函数匹配。只有找到了最佳匹配才会通过编译，否则终止编译，输出错误信息。</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;type_traits&gt;</span></span>
+
+<span class="token keyword keyword-template">template</span><span class="token operator">&lt;</span><span class="token keyword keyword-class">class</span> <span class="token class-name">T</span><span class="token operator">&gt;</span>
+std<span class="token double-colon punctuation">::</span>string <span class="token function">sprints</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> T<span class="token operator">&amp;</span> arg<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    std<span class="token double-colon punctuation">::</span>string str<span class="token punctuation">;</span>
+    <span class="token comment">// T类型与char*相等时</span>
+    <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span>is_same<span class="token operator">&lt;</span><span class="token keyword keyword-typename">typename</span> <span class="token class-name">std</span><span class="token double-colon punctuation">::</span>decay<span class="token operator">&lt;</span>T<span class="token operator">&gt;</span><span class="token double-colon punctuation">::</span>type<span class="token punctuation">,</span> <span class="token keyword keyword-char">char</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token double-colon punctuation">::</span>value<span class="token punctuation">)</span>
+        str <span class="token operator">=</span> arg<span class="token punctuation">;</span>
+    <span class="token keyword keyword-else">else</span>
+        str <span class="token operator">=</span> std<span class="token double-colon punctuation">::</span><span class="token function">to_string</span><span class="token punctuation">(</span>arg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> str<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> argc<span class="token punctuation">,</span> <span class="token keyword keyword-char">char</span> <span class="token operator">*</span><span class="token operator">*</span>argv<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">/* 编译会出错，因为编译器在编译阶段进行sprints函数的函数匹配。
+     * 模板生成的sprints实例是std::string sprints(const char*(&amp;arg));
+     * ，而std::to_string函数没有std::to_string(const char*)的重载函数
+     * 因此会输出匹配不到的编译错误信息，正确方法是新建一个std::to_string(const char*)的重载函数，如下：
+        namespace std
+        {
+        std::string to_string(const char*)
+        {
+            return std::string("error!");
+        }
+        } // End namespace std
+     * 这样才会编译通过。终端输出strings
+     */</span>
+    <span class="token keyword keyword-const">const</span> std<span class="token double-colon punctuation">::</span>string <span class="token operator">&amp;</span>str <span class="token operator">=</span> <span class="token function">sprints</span><span class="token punctuation">(</span><span class="token string">"strings"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> str <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><h5 id="5521-编译器寻找重载函数的过程">5.521 编译器寻找重载函数的过程 </h5>
+<p>和变量一样，编译器寻找重载函数的顺序为：</p>
+<ul>
+<li>先进行名字查找，</li>
+<li>再进行类型检查。</li>
+</ul>
+<p>以下是编译器在寻找重载函数过程：</p>
+<ol>
+<li>从调用函数的位置向上查找与其名字一样的函数的声明或定义语句。<br>
+如果没找到，则终止程序并提示未定义函数的错误。
+<blockquote>
+<p>向上查找只会找该调用点所属的作用域以及包含该调用点作用域的外层作用域，不会找里层作用域。</p>
+</blockquote>
+</li>
+<li>如果<mark>在某作用域找到了一个同名函数的声明语句，则确定了所有重载函数集合的作用域就是在这个作用域中</mark>(也就是外层的同名函数不算重载函数集合中的函数，外层函数被隐藏)。<br>
+将所有在这个作用域中找到的重载函数(包括只有声明，没有定义的)都当成重载函数集合的成员。
+<ol>
+<li>然后查找在这个作用域中所有同名函数声明所对应的定义(可以向上查找对应的定义)。</li>
+<li>如果一个对应的定义语句都没找到，则终止程序并提示未定义函数或声明不匹配的错误。</li>
+</ol>
+</li>
+<li>在查找函数声明对应定义的过程中，对每个找到对应定义的函数进行类型检查:
+<ul>
+<li>检查该定义语句所在的作用域内是否存在重复的定义语句。<br>
+如果存在，则终止程序并提示重复定义的错误；否则继续后面的操作。</li>
+</ul>
+</li>
+<li>根据调用点的实参，对重载函数集合进行匹配。</li>
+</ol>
+<blockquote>
+<p>因为编译器是<em>先进行名字查找，再进行类型检查</em>，所以在内外层都有同名的实体时，在非显式指定时某实体时，编译器是不会去查找外层的同名实体的，即使内层的同名实体类型不匹配也不会去查找外层的。</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token keyword keyword-void">void</span> <span class="token function">prints</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> string<span class="token operator">&amp;</span> str<span class="token punctuation">)</span> <span class="token punctuation">{</span> cout <span class="token operator">&lt;&lt;</span> str<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">prints</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> ins<span class="token punctuation">)</span> <span class="token punctuation">{</span> cout <span class="token operator">&lt;&lt;</span> ins<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">prints</span><span class="token punctuation">(</span><span class="token keyword keyword-double">double</span> dou<span class="token punctuation">)</span> <span class="token punctuation">{</span> cout <span class="token operator">&lt;&lt;</span> dou<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-void">void</span> <span class="token function">prints</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 隐藏了\
+    void prints(const string&amp; str)和\
+    void prints(double dou)。</span>
+    <span class="token function">prints</span><span class="token punctuation">(</span><span class="token string">"str"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 错误：void prints(const string&amp; str)被隐藏</span>
+    <span class="token function">prints</span><span class="token punctuation">(</span><span class="token number">3.6</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// void prints(double dou)被隐藏，所以调用void prints(int)，输出3。</span>
+    <span class="token function">prints</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 正确：调用void prints(int)，输出6。</span>
+<span class="token punctuation">}</span>
+</code></pre><h5 id="5522-重载函数匹配的过程">5.522 重载函数匹配的过程 </h5>
+<p>函数匹配的过程分为三步：</p>
+<ul>
+<li>选定本次调用对应的候选函数。</li>
+<li>考察本次调用提供的实参，然后从候选函数中选出可行函数。</li>
+<li>从可行函数中选择与本次调用最匹配的函数。</li>
+</ul>
+<p>候选函数(candidate function)指的是重载函数集合中的函数。</p>
+<p>候选函数有两个特征：</p>
+<ul>
+<li>与被调用的函数同名。</li>
+<li>其声明在调用点可见。</li>
+</ul>
+<p>可行函数(viable function)指的是从候选函数中选出能被本次提供的实参调用的函数。<br>
+如果没找到可行函数，编译器将报告无匹配函数的错误。</p>
+<p>可行函数也有两个特征：</p>
+<ul>
+<li>其形参的数量必须大于或等于本次调用所提供的实参数量。大于时，其多出来的形参必须都有默认实参。</li>
+<li>每个实参的类型与对应的形参类型相同，或者能隐式转换成对应的形参的类型。</li>
+</ul>
+<p>最佳匹配函数是指本次提供的实参类型与该形参类型最接近的函数(比如<code>int</code>比<code>double</code>更接近<code>int</code>)，编译器依次检查每个函数的每个实参以确定哪个函数是最佳匹配。<br>
+如果没找到最佳匹配函数，编译器将报告二义性调用的错误。</p>
+<p>最佳匹配函数也有两个特征：</p>
+<ul>
+<li>该函数每个实参的匹配都不劣于其他可行函数需要的匹配。</li>
+<li>至少有一个实参的匹配优于其他可行函数提供的匹配。</li>
+</ul>
+<h5 id="5523-最佳匹配的确定">5.523 最佳匹配的确定 </h5>
+<p>为了确定最佳匹配，编译器将实参类型到可行函数的形参类型的接近程度划分成几个等级，以下是接近程度的具体排序，从上到下，接近程度依次降低:</p>
+<ol>
+<li>精确匹配，包括：
+<ul>
+<li>实参类型和形参类型相同。</li>
+<li>实参从数组类型或函数类型转换成对应的指针类型。</li>
+<li>向实参添加顶层const或者从实参中删除顶层const。</li>
+</ul>
+</li>
+<li>非底层const实参转换成底层const实现的匹配。</li>
+<li>通过整型提升实现的匹配。</li>
+<li>通过算术类型转换或指针转换实现的匹配。</li>
+<li>通过类类型转换实现的匹配(包括派生类向基类的转换)。</li>
+</ol>
+<blockquote>
+<p>如果一个可行函数的实参匹配同时满足多个等级，则该函数的接近程度按照低等级来。</p>
+</blockquote>
+<p>对于含有省略符形参的函数来说，如果该函数并不只有一个形参，则该省略符形参不会对其匹配的优先级有任何影响；但是如果该函数只有省略符这一个形参，则它的优先级比任何可行函数的优先级都要低(除了空形参表函数，该函数与其优先级一样)。</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token keyword keyword-void">void</span> <span class="token function">prints</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> cout <span class="token operator">&lt;&lt;</span> <span class="token string">"omission"</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">prints</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> cout <span class="token operator">&lt;&lt;</span> <span class="token string">"common"</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token comment">// 错误：调用二义性</span>
+<span class="token function">prints</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token keyword keyword-void">void</span> <span class="token function">prints</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> cout <span class="token operator">&lt;&lt;</span> <span class="token string">"omission"</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">prints</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> cout <span class="token operator">&lt;&lt;</span> <span class="token string">"common"</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token comment">// 正确：输出common</span>
+<span class="token function">prints</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token keyword keyword-void">void</span> <span class="token function">prints</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> cout <span class="token operator">&lt;&lt;</span> <span class="token string">"omission"</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">prints</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> cout <span class="token operator">&lt;&lt;</span> <span class="token string">"common"</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token comment">// 错误：调用二义性</span>
+<span class="token function">prints</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>对于属于同一接近程度的各种类型的转换，其优先级别都一样，不存在某一种比另一种的更好。<br>
+例如算术类型的转换，从<code>int</code>向<code>unsigned int</code>的转换并不比从<code>int</code>向<code>double</code>的转换级别高。</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token keyword keyword-void">void</span> <span class="token function">manip</span><span class="token punctuation">(</span><span class="token keyword keyword-long">long</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword keyword-void">void</span> <span class="token function">manip</span><span class="token punctuation">(</span><span class="token keyword keyword-float">float</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token function">manip</span><span class="token punctuation">(</span><span class="token number">3.14</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//错误：二义性</span>
+</code></pre><p>如果两个重载函数的区别仅仅在于底层const，则当调用时，编译器通过实参是否是const类型來决定调用哪个函数。</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code>Record <span class="token function">lookup</span> <span class="token punctuation">(</span>Account<span class="token operator">&amp;</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 函数的参数是Account的引用。</span>
+Record <span class="token function">lookup</span> <span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> Account<span class="token operator">&amp;</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 函数的参数是一个常量引用。</span>
+<span class="token keyword keyword-const">const</span> Account a<span class="token punctuation">;</span>
+Account b<span class="token punctuation">;</span>
+<span class="token function">lookup</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 调用lookup(const Account&amp;)。</span>
+<span class="token function">lookup</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 调用lookup(Account&amp;)。</span>
+</code></pre><h3 id="56-可调用对象">5.6 可调用对象 </h3>
+<p>C++中的可调用对象分类如下，接下来我们会介绍其中几种：</p>
+<ul>
+<li>函数</li>
+<li>函数指针</li>
+<li>重载函数调用运算符类的对象</li>
+<li>lambda表达式</li>
+<li>bind创建的对象</li>
+<li>function类创建的对象</li>
+</ul>
+<p>之前我们介绍了函数和函数指针。接下来，我们在介绍其他可调用对象之前，会介绍一下相关的概念。</p>
+<h4 id="561-可调用对象的相关概念">5.61 可调用对象的相关概念 </h4>
+<p>可调用对象(callable object)是指某一个对象或者表达式，如果可以对其使用调用运算符，则称它为可调用对象。</p>
+<p>和其他对象一样，可调用的对象也有类型。例如，每个<code>lambda</code>有它自己唯一的(未命名)类类型；函数及函数指针的类型则由其返回值类型和所有形参类型决定，等等。</p>
+<blockquote>
+<p>所有种类的可调用对象中，除了函数能够重载，其他的可调用对象都不能重载。<br>
+所以除了函数以外，同一作用域中的其他可调用对象之间不能有同样的对象名(其他可调用对象与函数之间也不能有重名)，否则调用时会出错。</p>
+</blockquote>
+<h5 id="5611-调用形式">5.611 调用形式 </h5>
+<p>但是不同类型的可调用对象之间可能是同一种调用形式。</p>
+<p>调用形式(call signature)是由可调用对象的返回类型以及所有形参类型所组成，一种调用形式对应一个函数类型。<br>
+例如：<code>int(int, int)</code>是一个函数类型，它接受两个<code>int</code>，返回一个<code>int</code>。</p>
+<blockquote>
+<p>调用形式的一部分是由可调用对象的所有形参类型所组成，所以也包括有默认实参的形参，</p>
+</blockquote>
+<p>每个非函数对象的可调用对象，有且仅有唯一的调用形式。</p>
+<blockquote>
+<p>函数对象的调用形式有多个，调用形式的数量与其类中重载的调用运算符函数的数量一样。</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token keyword keyword-struct">struct</span> <span class="token class-name">Add</span>
+<span class="token punctuation">{</span>
+  <span class="token keyword keyword-int">int</span> <span class="token keyword keyword-operator">operator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> val<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> val2<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword keyword-return">return</span> val <span class="token operator">+</span> val2<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+  <span class="token keyword keyword-double">double</span> <span class="token keyword keyword-operator">operator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword keyword-double">double</span> val<span class="token punctuation">,</span> <span class="token keyword keyword-double">double</span> val2<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword keyword-return">return</span> val <span class="token operator">+</span> val2<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment">// 函数对象add有两个调用形式，分别为\
+int(int,int)\
+double(double,double)</span>
+Add add<span class="token punctuation">;</span>
+</code></pre><p>几个可调用对象可能会共享同一种调用形式。</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token comment">//它们都是同一种调用形式：int(int, int)</span>
+<span class="token comment">//普通函数</span>
+<span class="token keyword keyword-int">int</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> i<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> j<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword keyword-return">return</span> i <span class="token operator">+</span> j<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token comment">// lambda,其产生一个未命名的函数对象类</span>
+<span class="token keyword keyword-auto">auto</span> mod <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> i<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> j<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword keyword-return">return</span> i <span class="token operator">%</span> j<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment">//函数对象类</span>
+<span class="token keyword keyword-struct">struct</span> <span class="token class-name">divide</span> 
+<span class="token punctuation">{</span><span class="token keyword keyword-int">int</span> <span class="token keyword keyword-operator">operator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> denominator<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> divisor<span class="token punctuation">)</span>
+ <span class="token punctuation">{</span><span class="token keyword keyword-return">return</span> denominator<span class="token operator">/</span>divisor<span class="token punctuation">;</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><h5 id="5612-可调用对象的使用">5.612 可调用对象的使用 </h5>
+<p>和函数一样，我们可以通过调用运算符(call operator)来执行可调用对象。形式为：</p>
+<blockquote>
+<p>可调用对象 (实参表)</p>
+</blockquote>
+<p>调用运算符<code>()</code>内是实参(argument)列表(实参表最外边不能有圆括号)，实参是我们用来初始化可调用对象形参的对象(包括临时对象)，实参可以是任何非声明或定义表达式。</p>
+<blockquote>
+<p>调用运算符和可调用对象、其他表达式之间可以有0个或多个空白符分隔。<br>
+调用实参表中每个实参与逗号或者圆括号之间可以有0个或多个空白符分隔。<br>
+可调用对象形参表中每个形参与逗号或者圆括号之间可以有0个或多个空白符分隔。</p>
+</blockquote>
+<p>调用可调用对象时，该可调用对象一般会返回一个对象(包括临时对象)，该对象的类型就是此可调用对象的返回类型。</p>
+<h4 id="562-重载函数调用运算符类的对象">5.62 重载函数调用运算符类的对象 </h4>
+<p>如果某个类重载了函数调用运算符，则我们可以像使用函数一样使用该类的对象。</p>
+<p>即使该类的对象只是一个对象而非函数，我们也能“调用”该对象。调用对象实际上是在运行重载的调用运算符。</p>
+<blockquote>
+<p>重载的函数调用运算符<code>operator()</code>的形参表中可以有默认实参。</p>
+</blockquote>
+<p>该类的对象就是一个可调用对象，也被称作函数对象(function object)因为可以调用这种对象，所以我们说这些对象的“行为像函数一样”。<br>
+这样的类对象同时也能存储状态，所以与普通函数相比它们更加灵活。</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token keyword keyword-struct">struct</span> <span class="token class-name">abslnt</span>
+<span class="token punctuation">{</span>
+  <span class="token keyword keyword-int">int</span> <span class="token keyword keyword-operator">operator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> val<span class="token punctuation">)</span> <span class="token keyword keyword-const">const</span> <span class="token punctuation">{</span> <span class="token keyword keyword-return">return</span> val <span class="token operator">&lt;</span> <span class="token number">0</span> <span class="token operator">?</span> <span class="token operator">-</span>val <span class="token operator">:</span> val<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-int">int</span> i <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">42</span><span class="token punctuation">;</span>
+abslnt absObj<span class="token punctuation">;</span> <span class="token comment">//含有函数调用运算符的对象</span>
+<span class="token keyword keyword-int">int</span> ui <span class="token operator">=</span> <span class="token function">absObj</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 将i传递给 absObj.operator()</span>
+</code></pre><blockquote>
+<p>函数调用运算符函数必须是成员函数。一个类可以定义多个不同版本的调用运算符，相互之间应该在参数数量或类型上有所区别(也就是不能有相同的调用形式)。</p>
+</blockquote>
+<p>和其他类一样，函数对象类的行为和普通类没什么区别。比如除了<code>operator()</code>之外也可以包含其他成员。</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token comment">// 该函数对象类还包含其他的成员</span>
+<span class="token keyword keyword-class">class</span> <span class="token class-name">Test</span>
+<span class="token punctuation">{</span>
+  <span class="token keyword keyword-int">int</span> ins<span class="token punctuation">;</span>
+  <span class="token keyword keyword-static">static</span> string sta_str<span class="token punctuation">;</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+  <span class="token function">Test</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> ins <span class="token operator">=</span> <span class="token number">88</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token function">ins</span><span class="token punctuation">(</span>ins<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+  <span class="token keyword keyword-void">void</span> <span class="token keyword keyword-operator">operator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> val<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token function">prints</span><span class="token punctuation">(</span>val<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+  <span class="token keyword keyword-void">void</span> <span class="token function">prints</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> val<span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>cout <span class="token operator">&lt;&lt;</span> val <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> sta_str <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> ins <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+string Test<span class="token double-colon punctuation">::</span>sta_str <span class="token operator">=</span> <span class="token string">"static_str"</span><span class="token punctuation">;</span>
+Test te<span class="token punctuation">;</span>
+<span class="token comment">// 输出 55 static_str 88</span>
+<span class="token function">te</span><span class="token punctuation">(</span><span class="token number">55</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><h4 id="563-lambda表达式">5.63 lambda表达式 </h4>
+<p>一个<code>lambda</code>表达式也是一个可调用对象，它也是一个函数对象。我们可以将其理解为一个未命名的内联函数。</p>
+<p>当我们编写了一个<code>lambda</code>后，编译器将该表达式翻译成一个未命名类的未命名对象，在<code>lambda</code>表达式产生的类中含有一个重载的函数调用运算符。</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token comment">// func1类似于func2对象</span>
+<span class="token keyword keyword-auto">auto</span> func1 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> string <span class="token operator">&amp;</span>a<span class="token punctuation">,</span> <span class="token keyword keyword-const">const</span> string <span class="token operator">&amp;</span>b<span class="token punctuation">)</span> 
+<span class="token punctuation">{</span> <span class="token keyword keyword-return">return</span> a<span class="token punctuation">.</span><span class="token function">size</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> b<span class="token punctuation">.</span><span class="token function">size</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-struct">struct</span>
+<span class="token punctuation">{</span>
+  <span class="token keyword keyword-bool">bool</span> <span class="token keyword keyword-operator">operator</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> string <span class="token operator">&amp;</span>a<span class="token punctuation">,</span> <span class="token keyword keyword-const">const</span> string <span class="token operator">&amp;</span>b<span class="token punctuation">)</span> <span class="token keyword keyword-const">const</span> 
+  <span class="token punctuation">{</span> <span class="token keyword keyword-return">return</span> a<span class="token punctuation">.</span><span class="token function">size</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> b<span class="token punctuation">.</span><span class="token function">size</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>func2<span class="token punctuation">;</span>
+</code></pre><p>与函数类似，一个<code>lambda</code>表达式具有一个返回类型、一个参数列表和一个函数体。但与函数不同，<code>lambda</code>可以定义在函数内部。<br>
+<code>lambda</code>表达式返回一个该<code>lambda</code>表达式类型的可调用对象。</p>
+<h5 id="5631-lambda表达式的定义形式">5.631 lambda表达式的定义形式 </h5>
+<p>一个<code>lambda</code>表达式具有如下形式:</p>
+<blockquote>
+<p>[捕获列表] (可选 形参表/(形参表 -&gt; 返回类型)) 函数体</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token comment">// 一个标准的lambda表达式语句，\
+返回可调用对象func。</span>
+<span class="token keyword keyword-auto">auto</span> func <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> val<span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token keyword keyword-int">int</span> <span class="token punctuation">{</span> <span class="token keyword keyword-return">return</span> val <span class="token operator">+</span> <span class="token number">35</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+</code></pre><p>捕获列表是一个含有<code>lambda</code>所在函数中定义的局部非静态变量的列表(可为空)。<br>
+因为<code>lambda</code>不能使用没有出现在捕获列表中的，在所在函数中定义的局部非静态变量，所以想要使用某局部非静态变量，则必须明确指明该变量。</p>
+<blockquote>
+<p>捕获列表中的局部非静态变量顺序可以是任意的，不用与这些变量的定义顺序一致。</p>
+</blockquote>
+<p>捕获列表只能用于捕获局部非static变量，不能用于其他的变量。但是<code>lambda</code>可以直接使用局部static变量和在它所在函数之外声明的名字。</p>
+<blockquote>
+<p>捕获列表内可以是非声明或定义形式的表达式，比如含多个用逗号分隔的多个赋值符所组成的复杂表达式。</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token comment">// 函数内部的lambda表达式</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-static">static</span> <span class="token keyword keyword-int">int</span> ins <span class="token operator">=</span> <span class="token number">8</span><span class="token punctuation">;</span>
+    string str <span class="token operator">=</span> <span class="token string">"strs"</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-double">double</span> dou <span class="token operator">=</span> <span class="token number">6.14</span><span class="token punctuation">;</span>
+    <span class="token comment">// 捕获了局部变量str和dou，并改变了其值。</span>
+    <span class="token keyword keyword-auto">auto</span> func <span class="token operator">=</span> <span class="token punctuation">[</span>dou <span class="token operator">=</span> <span class="token number">8.8</span><span class="token punctuation">,</span> str <span class="token operator">=</span> <span class="token string">"lambda"</span><span class="token punctuation">]</span> <span class="token punctuation">{</span> cout <span class="token operator">&lt;&lt;</span> ins <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> str <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> dou<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token comment">// 输出8 lambda 8.8</span>
+    <span class="token function">p</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>形参表、返回类型和函数体的格式与普通函数一样，但是对于<code>lambda</code>表达式来说，形参不能有默认实参；且必须要用尾置返回类型。</p>
+<p>我们可以忽略形参表和返冋类型，但必须永远包含捕获列表和函数体。</p>
+<ul>
+<li>忽略形参表等价于指定一个空形参列表。</li>
+<li>如果忽略返回类型，<code>lambda</code>表达式根据函数体中的代码推断出返回类型：
+<ul>
+<li>如果函数体有return语句，则返回类型从该语句的表达式的类型推断而来；否则，返回类型为void。</li>
+<li><code>lambda</code>表达式用于标准库的泛型算法时，如果该表达式的函数体包含任何单一return语句之外的内容，且未指定返回类型，则返回void。</li>
+</ul>
+<blockquote>
+<p>当一个<code>lambda</code>表达式的函数体中有多个return语句时，所有的return语句返回的类型必须严格一致(能隐式转换也不行)。</p>
+</blockquote>
+</li>
+</ul>
+<p>如果<code>lambda</code>表达式显式指定了返冋类型，则必须包含形参表。</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token comment">// 合法：可调用对象func1的调用形式为\
+int()</span>
+<span class="token keyword keyword-auto">auto</span> func1 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">{</span> <span class="token keyword keyword-return">return</span> <span class="token number">35</span><span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment">// 合法：可调用对象func2的调用形式为\
+void()</span>
+<span class="token keyword keyword-auto">auto</span> func2 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">{</span> cout <span class="token operator">&lt;&lt;</span> <span class="token string">"good"</span><span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment">// 合法：可调用对象func3的调用形式为\
+void(int)</span>
+<span class="token keyword keyword-auto">auto</span> func3 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> val<span class="token punctuation">)</span><span class="token punctuation">{</span> cout <span class="token operator">&lt;&lt;</span> val<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment">// 合法：可调用对象func4的调用形式为\
+int(double)</span>
+<span class="token keyword keyword-auto">auto</span> func4 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">(</span><span class="token keyword keyword-double">double</span> val<span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token keyword keyword-int">int</span> <span class="token punctuation">{</span> cout <span class="token operator">&lt;&lt;</span> val<span class="token punctuation">;</span> <span class="token keyword keyword-return">return</span> val<span class="token operator">+</span><span class="token number">2</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment">// 不合法：显式指定了返冋类型，则必须包含形参表。</span>
+<span class="token keyword keyword-auto">auto</span> func5 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">-&gt;</span> <span class="token keyword keyword-int">int</span> <span class="token punctuation">{</span> <span class="token keyword keyword-return">return</span> <span class="token number">35</span><span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><h5 id="5632-捕获列表">5.632 捕获列表 </h5>
+<h6 id="56321-捕获方式">5.6321 捕获方式 </h6>
+<p>类似参数传递，变量的捕获方式可以为</p>
+<ul>
+<li>值捕获</li>
+<li>引用捕获</li>
+</ul>
+<blockquote>
+<p><code>lambda</code>表达式在捕获变量时是自动判断其变量类型的，与auto类型相似，所以想捕获右值对象，则不能用引用来捕获(比如this变量)。</p>
+</blockquote>
+<ol>
+<li>值捕获的前提是变量可以拷贝(是拷贝，不是赋值)，由于被捕获变量的值是拷贝使用的，因此随后对被捕获变量的值修改不会影响到<code>lambda</code>内对应的值。<mark>默认情况下，显式指定用法所捕获的变量都是用值捕获的</mark>。</li>
+</ol>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token comment">// 函数内部的lambda表达式</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-int">int</span> ins <span class="token operator">=</span> <span class="token number">16</span><span class="token punctuation">;</span>
+    <span class="token comment">// ins为值捕获</span>
+    <span class="token keyword keyword-auto">auto</span> func <span class="token operator">=</span> <span class="token punctuation">[</span>ins<span class="token punctuation">]</span> <span class="token punctuation">{</span> <span class="token keyword keyword-return">return</span> ins<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    ins <span class="token operator">=</span> <span class="token number">33</span><span class="token punctuation">;</span>
+    <span class="token comment">// 输出16</span>
+    cout <span class="token operator">&lt;&lt;</span> <span class="token function">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><ol start="2">
+<li>引用捕获形式中捕获的变量与其他任何类型的引用的行为类似。当我们在<code>lambda</code>函数体内使用此变量时，实际上使用的是引用所绑定的对象。</li>
+</ol>
+<p>引用捕获的使用形式为：</p>
+<blockquote>
+<p>&amp;捕获变量名</p>
+</blockquote>
+<p>引用捕获要注意捕获的局部非静态变量的作用域问题。</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token comment">// 函数内部的lambda表达式</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-int">int</span> ins <span class="token operator">=</span> <span class="token number">16</span><span class="token punctuation">;</span>
+    <span class="token comment">// ins为引用捕获</span>
+    <span class="token keyword keyword-auto">auto</span> func <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">&amp;</span>ins<span class="token punctuation">]</span> <span class="token punctuation">{</span> <span class="token keyword keyword-return">return</span> ins<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    ins <span class="token operator">=</span> <span class="token number">33</span><span class="token punctuation">;</span>
+    <span class="token comment">// 输出33</span>
+    cout <span class="token operator">&lt;&lt;</span> <span class="token function">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>默认情况下，对于一个值被拷贝的变量，<code>lambda</code>表达式不能改变其值；然而引用捕获则可以改变其值。其原因在于：</p>
+<ul>
+<li><code>lambda</code>表达式在生成未命名类时，对于所有值捕获的变量，都生成一个对应该变量类型的数据成员，同时生成一个构造函数，使其用该变量的值来初始化对应的数据成员。</li>
+<li>而当<code>lambda</code>表达式通过引用捕获变量时，将由程序自己负责确保<code>lambda</code>执行的时候，引用所引的对象确实存在。因此，编译器就直接使用该引用而无须在<code>lambda</code>产生的类中将其存储为数据成员。</li>
+</ul>
+<blockquote>
+<p><code>lambda</code>表达式产生的类不含默认构造函数、赋值运算符及默认析构函数；它是否含有默认的拷贝/移动构造函数则通常要视捕获的数据成员类型而定。</p>
+</blockquote>
+<p>在默认情况下，由<code>lambda</code>产生的类当中的函数调用运算符是一个const成员函数。所以如果想改变被值捕获的变量，就必须将该<code>lambda</code>表达式声明为可变的(也就是在形参表后加上关键字<code>mutable</code>)，使该表达式的所有数据成员都变为<code>mutable</code>。</p>
+<blockquote>
+<p>加上关键字<code>mutable</code>时不能省略形参表，必须要有(可以为空)。</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token keyword keyword-void">void</span> <span class="token function">fcn3</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+   size_t vl <span class="token operator">=</span> <span class="token number">42</span><span class="token punctuation">;</span> <span class="token comment">//局部变量</span>
+   <span class="token comment">//f可以改变它所捕获的变量的值</span>
+   <span class="token keyword keyword-auto">auto</span> f <span class="token operator">=</span> <span class="token punctuation">[</span>vl<span class="token punctuation">]</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword keyword-mutable">mutable</span> <span class="token punctuation">{</span> <span class="token keyword keyword-return">return</span> <span class="token operator">++</span>vl<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+   vl <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+   <span class="token keyword keyword-auto">auto</span> j <span class="token operator">=</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//j为43</span>
+<span class="token punctuation">}</span>
+</code></pre><hr>
+<h6 id="56322-捕获列表用法">5.6322 捕获列表用法 </h6>
+<p><code>lambda</code>表达式的捕获列表有三种用法：</p>
+<ul>
+<li>显式捕获(显式指定某些局部非静态变量)</li>
+<li>隐式捕获</li>
+<li>混合捕获</li>
+</ul>
+<ol>
+<li>除了显式指定我们希望使用的局部非静态变量，还可以让编译器根据<code>lambda</code>体中的代码来推断我们要使用哪些局部非静态变量，这就是隐式捕获。此时也有对应的两种捕获方式，隐式捕获列表的使用形式为：
+<blockquote>
+<p>值捕获：[=]<br>
+引用捕获：[&amp;]</p>
+</blockquote>
+</li>
+<li>如果我们希望对一部分变量采用值捕获，对其他变量采用引用捕获，可以混合使用隐式捕获和显式捕获。
+<ul>
+<li>当我们混合使用时，捕获列表中的第一个元素必须是一个<code>=</code>或<code>&amp;</code>，此符号指定了隐式捕获方式为值或引用。</li>
+<li>当混合使用隐式捕获和显式捕获时，显式捕获的变量必须使用与隐式捕获不同的方式。<br>
+如果隐式捕获是引用方式(使用了<code>&amp;</code>)，则显式捕获命名变量必须采用值方式；类似的，如果隐式捕获采用的是值方式(使用了<code>=</code>)，则显式捕获命名变量必须采用引用方式。</li>
+</ul>
+</li>
+</ol>
+<p>以下是各种捕获列表的用法：<br>
+<img src="../image/2021-05-26-02-40-53.png" alt="capture"></p>
+<h4 id="564-bind创建的对象">5.64 bind创建的对象 </h4>
+<p>当我们需要改变某个可调用对象形参类型的数量甚至是顺序，但是又不想直接修改或定义一个新的可调用对象时，我们就可以用一个标准库里的<code>bind</code>函数来根据该可调用对象快速生成一个新的可调用对象。</p>
+<h5 id="5641-可调用对象的创建">5.641 可调用对象的创建 </h5>
+<p><code>bind</code>的标准库函数定义在头文件<code>functioonal</code>中。<br>
+<code>bind</code>函数的使用形式为：</p>
+<blockquote>
+<p>bind(原始可调用对象, 调用原始可调用对象的实参表)</p>
+</blockquote>
+<p><code>bind</code>函数返回一个和原始可调用对象除了形参表可能不一样，其他都一样的新的可调用对象。</p>
+<p>原始可调用对象就是需要修改其形参表的对象。</p>
+<blockquote>
+<p>如果原始可调用对象有重载函数，那么我们不能直接在<code>bind</code>函数中用其对象名，因为会产生歧义，所以要将该对象转化成无歧义的函数指针才行。</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token comment">// 重载函数multiply</span>
+<span class="token keyword keyword-int">int</span> <span class="token function">multiply</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> val<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> val2<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword keyword-return">return</span> val <span class="token operator">*</span> val2<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-double">double</span> <span class="token function">multiply</span><span class="token punctuation">(</span><span class="token keyword keyword-double">double</span> val<span class="token punctuation">,</span> <span class="token keyword keyword-double">double</span> val2<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword keyword-return">return</span> val <span class="token operator">*</span> val2<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment">// 错误：有歧义性</span>
+<span class="token keyword keyword-auto">auto</span> func <span class="token operator">=</span> <span class="token function">bind</span><span class="token punctuation">(</span>multiply<span class="token punctuation">,</span> std<span class="token double-colon punctuation">::</span>placeholders<span class="token double-colon punctuation">::</span>_1<span class="token punctuation">,</span> std<span class="token double-colon punctuation">::</span>placeholders<span class="token double-colon punctuation">::</span>_2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-int">int</span> <span class="token punctuation">(</span><span class="token operator">*</span>p<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span><span class="token keyword keyword-int">int</span><span class="token punctuation">)</span> <span class="token operator">=</span> multiply<span class="token punctuation">;</span>
+<span class="token comment">// 正确：原始可调用对象的是调用形式为int(int,int)的multiply</span>
+<span class="token keyword keyword-auto">auto</span> func <span class="token operator">=</span> <span class="token function">bind</span><span class="token punctuation">(</span>p<span class="token punctuation">,</span> std<span class="token double-colon punctuation">::</span>placeholders<span class="token double-colon punctuation">::</span>_1<span class="token punctuation">,</span> std<span class="token double-colon punctuation">::</span>placeholders<span class="token double-colon punctuation">::</span>_2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>调用原始可调用对象的实参表是一个逗号分隔的实参列表(该实参表不能加圆括号)，对应原始可调用对象的形参。</p>
+<blockquote>
+<p>调用原始可调用对象的实参表要与原始可调用对象的形参表严格一致，也就是不能忽略形参表中有默认实参的形参，每个形参都要给予对应的实参。</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token keyword keyword-void">void</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> ins<span class="token punctuation">,</span> string str <span class="token operator">=</span> <span class="token string">"str"</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span> cout <span class="token operator">&lt;&lt;</span> str <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> ins<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token comment">// 错误：不能忽略默认实参的形参。</span>
+<span class="token keyword keyword-auto">auto</span> func1 <span class="token operator">=</span> <span class="token function">bind</span><span class="token punctuation">(</span>test<span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 正确：实参表与形参表严格一致</span>
+<span class="token keyword keyword-auto">auto</span> func2 <span class="token operator">=</span> <span class="token function">bind</span><span class="token punctuation">(</span>test<span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token string">"strF"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><h5 id="5642-bind中的实参表的参数">5.642 bind中的实参表的参数 </h5>
+<p>调用原始可调用对象的实参表可以包含两种参数：</p>
+<ul>
+<li>普通实参</li>
+<li>占位符</li>
+</ul>
+<blockquote>
+<p>新生成的可调用对象是一个没有默认实参的可调用对象，且该对象的形参表中<mark>只含有那些占位符所对应的，原始可调用对象的形参</mark>。</p>
+</blockquote>
+<h6 id="56421-普通实参">5.6421 普通实参 </h6>
+<p>普通实参就是和普通函数调用一样，调用时所传递的实参。当我们对新生成的可调用对象进行调用时，新生成的可调用对象会自动调用原始可调用对象并对其传递这些普通实参。<br>
+所以新的可调用对象中不会包含普通实参所对应的形参。</p>
+<p><strong>普通实参的传递方式</strong></p>
+<p>默认情况下，在<code>bind</code>函数被调用时，普通实参是被值传递到新生成的可调用对象中，供其进行传递使用。</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token keyword keyword-void">void</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> ins<span class="token punctuation">,</span> string str<span class="token punctuation">)</span>
+<span class="token punctuation">{</span> cout <span class="token operator">&lt;&lt;</span> str <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> ins<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token keyword keyword-int">int</span> ins2 <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+string str2 <span class="token operator">=</span> <span class="token string">"strA"</span><span class="token punctuation">;</span>
+<span class="token comment">// 普通实参ins2和str2被拷贝到func对象中</span>
+<span class="token keyword keyword-auto">auto</span> func <span class="token operator">=</span> <span class="token function">bind</span><span class="token punctuation">(</span>test<span class="token punctuation">,</span> ins2<span class="token punctuation">,</span> str2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 由于是值传递，所以不会影响func</span>
+ins2 <span class="token operator">=</span> <span class="token number">19</span><span class="token punctuation">;</span>
+str2 <span class="token operator">=</span> <span class="token string">"strB"</span><span class="token punctuation">;</span>
+<span class="token comment">// 输出 strA 5</span>
+<span class="token function">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>当我们需要引用传递普通实参时，就可以用定义在头文件<code>functional</code>中的<code>ref</code>和<code>cref</code>函数。</p>
+<p><code>ref</code>和<code>cref</code>函数只能接受一个左值，返回一个该值的临时右值引用或者临时const右值引用(<code>cref</code>函数是返回const版本)，此引用能被拷贝。</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token keyword keyword-void">void</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> ins<span class="token punctuation">,</span> string str<span class="token punctuation">)</span>
+<span class="token punctuation">{</span> cout <span class="token operator">&lt;&lt;</span> str <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> ins<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token keyword keyword-int">int</span> ins2 <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+string str2 <span class="token operator">=</span> <span class="token string">"strA"</span><span class="token punctuation">;</span>
+<span class="token comment">// 普通实参ins2被拷贝到func对象，但str2是引用传递到func中</span>
+<span class="token keyword keyword-auto">auto</span> func <span class="token operator">=</span> <span class="token function">bind</span><span class="token punctuation">(</span>test<span class="token punctuation">,</span> ins2<span class="token punctuation">,</span> <span class="token function">ref</span><span class="token punctuation">(</span>str2<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 由于是值传递，所以不会影响func</span>
+ins2 <span class="token operator">=</span> <span class="token number">19</span><span class="token punctuation">;</span>
+<span class="token comment">// str2是引用传递，会改变func中的值</span>
+str2 <span class="token operator">=</span> <span class="token string">"strB"</span><span class="token punctuation">;</span>
+<span class="token comment">// 输出 strB 5</span>
+<span class="token function">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><hr>
+<h6 id="56422-占位符">5.6422 占位符 </h6>
+<p>占位符是标识符形如<code>_n</code>的标准库所定义的一组常量表达式。<br>
+它们都定义在头文件<code>functional</code>中的一个名为<code>placeholders</code>的命名空间中，而这个命名空间本身定义在<code>std</code>空间中。<br>
+它们占据了传递给新可调用对象的参数的“位置”，用以表示新可调用对象的形参。<br>
+占位符标识符中的数值<code>n</code>表示该占位符所对应的原始可调用对象形参在新可调用对象的形参表中的位置。如<code>_1</code>为新可调用对象形参表中的第一个参数，<code>_2</code>为第二个参数，以此类推。</p>
+<blockquote>
+<p>在一个bind函数中，实参表的所有占位符标识符中的数值不能有相同的，且其数值都不能超过bind函数中占位符的数量。否则新生成的可调用对象的调用就会出错。</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token keyword keyword-void">void</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> ins<span class="token punctuation">,</span> string str<span class="token punctuation">,</span> <span class="token keyword keyword-double">double</span> dou <span class="token operator">=</span> <span class="token number">6.7</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span> cout <span class="token operator">&lt;&lt;</span> str <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> ins <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> dou<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token comment">// 错误：占位符数值4超过了占位符数量3</span>
+<span class="token keyword keyword-auto">auto</span> func1 <span class="token operator">=</span> <span class="token function">bind</span><span class="token punctuation">(</span>test<span class="token punctuation">,</span> std<span class="token double-colon punctuation">::</span>placeholders<span class="token double-colon punctuation">::</span>_1<span class="token punctuation">,</span> std<span class="token double-colon punctuation">::</span>placeholders<span class="token double-colon punctuation">::</span>_2<span class="token punctuation">,</span> std<span class="token double-colon punctuation">::</span>placeholders<span class="token double-colon punctuation">::</span>_4<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 错误：占位符数值2有相同的</span>
+<span class="token keyword keyword-auto">auto</span> func2 <span class="token operator">=</span> <span class="token function">bind</span><span class="token punctuation">(</span>test<span class="token punctuation">,</span> std<span class="token double-colon punctuation">::</span>placeholders<span class="token double-colon punctuation">::</span>_1<span class="token punctuation">,</span> std<span class="token double-colon punctuation">::</span>placeholders<span class="token double-colon punctuation">::</span>_1<span class="token punctuation">,</span> std<span class="token double-colon punctuation">::</span>placeholders<span class="token double-colon punctuation">::</span>_3<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 正确：func3的形参表为(int, string, double)</span>
+<span class="token keyword keyword-auto">auto</span> func3 <span class="token operator">=</span> <span class="token function">bind</span><span class="token punctuation">(</span>test<span class="token punctuation">,</span> std<span class="token double-colon punctuation">::</span>placeholders<span class="token double-colon punctuation">::</span>_1<span class="token punctuation">,</span> std<span class="token double-colon punctuation">::</span>placeholders<span class="token double-colon punctuation">::</span>_2<span class="token punctuation">,</span> std<span class="token double-colon punctuation">::</span>placeholders<span class="token double-colon punctuation">::</span>_3<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 正确：func4的形参表为(string, double, int)</span>
+<span class="token keyword keyword-auto">auto</span> func4 <span class="token operator">=</span> <span class="token function">bind</span><span class="token punctuation">(</span>test<span class="token punctuation">,</span> std<span class="token double-colon punctuation">::</span>placeholders<span class="token double-colon punctuation">::</span>_3<span class="token punctuation">,</span> std<span class="token double-colon punctuation">::</span>placeholders<span class="token double-colon punctuation">::</span>_1<span class="token punctuation">,</span> std<span class="token double-colon punctuation">::</span>placeholders<span class="token double-colon punctuation">::</span>_2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><h5 id="5643-可调用对象的使用">5.643 可调用对象的使用 </h5>
+<p><code>bind</code>生成的可调用对象的使用形式和普通的可调用对象一样，用函数调用符加实参表就能调用该对象。</p>
+<p>但要注意，调用<code>bind</code>生成的可调用对象时：</p>
+<ol>
+<li>传递实参的顺序要与<code>bind</code>函数中的各占位符标识符的数值位置一致。</li>
+<li>传递实参的类型也要与各占位符对应的参数类型一致或者能隐式转换。</li>
+<li>传递实参的数量必须不小于占位符的数量，多于占位符数量的实参将会被编译器忽略(所以与等于占位符数量的实参的调用效果一样)。</li>
+</ol>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token keyword keyword-void">void</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> ins<span class="token punctuation">,</span> string str<span class="token punctuation">,</span> <span class="token keyword keyword-double">double</span> dou <span class="token operator">=</span> <span class="token number">6.7</span><span class="token punctuation">,</span> <span class="token keyword keyword-char">char</span> ch <span class="token operator">=</span> <span class="token char">'s'</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span> cout <span class="token operator">&lt;&lt;</span> str <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> ins <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> dou <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> ch<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token comment">// 生成一个有3个形参的可调用对象，其形参为(double, string, char)</span>
+<span class="token keyword keyword-auto">auto</span> func <span class="token operator">=</span> <span class="token function">bind</span><span class="token punctuation">(</span>test<span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> std<span class="token double-colon punctuation">::</span>placeholders<span class="token double-colon punctuation">::</span>_2<span class="token punctuation">,</span> std<span class="token double-colon punctuation">::</span>placeholders<span class="token double-colon punctuation">::</span>_1<span class="token punctuation">,</span> std<span class="token double-colon punctuation">::</span>placeholders<span class="token double-colon punctuation">::</span>_3<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 错误：与各占位符的数值位置不一致。</span>
+<span class="token function">func</span><span class="token punctuation">(</span><span class="token string">"str"</span><span class="token punctuation">,</span> <span class="token number">3.6</span><span class="token punctuation">,</span> <span class="token char">'k'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 错误：占位符_3对应的类型是char，而"k"不能隐式转换为char类型。</span>
+<span class="token function">func</span><span class="token punctuation">(</span><span class="token number">3.6</span><span class="token punctuation">,</span> <span class="token string">"str"</span><span class="token punctuation">,</span> <span class="token string">"k"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 错误：实参数量小于占位符数量。</span>
+<span class="token function">func</span><span class="token punctuation">(</span><span class="token number">3.6</span><span class="token punctuation">,</span> <span class="token string">"str"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 正确：实参数量等于占位符数量，输出str 8 3.6 k</span>
+<span class="token function">func</span><span class="token punctuation">(</span><span class="token number">3.6</span><span class="token punctuation">,</span> <span class="token string">"str"</span><span class="token punctuation">,</span> <span class="token char">'k'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 正确：实参数量不小于占位符数量，该调用与\
+func(3.6, "str", 'k');\
+效果一样，输出str 8 3.6 k</span>
+<span class="token function">func</span><span class="token punctuation">(</span><span class="token number">3.6</span><span class="token punctuation">,</span> <span class="token string">"str"</span><span class="token punctuation">,</span> <span class="token char">'k'</span><span class="token punctuation">,</span> <span class="token number">18</span><span class="token punctuation">,</span> <span class="token string">"str2"</span><span class="token punctuation">,</span> <span class="token char">'p'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><h4 id="565-不同类型的可调用对象的统一">5.65 不同类型的可调用对象的统一 </h4>
+<p>之前我们讲过，每一个可调用对象都有自己的类型和调用形式。<br>
+对于某些可调用对象来说，它们的类型可能大不相同，但是它们的调用形式可能是一样，所以当我们需要用这些可调用对象时，最好能够将它们统一起来，方便调用，比如用函数表。</p>
+<h5 id="5651-函数表介绍">5.651 函数表介绍 </h5>
+<p>函数表(function table)是指一种能够保存各种可调用对象的数据结构，该结构能够方便我们对保存的对象进行查询或者调用。</p>
+<p>我们有时候希望使用这些可调用对象构建一些复杂的操作。为了实现这一目的，需要定义一个函数表用于存储指向这些可调用对象的“指针”。当程序需要执行某个特定的操作时，从表中查找该调用的函数。</p>
+<p>我们可以使用容器来作为函数表进行可调用对象的保存。<br>
+但是一个容器只能容纳同一种类型的可调用对象，虽然某些可调用对象的调用形式一样，但是它们的类型却不一样(比如每个<code>lambda</code>的类型都是唯一的，函数对象的类型是它们对应的类)。</p>
+<p>为了统一这些可调用对象，我们可以用定<br>
+义在<code>functional</code>头文件中的<code>function</code>类来将它们转化成同一个类型。</p>
+<h5 id="5652-function类">5.652 function类 </h5>
+<p><code>function</code>是一个类模板，和我们使用过的其他模板一样，当创建一个具体的<code>function</code>类型时，我们必须指定一个调用形式，表示该<code>function</code>类型的对象能够保存具有指定调用形式的可调用对象的数据。</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token comment">// f1是一个调用形式为int(int,int)的空可调用对象</span>
+function<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span> <span class="token punctuation">(</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span><span class="token punctuation">)</span><span class="token operator">&gt;</span> f1
+</code></pre><h6 id="56521-function类的操作">5.6521 function类的操作 </h6>
+<p>以下是function类所具有的操作：</p>
+<table>
+<thead>
+<tr>
+<th>支持的操作</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>function&lt;T&gt; f <br> function&lt;T&gt; f(nptr)</td>
+<td>T指的是调用形式，nptr指的是空指针 <br><br> 创建一个调用形式T的空的可调用对象f。<br>f能够保存调用形式T的可调用对象的数据。</td>
+</tr>
+<tr>
+<td>function&lt;T&gt; f <em>initiate</em></td>
+<td><em>initiate</em>指的是初始化，<em>initiate</em>可以是直接或拷贝初始化。初始值必须是一个调用形式T的可调用对象。<br><br> 创建一个调用形式T的可调用对象f，f是其初始值的副本。</td>
+</tr>
+<tr>
+<td>f = obj</td>
+<td>obj是一个调用形式T的可调用对象。<br><br> f变为obj的副本。</td>
+</tr>
+<tr>
+<td>f</td>
+<td>将f作为条件：当f是一个可调用对象的副本时为真；否则为假。</td>
+</tr>
+<tr>
+<td>f(<em>arg</em>)</td>
+<td>调用f，参数是<em>arg</em>。</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>function&lt;T&gt;类中的成员</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>result_type</td>
+<td>该function类型的可调用对象返回的类型</td>
+</tr>
+<tr>
+<td>argument_type <br> first_argument_type <br> second_argument_type</td>
+<td>当T只有一个或两个实参时才有的成员。<br><br>如果T只有一个实参，则argument_type是该实参类型的同义词；如果T有两个实参，则first_argument_type 和 second_argument_type 分别代表这两个实参的类型。</td>
+</tr>
+</tbody>
+</table>
+<p>每种<code>function</code>类型的对象就是一个具有其指定调用形式的可调用对象。该对象默认为空，必须要用其他具有相同调用形式的可调用对象来初始化或者赋值该对象后才能正常使用。</p>
+<blockquote>
+<p>用于初始化或赋值的可调用对象的调用形式可以与<code>function</code>对象不相同，只要<code>function</code>对象的对应类型能够隐式转换为所保存的可调用对象的对应类型就行。不过<code>function</code>对象调用时是按<code>function</code>对象的调用形式为主。</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token keyword keyword-int">int</span> <span class="token function">ret</span><span class="token punctuation">(</span><span class="token keyword keyword-bool">bool</span> jud<span class="token punctuation">,</span> string str<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token comment">// 正确：\
+double (long, const char*)中的\
+各种类型都能隐式转换成int (bool, str)里的对应类型。\
+func的调用形式还是为double (long, const char*)</span>
+function<span class="token operator">&lt;</span><span class="token keyword keyword-double">double</span> <span class="token punctuation">(</span><span class="token keyword keyword-long">long</span><span class="token punctuation">,</span> <span class="token keyword keyword-const">const</span> <span class="token keyword keyword-char">char</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&gt;</span> func <span class="token operator">=</span> ret<span class="token punctuation">;</span>
+</code></pre><p>如果某函数名有重载函数，那么我们不能直接用其函数名为<code>function</code>对象初始化或赋值，因为会产生歧义，所以要将该函数转化成无歧义的函数指针才行。</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token comment">// 重载函数multiply</span>
+<span class="token keyword keyword-int">int</span> <span class="token function">multiply</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> val<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> val2<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword keyword-return">return</span> val <span class="token operator">*</span> val2<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-double">double</span> <span class="token function">multiply</span><span class="token punctuation">(</span><span class="token keyword keyword-double">double</span> val<span class="token punctuation">,</span> <span class="token keyword keyword-double">double</span> val2<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword keyword-return">return</span> val <span class="token operator">*</span> val2<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment">// 错误：有歧义性</span>
+function<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span><span class="token punctuation">)</span><span class="token operator">&gt;</span> f <span class="token operator">=</span> multiply<span class="token punctuation">;</span>
+<span class="token keyword keyword-int">int</span> <span class="token punctuation">(</span><span class="token operator">*</span>p<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span><span class="token keyword keyword-int">int</span><span class="token punctuation">)</span> <span class="token operator">=</span> multiply<span class="token punctuation">;</span>
+<span class="token comment">// 正确：保存的是调用形式为int(int,int)的multiply</span>
+function<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span><span class="token punctuation">)</span><span class="token operator">&gt;</span> f <span class="token operator">=</span> p<span class="token punctuation">;</span>
+</code></pre><blockquote>
+<p>因为函数对象有多个调用形式，所以同一个函数对象能对不同调用形式的<code>function</code>类型的对象初始化或赋值，只要该函数对象具有某个相同调用形式的调用运算符函数就行。</p>
+</blockquote>
+<p><code>function</code>类型的对象是一个没有默认实参的可调用对象，它会忽略掉初始化或赋值给自己的可调用对象的所有默认实参。<br>
+所以调用<code>function</code>类型的对象所传递的实参数量要与用于初始化或赋值的对象的形参数量一致。</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token comment">// 函数对象类Add</span>
+<span class="token keyword keyword-struct">struct</span> <span class="token class-name">Add</span>
+<span class="token punctuation">{</span>
+  <span class="token keyword keyword-int">int</span> <span class="token keyword keyword-operator">operator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> val<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> val2<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword keyword-return">return</span> val <span class="token operator">+</span> val2<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+  <span class="token keyword keyword-double">double</span> <span class="token keyword keyword-operator">operator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword keyword-double">double</span> val<span class="token punctuation">,</span> <span class="token keyword keyword-double">double</span> val2<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword keyword-return">return</span> val <span class="token operator">+</span> val2<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment">// lambda表达式minuss</span>
+<span class="token keyword keyword-auto">auto</span> minuss <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> val<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> val2<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword keyword-return">return</span> val <span class="token operator">-</span> val2<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment">// 普通函数multiply</span>
+<span class="token keyword keyword-int">int</span> <span class="token function">multiply</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> val<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> val2<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword keyword-return">return</span> val <span class="token operator">*</span> val2<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 函数对象add</span>
+Add add<span class="token punctuation">;</span>
+<span class="token comment">// 直接初始化，保存add的数据</span>
+function<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span><span class="token punctuation">)</span><span class="token operator">&gt;</span> <span class="token function">f1</span><span class="token punctuation">(</span>add<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 拷贝初始化，保存minuss的数据</span>
+function<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span><span class="token punctuation">)</span><span class="token operator">&gt;</span> f2 <span class="token operator">=</span> minuss<span class="token punctuation">;</span>
+<span class="token comment">// 定义一个空的f3</span>
+function<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span><span class="token punctuation">)</span><span class="token operator">&gt;</span> f3<span class="token punctuation">;</span>
+<span class="token comment">// 用multiply赋值给f3</span>
+f3 <span class="token operator">=</span> multiply<span class="token punctuation">;</span>
+<span class="token comment">// 输出11</span>
+cout <span class="token operator">&lt;&lt;</span> <span class="token function">f1</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+<span class="token comment">// 输出5</span>
+cout <span class="token operator">&lt;&lt;</span> <span class="token function">f2</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+<span class="token comment">// 输出24</span>
+cout <span class="token operator">&lt;&lt;</span> <span class="token function">f3</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+<span class="token comment">// 直接初始化，add的数据可以初始化另一个不同调用形式的function对象。</span>
+function<span class="token operator">&lt;</span><span class="token keyword keyword-double">double</span><span class="token punctuation">(</span><span class="token keyword keyword-double">double</span><span class="token punctuation">,</span> <span class="token keyword keyword-double">double</span><span class="token punctuation">)</span><span class="token operator">&gt;</span> f4<span class="token punctuation">{</span>add<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment">// 输出11.9</span>
+cout <span class="token operator">&lt;&lt;</span> <span class="token function">f4</span><span class="token punctuation">(</span><span class="token number">8.6</span><span class="token punctuation">,</span><span class="token number">3.3</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+</code></pre>
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

@@ -1,0 +1,564 @@
+<!DOCTYPE html><html><head>
+      <title>第13章_分离式编译</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///c:\Users\yu.he\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.8.10\crossnote\dependencies\katex\katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<div class="md-toc">
+<div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#第十三章-分离式编译" class="md-toc-link">
+            <p>第十三章 分离式编译</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#131-概念" class="md-toc-link">
+            <p>13.1 概念</p>
+
+          </a></div><details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#132-代码的翻译过程" class="md-toc-link"><p>13.2 代码的翻译过程</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#1321-预处理阶段" class="md-toc-link">
+            <p>13.21 预处理阶段</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#1322-编译阶段" class="md-toc-link">
+            <p>13.22 编译阶段</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#1323-汇编阶段" class="md-toc-link">
+            <p>13.23 汇编阶段</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#1324-链接阶段" class="md-toc-link">
+            <p>13.24 链接阶段</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#133-代码翻译过程的注意事项" class="md-toc-link">
+            <p>13.3 代码翻译过程的注意事项</p>
+
+          </a></div>
+</div>
+<h1 id="第十三章-分离式编译">第十三章 分离式编译 </h1>
+<h1 id="131-概念">13.1 概念 </h1>
+<p>随着程序越来越复杂，我们希望把程序的各个部分分别存储在不同文件中。在一般的程序中，不可能只有单个文件的。<br>
+我们在写代码的时候，通常会对各种代码的结构进行组织，从而使之后的调试修改等工作更加方便。</p>
+<p>C++语言支持所谓的分离式编译（separate compilation）。<br>
+分离式编译允许我们把程序分割到几个文件中去，每个文件独立编译，最后再链接到一起。</p>
+<p>一般来说，我们可以将实体的定义与其声明分离，使它们的定义与其声明分属不同的文件中，从而方便管理组织程序的代码。</p>
+<h1 id="132-代码的翻译过程">13.2 代码的翻译过程 </h1>
+<p>我们的程序代码通常是由多个代码文件组成的，其中包含头文件和源文件(对于Windows系统来说，C++语言的头文件通常以<code>.h</code>为后缀，源文件通常以<code>.cpp</code>为后缀)。<br>
+从程序代码到程序运行，我们需要进行程序代码的翻译工作，翻译工作都是由c++的编译器驱动程序进行的，编译器驱动程序会对程序所有的代码进行一些操作，这些操作也就是我们之前所讲的C++代码翻译的四大阶段。</p>
+<p>我们再回顾以下这四个阶段，其中有需要注意的几个地方：</p>
+<h2 id="1321-预处理阶段">13.21 预处理阶段 </h2>
+<ol>
+<li>在预处理阶段，预处理器会对程序代码中的每个代码文件<code>.cpp/.h</code>独立地执行其所有的预处理指令，并将其中的每行注释替换成一行空行。每个文件处理完后的所有代码保存在一个预处理文本文件<code>.i</code>中。<br>
+<code>#include</code>也是预处理指令之一，它的作用就是将指定的文件的所有内容包含在指令出现的位置，该指令会自动展开包含文件的代码到该使用位置，如果该包含文件也有预处理指令，则也执行该指令。<br>
+所以为了防止包含文件时出现重复定义，我们需要在被包含文件中使用宏和条件编译(这几个操作的综合也就叫做头文件保护符(header guard))来防止多次包含该文件的内容。</li>
+</ol>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token comment">// 在windows系统上使用GNU编译器套件进行C++的代码翻译</span>
+<span class="token comment">// 以下是test.cpp源文件中的代码</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"te.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name function">MA</span><span class="token expression"><span class="token punctuation">(</span>a<span class="token punctuation">,</span>b<span class="token punctuation">)</span> a <span class="token operator">*</span> b<span class="token punctuation">;</span></span></span>
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-int">int</span> ins <span class="token operator">=</span> <span class="token function">MA</span><span class="token punctuation">(</span><span class="token number">23</span><span class="token punctuation">,</span><span class="token number">13</span><span class="token punctuation">)</span>
+    <span class="token keyword keyword-double">double</span> dou <span class="token operator">=</span> <span class="token number">17</span><span class="token punctuation">;</span>
+    <span class="token comment">// 这是一行注释，会被替换成一行空行。</span>
+    <span class="token comment">/* 这是两行注释，会被替换成四行空行。
+    这是两行注释，会被替换成四行空行。*/</span>
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// te.h头文件与test.cpp源文件为同一路径。</span>
+<span class="token comment">// te.h头文件使用了头文件保护符操作。</span>
+<span class="token comment">// 以下是te.h头文件中的代码</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">ifndef</span> <span class="token expression">TE_H </span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">TE_H</span> </span>
+<span class="token keyword keyword-extern">extern</span> <span class="token keyword keyword-int">int</span> ins<span class="token punctuation">;</span>
+<span class="token keyword keyword-extern">extern</span> <span class="token keyword keyword-double">double</span> dou<span class="token punctuation">;</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span></span>
+
+<span class="token comment">/* 在命令行中的这两个文件所在路径下输入以下命令进行test.cpp文件的预处理操作：
+g++ -E test.cpp -o t.i
+-o指令是指定生成文件的文件名(可包含路径信息)，
+因为GNU预处理指令-E默认在命令行输出预处理文本文件(.i)，
+而不保存下来，所以需要显式指定文件名。
+预处理后生成的文件为同路径下的t.i
+*/</span>
+<span class="token comment">// 以下都是t.i文件中的代码</span>
+# <span class="token number">1</span> <span class="token string">"test.cpp"</span>
+# <span class="token number">1</span> <span class="token string">"&lt;built-in&gt;"</span>
+# <span class="token number">1</span> <span class="token string">"&lt;command-line&gt;"</span>
+# <span class="token number">1</span> <span class="token string">"test.cpp"</span>
+# <span class="token number">1</span> <span class="token string">"te.h"</span> <span class="token number">1</span>
+
+
+<span class="token keyword keyword-extern">extern</span> <span class="token keyword keyword-int">int</span> ins<span class="token punctuation">;</span>
+<span class="token keyword keyword-extern">extern</span> <span class="token keyword keyword-double">double</span> dou<span class="token punctuation">;</span>
+# <span class="token number">2</span> <span class="token string">"test.cpp"</span> <span class="token number">2</span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-int">int</span> ins <span class="token operator">=</span> <span class="token number">23</span> <span class="token operator">*</span> <span class="token number">13</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-double">double</span> dou <span class="token operator">=</span> <span class="token number">17</span><span class="token punctuation">;</span>
+
+
+
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><h2 id="1322-编译阶段">13.22 编译阶段 </h2>
+<ol start="2">
+<li>
+<p>在编译阶段，编译器会独立地检查所有从程序代码转换而成的预处理文本文件<code>.i</code>，也就是只检查该文件中的代码，而不会考虑其他文件对其的影响。当某个预处理文本文件通过了编译检查时，编译器会将该文件里的所有代码翻译成一种能被汇编语言程序所识别的代码，所有翻译后的代码保存在一个汇编文本文件<code>.s</code>中。<br>
+其中，有以下几点需要注意：</p>
+<ol>
+<li>编译器在进行编译检查时，如果我们使用了某个对象(包括普通函数、类的非类类型成员、类的非成员模板成员和模板实例)时，编译器会检查这些对象的声明是否在该作用域中存在：
+<ul>
+<li>对于声明存在但定义不存在的对象，编译器会在汇编文本文件<code>.s</code>中做一个标记，告诉之后的链接器在链接的时候去找该对象的定义，把问题移交给链接器，此时不会触发编译出错。</li>
+<li>如果该对象的声明不存在，或者声明存在但与其定义不匹配，或者该对象有多个不匹配的声明或定义时，就会编译出错。</li>
+</ul>
+</li>
+<li>但是当我们在不符合不完全类型的使用情形时使用了某类型(包括类类型和类模板)，则编译器不仅会检查其声明，还会检查是否存在对应的定义，否则编译出错。</li>
+<li>对于模板来说，模板的实例化只会在编译阶段进行，生成的实例(也就是实例定义)包含以下部分：
+<ul>
+<li>对于类模板来说：<br>
+编译器生成的实例包含该类的定义和其所有成员的声明(不包含其成员的定义)。</li>
+<li>对于函数模板来说：<br>
+编译器生成的实例包含该函数的定义。</li>
+</ul>
+</li>
+<li>编译器实例化模板的时机：
+<ul>
+<li>
+<p>当遇到模板或者模板部分特例化的声明以及定义语句时，编译器不进行实例化。</p>
+</li>
+<li>
+<p>当遇到使用非类模板的模板语句(隐式实例化)，且该语句不是显式实例化定义或者全部特例化时，编译器还是按常规进行声明检查：</p>
+<ul>
+<li>如果满足以下任意一项，则编译器不会生成任何实例，否则编译器就会生成对应的实例定义：
+<ol>
+<li>该模板只有声明而不存在定义。</li>
+<li>同作用域中已存在该处所使用的对应的<strong>实例声明</strong>。</li>
+<li>同作用域中已存在该处所使用的对应的<strong>实例定义</strong>(由其他隐式或显式实例化所产生的)。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p>当遇到全部特例化的声明或定义语句时：<br>
+如果满足以下任意一项，则会编译出错，否则编译器就会生成对应特殊实例的声明或定义：</p>
+<ol>
+<li>原始模板的声明不存在时。</li>
+<li>该特例化语句是定义语句，且该文件中已存在该特例化对应的<strong>实例定义</strong>(由其他隐式或显式实例化所产生的)。</li>
+</ol>
+<p>对于全部特例化声明所生成的特殊实例声明，后续会在链接阶段与该模板的其他同声明的实例定义链接上。</p>
+</li>
+<li>
+<p>当遇到显式实例化的定义语句时：</p>
+<ul>
+<li>如果满足以下任意一项，则会编译出错：
+<ol>
+<li>同作用域中不存在该模板的定义。</li>
+<li>同作用域中已存在同与其相同的显式实例化定义。</li>
+</ol>
+</li>
+<li>如果满足以下任意一项，则编译器不会生成对应的实例：
+<ol>
+<li>同作用域中已存在该处所使用的对应的<strong>实例定义</strong>(由其他隐式实例化所产生的)。</li>
+</ol>
+</li>
+</ul>
+<p>否则，编译器就会生成对应的实例定义。</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>所以为了生成一个模板的实例，编译器可能既需要模板自身的定义，也需要模板成员的定义。因此与其他对象不同的是，模板通常将其声明和定义放在同一个文件中。</p>
+</li>
+</ol>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token comment">// 在windows系统上使用GNU编译器套件进行C++的代码翻译</span>
+<span class="token comment">// 以下是test.cpp源文件中的代码</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"te.h"</span></span>
+<span class="token keyword keyword-extern">extern</span> <span class="token keyword keyword-template">template</span> <span class="token keyword keyword-int">int</span> <span class="token function">t_ret</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-int">int</span> var <span class="token operator">=</span> ins<span class="token punctuation">;</span>
+    <span class="token keyword keyword-int">int</span> var2 <span class="token operator">=</span> <span class="token function">ret</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">ret</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-int">int</span> var3 <span class="token operator">=</span> <span class="token generic-function"><span class="token function">t_ret</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span><span class="token number">15</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">t_ret</span><span class="token punctuation">(</span><span class="token function">t_ret</span><span class="token punctuation">(</span><span class="token number">152</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// te.h头文件与test.cpp源文件为同一路径。</span>
+<span class="token comment">// te.h头文件使用了头文件保护符操作。</span>
+<span class="token comment">// 以下是te.h头文件中的代码</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">ifndef</span> <span class="token expression">TE_H </span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">TE_H</span> </span>
+<span class="token keyword keyword-extern">extern</span> <span class="token keyword keyword-int">int</span> ins<span class="token punctuation">;</span>
+<span class="token keyword keyword-int">int</span> <span class="token function">ret</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-template">template</span> <span class="token operator">&lt;</span><span class="token keyword keyword-typename">typename</span> <span class="token class-name">ty</span><span class="token operator">&gt;</span>
+ty <span class="token function">t_ret</span><span class="token punctuation">(</span>ty val<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span></span>
+
+<span class="token comment">/* 在命令行中的这两个文件所在路径下输入以下命令进行test.cpp文件的预处理以及编译操作：
+g++ -S test.cpp
+因为GNU预处理加编译的合成操作-S(该操作也可接受预处理文本文件，
+从而只对该文件进行编译操作)默认在同路径下创建一个同名的汇编文本文件(.s)，
+所以可以不用-o显式指定文件名。
+
+编译成功，在同路径下生成文件test.s
+*/</span>
+<span class="token comment">// 以下都是test.s文件中的代码</span>
+	<span class="token punctuation">.</span>file	<span class="token string">"test.cpp"</span>
+	<span class="token punctuation">.</span>text
+	<span class="token punctuation">.</span>def	__main<span class="token punctuation">;</span>	<span class="token punctuation">.</span>scl	<span class="token number">2</span><span class="token punctuation">;</span>	<span class="token punctuation">.</span>type	<span class="token number">32</span><span class="token punctuation">;</span>	<span class="token punctuation">.</span>endef
+	<span class="token punctuation">.</span>globl	main
+	<span class="token punctuation">.</span>def	main<span class="token punctuation">;</span>	<span class="token punctuation">.</span>scl	<span class="token number">2</span><span class="token punctuation">;</span>	<span class="token punctuation">.</span>type	<span class="token number">32</span><span class="token punctuation">;</span>	<span class="token punctuation">.</span>endef
+	<span class="token punctuation">.</span>seh_proc	main
+main<span class="token operator">:</span>
+<span class="token punctuation">.</span>LFB0<span class="token operator">:</span>
+	pushq	<span class="token operator">%</span>rbp
+	<span class="token punctuation">.</span>seh_pushreg	<span class="token operator">%</span>rbp
+	movq	<span class="token operator">%</span>rsp<span class="token punctuation">,</span> <span class="token operator">%</span>rbp
+	<span class="token punctuation">.</span>seh_setframe	<span class="token operator">%</span>rbp<span class="token punctuation">,</span> <span class="token number">0</span>
+	subq	$<span class="token number">48</span><span class="token punctuation">,</span> <span class="token operator">%</span>rsp
+	<span class="token punctuation">.</span>seh_stackalloc	<span class="token number">48</span>
+	<span class="token punctuation">.</span>seh_endprologue
+	call	__main
+	movq	<span class="token punctuation">.</span>refptr<span class="token punctuation">.</span><span class="token function">ins</span><span class="token punctuation">(</span><span class="token operator">%</span>rip<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">%</span>rax
+	<span class="token function">movl</span>	<span class="token punctuation">(</span><span class="token operator">%</span>rax<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">%</span>eax
+	movl	<span class="token operator">%</span>eax<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">4</span><span class="token punctuation">(</span><span class="token operator">%</span>rbp<span class="token punctuation">)</span>
+	call	_Z3retv
+	movl	<span class="token operator">%</span>eax<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">8</span><span class="token punctuation">(</span><span class="token operator">%</span>rbp<span class="token punctuation">)</span>
+	call	_Z3retv
+	movl	$<span class="token number">15</span><span class="token punctuation">,</span> <span class="token operator">%</span>ecx
+	call	_Z5t_retIiET_S0_
+	movl	<span class="token operator">%</span>eax<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">12</span><span class="token punctuation">(</span><span class="token operator">%</span>rbp<span class="token punctuation">)</span>
+	movl	$<span class="token number">152</span><span class="token punctuation">,</span> <span class="token operator">%</span>ecx
+	call	_Z5t_retIiET_S0_
+	movl	<span class="token operator">%</span>eax<span class="token punctuation">,</span> <span class="token operator">%</span>ecx
+	call	_Z5t_retIiET_S0_
+	movl	$<span class="token number">0</span><span class="token punctuation">,</span> <span class="token operator">%</span>eax
+	addq	$<span class="token number">48</span><span class="token punctuation">,</span> <span class="token operator">%</span>rsp
+	popq	<span class="token operator">%</span>rbp
+	ret
+	<span class="token punctuation">.</span>seh_endproc
+	<span class="token punctuation">.</span>ident	<span class="token string">"GCC: (x86_64-win32-seh-rev0, Built by MinGW-W64 project) 8.1.0"</span>
+	<span class="token punctuation">.</span>def	_Z3retv<span class="token punctuation">;</span>	<span class="token punctuation">.</span>scl	<span class="token number">2</span><span class="token punctuation">;</span>	<span class="token punctuation">.</span>type	<span class="token number">32</span><span class="token punctuation">;</span>	<span class="token punctuation">.</span>endef
+	<span class="token punctuation">.</span>def	_Z5t_retIiET_S0_<span class="token punctuation">;</span>	<span class="token punctuation">.</span>scl	<span class="token number">2</span><span class="token punctuation">;</span>	<span class="token punctuation">.</span>type	<span class="token number">32</span><span class="token punctuation">;</span>	<span class="token punctuation">.</span>endef
+	<span class="token punctuation">.</span>section	<span class="token punctuation">.</span>rdata$<span class="token punctuation">.</span>refptr<span class="token punctuation">.</span>ins<span class="token punctuation">,</span> <span class="token string">"dr"</span>
+	<span class="token punctuation">.</span>globl	<span class="token punctuation">.</span>refptr<span class="token punctuation">.</span>ins
+	<span class="token punctuation">.</span>linkonce	discard
+<span class="token punctuation">.</span>refptr<span class="token punctuation">.</span>ins<span class="token operator">:</span>
+	<span class="token punctuation">.</span>quad	ins
+
+</code></pre><pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token comment">// 在windows系统上使用GNU编译器套件进行C++的代码翻译</span>
+<span class="token comment">// 以下是test.cpp源文件中的代码</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"te.h"</span></span>
+<span class="token comment">// 函数模板t_ret的显式实例化定义</span>
+<span class="token comment">// 编译会出错，</span>
+<span class="token comment">// 因为te.h中的函数模板t_ret只有声明没有定义</span>
+<span class="token keyword keyword-template">template</span> <span class="token keyword keyword-int">int</span> <span class="token function">t_ret</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+   <span class="token comment">// 类类型Cls对象的定义</span>
+   <span class="token comment">// 编译会出错，</span>
+   <span class="token comment">// 因为te.h中的类类型Cls只有声明没有定义</span>
+    Cls obj<span class="token punctuation">;</span>
+   <span class="token comment">// 类模板T_cls对象的定义</span>
+   <span class="token comment">// 编译会出错，</span>
+   <span class="token comment">// 因为te.h中的类模板T_cls只有声明没有定义</span>
+    T_cls<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> <span class="token number">48</span><span class="token operator">&gt;</span> t_obj<span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// te.h头文件与test.cpp源文件为同一路径。</span>
+<span class="token comment">// te.h头文件使用了头文件保护符操作。</span>
+<span class="token comment">// 以下是te.h头文件中的代码</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">ifndef</span> <span class="token expression">TE_H </span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">TE_H</span> </span>
+<span class="token keyword keyword-template">template</span> <span class="token operator">&lt;</span><span class="token keyword keyword-typename">typename</span> <span class="token class-name">ty</span><span class="token operator">&gt;</span>
+ty <span class="token function">t_ret</span><span class="token punctuation">(</span>ty val<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-struct">struct</span> <span class="token class-name">Cls</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-template">template</span> <span class="token operator">&lt;</span><span class="token keyword keyword-typename">typename</span> <span class="token class-name">ty</span><span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> val<span class="token operator">&gt;</span>
+<span class="token keyword keyword-struct">struct</span> <span class="token class-name">T_cls</span><span class="token punctuation">;</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span></span>
+
+<span class="token comment">/* 在命令行中的这两个文件所在路径下输入以下命令进行test.cpp文件的预处理以及编译操作：
+g++ -S test.cpp
+因为GNU预处理加编译的合成操作-S(该操作也可接受预处理文本文件，
+从而只对该文件进行编译操作)默认在同路径下创建一个同名的汇编文本文件(.s)，
+所以可以不用-o显式指定文件名。
+
+编译失败，没有生成任何文件。
+*/</span>
+</code></pre><pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token comment">// 在windows系统上使用GNU编译器套件进行C++的代码翻译</span>
+<span class="token comment">// 以下是test.cpp源文件中的代码</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"te.h"</span></span>
+<span class="token comment">// 函数模板t_ret的显式实例化定义</span>
+<span class="token comment">// 编译会通过，</span>
+<span class="token comment">// 因为te.h中，函数模板t_ret的全部特例化声明会生成一个对应的实例声明</span>
+<span class="token keyword keyword-template">template</span> <span class="token keyword keyword-int">int</span> <span class="token function">t_ret</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 类模板T_cls的显式实例化定义</span>
+<span class="token comment">// 编译会通过，</span>
+<span class="token comment">// 因为te.h中，类模板T_cls的全部特例化定义会生成一个对应的实例定义，其中包含其成员prints的声明。</span>
+<span class="token keyword keyword-template">template</span> <span class="token keyword keyword-struct">struct</span> <span class="token class-name">T_cls</span><span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> <span class="token number">48</span><span class="token operator">&gt;</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-int">int</span> var3 <span class="token operator">=</span> <span class="token generic-function"><span class="token function">t_ret</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span><span class="token number">15</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">t_ret</span><span class="token punctuation">(</span><span class="token function">t_ret</span><span class="token punctuation">(</span><span class="token number">152</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token comment">// 类类型Cls对象的定义</span>
+   <span class="token comment">// 编译会通过，</span>
+   <span class="token comment">// 因为te.h中有类类型Cls的定义。</span>
+    Cls obj<span class="token punctuation">;</span>
+    T_cls<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> <span class="token number">48</span><span class="token operator">&gt;</span> t_obj<span class="token punctuation">;</span>
+   <span class="token comment">// 编译会通过，</span>
+   <span class="token comment">// 因为te.h中有函数prints的声明。</span>
+    t_obj<span class="token punctuation">.</span><span class="token function">prints</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// te.h头文件与test.cpp源文件为同一路径。</span>
+<span class="token comment">// te.h头文件使用了头文件保护符操作。</span>
+<span class="token comment">// 以下是te.h头文件中的代码</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">ifndef</span> <span class="token expression">TE_H</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">TE_H</span></span>
+<span class="token keyword keyword-template">template</span> <span class="token operator">&lt;</span><span class="token keyword keyword-typename">typename</span> <span class="token class-name">ty</span><span class="token operator">&gt;</span>
+ty <span class="token function">t_ret</span><span class="token punctuation">(</span>ty val<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-template">template</span><span class="token operator">&lt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-int">int</span> <span class="token function">t_ret</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-struct">struct</span> <span class="token class-name">Cls</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-template">template</span> <span class="token operator">&lt;</span><span class="token keyword keyword-typename">typename</span> <span class="token class-name">ty</span><span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> val<span class="token operator">&gt;</span>
+<span class="token keyword keyword-struct">struct</span> <span class="token class-name">T_cls</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-template">template</span><span class="token operator">&lt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-struct">struct</span> <span class="token class-name">T_cls</span><span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> <span class="token number">48</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span> <span class="token keyword keyword-void">void</span> <span class="token function">prints</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span></span>
+
+<span class="token comment">/* 在命令行中的这两个文件所在路径下输入以下命令进行test.cpp文件的预处理以及编译操作：
+g++ -S test.cpp
+因为GNU预处理加编译的合成操作-S(该操作也可接受预处理文本文件，
+从而只对该文件进行编译操作)默认在同路径下创建一个同名的汇编文本文件(.s)，
+所以可以不用-o显式指定文件名。
+
+编译成功，在同路径下生成文件test.s。
+*/</span>
+</code></pre><h2 id="1323-汇编阶段">13.23 汇编阶段 </h2>
+<ol start="3">
+<li>在汇编阶段期间，汇编器会独立地将所有从程序代码转换而成的汇编文本文件<code>.s</code>翻译成机器代码，也叫做机器语言指令(也就是由二进制值组成的代码，计算器能够识别的代码)，并将这些机器语言指令打包成一种叫做可重定位目标程序(relocate object program)的格式，最后将每个文件的打包结果保存在一个为其创建的可重定位目标文件<code>.o</code>中。</li>
+</ol>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token comment">// 在windows系统上使用GNU编译器套件进行C++的代码翻译</span>
+<span class="token comment">// 以下是test.cpp源文件中的代码</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"te.h"</span></span>
+<span class="token keyword keyword-template">template</span> <span class="token keyword keyword-int">int</span> <span class="token function">t_ret</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-template">template</span> <span class="token keyword keyword-struct">struct</span> <span class="token class-name">T_cls</span><span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> <span class="token number">48</span><span class="token operator">&gt;</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-int">int</span> var3 <span class="token operator">=</span> <span class="token generic-function"><span class="token function">t_ret</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span><span class="token number">15</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">t_ret</span><span class="token punctuation">(</span><span class="token function">t_ret</span><span class="token punctuation">(</span><span class="token number">152</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Cls obj<span class="token punctuation">;</span>
+    T_cls<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> <span class="token number">48</span><span class="token operator">&gt;</span> t_obj<span class="token punctuation">;</span>
+    t_obj<span class="token punctuation">.</span><span class="token function">prints</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// te.h头文件与test.cpp源文件为同一路径。</span>
+<span class="token comment">// te.h头文件使用了头文件保护符操作。</span>
+<span class="token comment">// 以下是te.h头文件中的代码</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">ifndef</span> <span class="token expression">TE_H</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">TE_H</span></span>
+<span class="token keyword keyword-template">template</span> <span class="token operator">&lt;</span><span class="token keyword keyword-typename">typename</span> <span class="token class-name">ty</span><span class="token operator">&gt;</span>
+ty <span class="token function">t_ret</span><span class="token punctuation">(</span>ty val<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-template">template</span><span class="token operator">&lt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-int">int</span> <span class="token function">t_ret</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-struct">struct</span> <span class="token class-name">Cls</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-template">template</span> <span class="token operator">&lt;</span><span class="token keyword keyword-typename">typename</span> <span class="token class-name">ty</span><span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> val<span class="token operator">&gt;</span>
+<span class="token keyword keyword-struct">struct</span> <span class="token class-name">T_cls</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-template">template</span><span class="token operator">&lt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-struct">struct</span> <span class="token class-name">T_cls</span><span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> <span class="token number">48</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span> <span class="token keyword keyword-void">void</span> <span class="token function">prints</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span></span>
+
+<span class="token comment">/* 在命令行中的这两个文件所在路径下输入以下命令进行test.cpp文件的预处理、编译以及汇编的合成操作：
+g++ -c test.cpp
+因为GNU预处理加编译加汇编的合成操作-c(该操作也可接受预处理文本文件或者汇编文本文件，
+从而进行对应文件的合成操作)默认在同路径下创建一个同名的目标文件(.o)，
+所以可以不用-o显式指定文件名。
+
+汇编成功，在同路径下生成文件test.o。
+*/</span>
+</code></pre><h2 id="1324-链接阶段">13.24 链接阶段 </h2>
+<ol start="4">
+<li>在链接阶段，链接器会把所有从程序代码转换而成的目标文件<code>.o</code>链接到一起，并进行检查合并：<br>
+链接器会将所有文件中的对象的声明和定义链接在一起，如果链接器在链接时发现有对象进行了重复定义，或者是该对象的声明和定义不匹配，又或者是某句使用了未定义的对象(此时，使用了未实例化的实例的地方就会被认为是使用了未定义对象)，则会链接出错。<br>
+当所有地方都链接无误后，链接器就会形成一个可执行文件<code>.exe/.out</code>，此时程序才真正可以在操作系统中运行。</li>
+</ol>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token comment">// 在windows系统上使用GNU编译器套件进行C++的代码翻译</span>
+<span class="token comment">// 以下是test.cpp源文件中的代码</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"te.h"</span></span>
+<span class="token keyword keyword-template">template</span> <span class="token keyword keyword-struct">struct</span> <span class="token class-name">T_cls</span><span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> <span class="token number">48</span><span class="token operator">&gt;</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-template">template</span> <span class="token keyword keyword-int">int</span> <span class="token function">t_ret</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-int">int</span> var <span class="token operator">=</span> ins<span class="token punctuation">;</span>
+    <span class="token keyword keyword-int">int</span> var2 <span class="token operator">=</span> <span class="token function">ret</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-int">int</span> var3 <span class="token operator">=</span> <span class="token generic-function"><span class="token function">t_ret</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span><span class="token number">15</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 输出74 60 169</span>
+    cout <span class="token operator">&lt;&lt;</span> var <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> var2 <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> var3 <span class="token operator">&lt;&lt;</span> <span class="token string">"\n"</span><span class="token punctuation">;</span>
+    Cls obj<span class="token punctuation">;</span>
+    T_cls<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> <span class="token number">48</span><span class="token operator">&gt;</span> t_obj<span class="token punctuation">;</span>
+    <span class="token comment">// 输出spec</span>
+    t_obj<span class="token punctuation">.</span><span class="token function">prints</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// te.h头文件与test.cpp源文件为同一路径。</span>
+<span class="token comment">// te.h头文件使用了头文件保护符操作。</span>
+<span class="token comment">// 以下是te.h头文件中的代码</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">ifndef</span> <span class="token expression">TE_H </span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">TE_H</span> </span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token keyword keyword-using">using</span> <span class="token keyword keyword-namespace">namespace</span> std<span class="token punctuation">;</span>
+
+<span class="token keyword keyword-extern">extern</span> <span class="token keyword keyword-int">int</span> ins<span class="token punctuation">;</span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">ret</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-template">template</span> <span class="token operator">&lt;</span><span class="token keyword keyword-typename">typename</span> <span class="token class-name">ty</span><span class="token operator">&gt;</span>
+ty <span class="token function">t_ret</span><span class="token punctuation">(</span>ty val<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-template">template</span><span class="token operator">&lt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-int">int</span> <span class="token function">t_ret</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-struct">struct</span> <span class="token class-name">Cls</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-template">template</span> <span class="token operator">&lt;</span><span class="token keyword keyword-typename">typename</span> <span class="token class-name">ty</span><span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> val<span class="token operator">&gt;</span>
+<span class="token keyword keyword-struct">struct</span> <span class="token class-name">T_cls</span> <span class="token punctuation">{</span> <span class="token keyword keyword-void">void</span> <span class="token function">prints</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-template">template</span><span class="token operator">&lt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-void">void</span> <span class="token class-name">T_cls</span><span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> <span class="token number">48</span><span class="token operator">&gt;</span><span class="token double-colon punctuation">::</span><span class="token function">prints</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span></span>
+
+<span class="token comment">// te.cpp源文件与te.h头文件为同一路径。</span>
+<span class="token comment">// 以下是te.cpp源文件中的代码</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"te.h"</span></span>
+<span class="token keyword keyword-int">int</span> ins <span class="token operator">=</span> <span class="token number">74</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">ret</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword keyword-return">return</span> <span class="token number">60</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+
+<span class="token keyword keyword-template">template</span> <span class="token operator">&lt;</span><span class="token keyword keyword-typename">typename</span> <span class="token class-name">ty</span><span class="token operator">&gt;</span>
+ty <span class="token function">t_ret</span><span class="token punctuation">(</span>ty val<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword keyword-return">return</span> val <span class="token operator">+</span> <span class="token number">25</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token keyword keyword-template">template</span><span class="token operator">&lt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-int">int</span> <span class="token function">t_ret</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> val<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword keyword-return">return</span> val <span class="token operator">+</span> <span class="token number">154</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+
+<span class="token keyword keyword-template">template</span> <span class="token operator">&lt;</span><span class="token keyword keyword-typename">typename</span> <span class="token class-name">ty</span><span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> val<span class="token operator">&gt;</span>
+<span class="token keyword keyword-void">void</span> <span class="token class-name">T_cls</span><span class="token operator">&lt;</span>ty<span class="token punctuation">,</span> val<span class="token operator">&gt;</span><span class="token double-colon punctuation">::</span><span class="token function">prints</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> cout <span class="token operator">&lt;&lt;</span> <span class="token string">"original\n"</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token keyword keyword-template">template</span><span class="token operator">&lt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-void">void</span> <span class="token class-name">T_cls</span><span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> <span class="token number">48</span><span class="token operator">&gt;</span><span class="token double-colon punctuation">::</span><span class="token function">prints</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> cout <span class="token operator">&lt;&lt;</span> <span class="token string">"spec\n"</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+
+
+<span class="token comment">/* 在命令行中的这几个文件所在路径下输入以下命令进行test.cpp、te.cpp文件的预处理、编译、汇编以及链接的合成操作：
+g++ test.cpp te.cpp
+GNU的默认操作就是预处理加编译加汇编加链接的合成操作(该操作也可接受预处理文本文件、汇编文本文件或者目标文件，从而进行对应文件的合成操作)。
+GNU的默认操作默认在同路径下创建一个文件名为a的可执行文件(.exe)，所以可以不用-o显式指定文件名。
+
+链接成功，在同路径下生成文件a.exe。
+*/</span>
+</code></pre><h1 id="133-代码翻译过程的注意事项">13.3 代码翻译过程的注意事项 </h1>
+<p>综上来说，我们建议：</p>
+<ul>
+<li>所有头文件应使用头文件保护符来防止重复定义。</li>
+<li>各种变量、函数，类的非类类型或者非成员模板成员应该在头文件中独立声明，而它们的定义部分可以放在其它的源文件中，且这些源文件应该把包含其对应声明的头文件包含进来，这样就可以使编译器来验证其定义和声明是否匹配。</li>
+<li>对于模板来说，要么提前实例化模板的所有所需实例(一般不推荐，因为需要提前实例化多个，很麻烦)，要么就将模板的声明和定义(不包括类模板的非类类型或者非成员模板成员的定义)放在同一个头文件中。</li>
+<li>当我们的某些文件需要使用这些实体时，只需要用包含预编译指令将包含该实体声明的头文件包含进来就行了，而不需要将这些实体的定义文件包含进来。</li>
+<li>链接时不要忘记链接这些实体的定义文件。</li>
+</ul>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token comment">/* 
+ * 综合示例
+ */</span>
+
+<span class="token comment">// 在windows系统上使用GNU编译器套件进行C++的代码翻译</span>
+<span class="token comment">// 以下是test.cpp源文件中的代码</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"test.h"</span></span>
+
+std<span class="token double-colon punctuation">::</span>string <span class="token function">ret</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword keyword-return">return</span> std<span class="token double-colon punctuation">::</span><span class="token function">string</span><span class="token punctuation">(</span><span class="token string">"linker"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+
+
+<span class="token comment">// test.h头文件与test.cpp源文件为同一路径。</span>
+<span class="token comment">// test.h头文件使用了头文件保护符操作。</span>
+<span class="token comment">// 以下是test.h头文件中的代码</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">ifndef</span> <span class="token expression">TEST_H_</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">TEST_H_</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string&gt;</span></span>
+
+std<span class="token double-colon punctuation">::</span>string <span class="token function">ret</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+std<span class="token double-colon punctuation">::</span>string <span class="token function">sprints</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword keyword-return">return</span> <span class="token function">ret</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span></span>
+
+
+<span class="token comment">// main.cpp源文件与test.h头文件为同一路径。</span>
+<span class="token comment">// 以下是main.cpp源文件中的代码</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"test.h"</span></span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token function">sprints</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+
+<span class="token comment">/* 
+在命令行中的这几个文件所在路径下输入以下命令进行test.cpp、main.cpp文件的预处理、编译、汇编以及链接的合成操作：
+g++ test.cpp main.cpp
+此时会链接出错，提示sprints函数重定义。
+造成重定义的原因为：
+test.cpp和main.cpp在经过预处理阶段后，这两个文件都包含了sprints的定义，
+编译时编译器只单独检查每个文件，因此这两个文件都通过了编译，
+但在链接阶段，链接器整合这两个文件的所有对象进行链接时就发现了sprints的定义重复的现象，于是报错。
+正确做法是将sprints的定义移到test.cpp，test.h只包含sprints的声明，也就是：
+// 以下是修改后的test.cpp源文件中的代码
+#include "test.h"
+std::string ret() { return std::string("linker"); }
+std::string sprints() { return ret(); }
+// 以下是修改后的test.h头文件中的代码
+#ifndef TEST_H_
+#define TEST_H_
+#include &lt;string&gt;
+std::string ret();
+std::string sprints();
+#endif
+
+这样修改后重新运行以下操作：
+g++ test.cpp main.cpp
+
+此时就会链接成功，在同路径下生成文件a.exe。
+*/</span>
+</code></pre>
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

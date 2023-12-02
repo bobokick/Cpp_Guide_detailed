@@ -6,7 +6,7 @@
 
 ## 目录
 
-### [第1章_预处理指令](https://bobokick.github.io/docs/pages/pages/第1章_预处理指令.html)
+### [第1章_预处理指令](https://bobokick.github.io/Cpp_Guide_detailed/pages/第1章_预处理指令.html)
 
 第1章先介绍了基本的编译流程，然后详细介绍预处理阶段的各种预处理指令。
 

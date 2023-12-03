@@ -20,22 +20,27 @@
 
 title: C++语法教程
 # description: >- # this means to ignore newlines until "baseurl:"
+domain: bobokick.github.io
+url: "https://bobokick.github.io/Cpp_Guide_detailed" # the base hostname & protocol for your site, e.g. http://example.com
 baseurl: "/" # the subpath of your site, e.g. /blog
-url: "test_example.com" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: bobokick
 github_username:  bobokick
 permalink: none
 incremental: false
 livereload: true
 highlighter: rouge
+# Enable safe mode
+safe: true
 
 # Build settings
-# theme: just-the-docs
-remote_theme: just-the-docs
+theme: just-the-docs
 
 # plugins
 plugins:
   # - jekyll-feed
+  - jekyll-toc
+
+whitelist:
   - jekyll-toc
 
 gist:

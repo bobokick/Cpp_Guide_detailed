@@ -1,0 +1,14 @@
+<footer class="site-footer">
+    <button type="button" id="theme_switch_button" class="site-button btn-reset" theme_id="{{ site.color_scheme }}" onclick="switch_theme()">切换到<b id="current_theme_name">
+            {%- if "dark" == site.color_scheme -%}
+            明亮
+            {%- elsif "light" == site.color_scheme -%}
+            黑暗
+            {%- else -%}
+            未知
+            {%- endif -%}
+        </b>主题
+    </button>
+    <script src="/assets/js/cookie_manager.js"></script>
+    <script src="/assets/js/theme_switch.js"></script>
+</footer>

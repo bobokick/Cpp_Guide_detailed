@@ -6,6 +6,7 @@ on:
       - master  # Here source code branch is `master`, it could be other branch
     paths:
       - "docs/**"
+      - ".github/workflows/build-jekyll.yml"
 
 jobs:
   build_and_deploy:

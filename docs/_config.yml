@@ -30,7 +30,10 @@ livereload: true
 highlighter: rouge
 
 # Build settings
-theme: just-the-docs
+# theme: just-the-docs
+remote_theme: just-the-docs
+
+# plugins
 plugins:
   # - jekyll-feed
   - jekyll-toc

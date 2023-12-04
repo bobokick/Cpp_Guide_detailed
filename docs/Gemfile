@@ -15,8 +15,6 @@ gem "just-the-docs"
 # uncomment the line below. To upgrade, run `bundle update github-pages`.
 gem "github-pages", "~> 228", group: :jekyll_plugins
 
-gem "kramdown-syntax-coderay", "~> 1.0"
-
 # If you have any plugins, put them here!
 group :jekyll_plugins do
     gem 'classifier-reborn'

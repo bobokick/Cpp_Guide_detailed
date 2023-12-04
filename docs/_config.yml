@@ -20,34 +20,47 @@
 
 title: C++语法教程
 description: cpp elementary guides.
-url: "https://bobokick.github.io/Cpp_Guide_detailed" # the base hostname & protocol for your site, e.g. http://example.com
-repository: bobokick/Cpp_Guide_detailed
-baseurl: "/" # the subpath of your site, e.g. /blog
+user_name: bobokick
+repository_name: Cpp_Guide_detailed
+source_branch: "master"
+# repository: bobokick/Cpp_Guide_detailed
+
+github_url: "https://github.com"
+baseurl: "" # the subpath of your site, e.g. /blog
+
 strict_front_matter: true
 permalink: none
+# build dynamically
 incremental: false
 livereload: true
 highlighter: rouge
+lsi: true
 # Enable safe mode
 safe: true
+# for debug
+# profile: true
+# verbose: true
 
 # Build settings
 theme: just-the-docs
 
 # plugins
 plugins:
-  # - jekyll-feed
+  - classifier-reborn
   - jekyll-toc
 
 whitelist:
+  - classifier-reborn
   - jekyll-toc
 
 gist:
   noscript: false
 
 kramdown:
-  math_engine: mathjax
-  syntax_highlighter: rouge
+  syntax_highlighter: coderay
+  syntax_highlighter_opts:
+    line_numbers: table
+    bold_every: 5
 
 collections_dir: my_collections
 # Define Jekyll collections
@@ -56,9 +69,9 @@ collections:
   guide_files:
     # permalink: "/:collection/:path"
     output: true
-  my_test:
+  # my_test:
     # permalink: "/:collection/:path"
-    output: true
+    # output: true
 
 defaults:
   -
@@ -73,7 +86,7 @@ defaults:
       last_edit_timestamp: {{ site.time }}
   -
     scope:
-      path: "" # an empty string here means all files in the project
+      path: ""
       type: "my_test"
     values:
       layout: "page"

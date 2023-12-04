@@ -1,4 +1,4 @@
-name: Build and Deploy Jekyll Site To Github Pages
+name: Deploy Site To Pages
 run-name: ${{ github.actor }} is building and deploying a web site 🚀
 on:
   push:

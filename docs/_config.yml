@@ -23,7 +23,7 @@ description: cpp elementary guides.
 user_name: bobokick
 repository_name: Cpp_Guide_detailed
 source_branch: "master"
-# repository: bobokick/Cpp_Guide_detailed
+repository: bobokick/Cpp_Guide_detailed
 
 github_url: "https://github.com"
 baseurl: "" # the subpath of your site, e.g. /blog

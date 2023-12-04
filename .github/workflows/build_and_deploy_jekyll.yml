@@ -1,4 +1,4 @@
-name: Deploy Site To Pages
+name: Deploy Pages
 run-name: ${{ github.actor }} is building and deploying a web site 🚀
 on:
   push:
@@ -61,9 +61,3 @@ jobs:
           cname: ''                  # Default is to not use a cname
           actor: ''                  # Default is the GITHUB_ACTOR
           pre_build_commands: ''     # Installing additional dependencies (Arch Linux)
-
-    #   - name: Deploy 🚀
-    #     uses: JamesIves/github-pages-deploy-action@v4
-    #     with:
-    #         folder: . # The folder the action should deploy.
-    #         branch: 'test-pages'

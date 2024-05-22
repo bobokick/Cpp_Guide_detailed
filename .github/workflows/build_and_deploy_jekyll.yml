@@ -53,7 +53,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }} # It's your Personal Access Token(PAT)
           ssh_private_key: ''        # It's your SSH private key (SSH approach)
           repository: ''             # Default is current repository
-          branch: 'test-pages'         # Default is gh-pages for github provider
+          branch: 'deploy-pages'         # Default is gh-pages for github provider
           jekyll_src: './docs'           # Default is root directory
           jekyll_cfg: '_config.yml'  # Default is _config.yml
           jekyll_baseurl: ''         # Default is according to _config.yml

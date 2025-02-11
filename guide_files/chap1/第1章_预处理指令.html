@@ -1,0 +1,590 @@
+<!DOCTYPE html> <html lang="en-US"> <head> <meta charset="UTF-8"> <meta http-equiv="X-UA-Compatible" content="IE=Edge"> <link rel="stylesheet" href="/Cpp_Guide_detailed/assets/css/just-the-docs-default.css"> <link rel="stylesheet" href="/Cpp_Guide_detailed/assets/css/just-the-docs-head-nav.css" id="jtd-head-nav-stylesheet"> <style id="jtd-nav-activation"> .site-nav > ul:nth-of-type(1) > li > ul > li > a, .site-nav > ul:nth-of-type(1) > li > ul > li > ul > li:not(:nth-child(1)) > a, .site-nav > ul:nth-of-type(1) > li > ul > li > ul > li > ul > li > a { background-image: none; } .site-nav > ul:not(:nth-of-type(1)) a, .site-nav li.external a { background-image: none; } .site-nav > ul:nth-of-type(1) > li > ul > li:nth-child(1) > ul > li:nth-child(1) > a { font-weight: 600; text-decoration: none; } .site-nav > ul.nav-category-list > li > button svg, .site-nav > ul:nth-of-type(1) > li > ul > li:nth-child(1) > button svg, .site-nav > ul:nth-of-type(1) > li > ul > li:nth-child(1) > ul > li:nth-child(1) > button svg { transform: rotate(-90deg); } .site-nav > ul.nav-category-list > li.nav-list-item > ul.nav-list, .site-nav > ul:nth-of-type(1) > li > ul > li.nav-list-item:nth-child(1) > ul.nav-list, .site-nav > ul:nth-of-type(1) > li > ul > li.nav-list-item:nth-child(1) > ul.nav-list > li.nav-list-item:nth-child(1) > ul.nav-list { display: block; } </style> <script src="/Cpp_Guide_detailed/assets/js/vendor/lunr.min.js"></script> <script src="/Cpp_Guide_detailed/assets/js/vendor/lunr.stemmer.support.min.js"></script> <script src="/Cpp_Guide_detailed/assets/js/vendor/lunr.zh.min.js"></script> <script src="/Cpp_Guide_detailed/assets/js/vendor/lunr.multi.min.js"></script> <script src="/Cpp_Guide_detailed/assets/js/just-the-docs.js"></script> <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Begin Jekyll SEO tag v2.8.0 --> <title>预处理指令概念详解 | C++语法教程</title> <meta name="generator" content="Jekyll v3.9.3" /> <meta property="og:title" content="预处理指令概念详解" /> <meta name="author" content="BBK" /> <meta property="og:locale" content="en_US" /> <meta name="description" content="1.1 预处理器介绍" /> <meta property="og:description" content="1.1 预处理器介绍" /> <link rel="canonical" href="https://bobokick.github.io/Cpp_Guide_detailed/guide_files/chap1/%E7%AC%AC1%E7%AB%A0_%E9%A2%84%E5%A4%84%E7%90%86%E6%8C%87%E4%BB%A4.html" /> <meta property="og:url" content="https://bobokick.github.io/Cpp_Guide_detailed/guide_files/chap1/%E7%AC%AC1%E7%AB%A0_%E9%A2%84%E5%A4%84%E7%90%86%E6%8C%87%E4%BB%A4.html" /> <meta property="og:site_name" content="C++语法教程" /> <meta property="og:type" content="article" /> <meta property="article:published_time" content="2025-02-11T03:16:47+00:00" /> <meta name="twitter:card" content="summary" /> <meta property="twitter:title" content="预处理指令概念详解" /> <script type="application/ld+json"> {"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"BBK"},"dateModified":"2025-02-11T03:16:47+00:00","datePublished":"2025-02-11T03:16:47+00:00","description":"1.1 预处理器介绍","headline":"预处理指令概念详解","mainEntityOfPage":{"@type":"WebPage","@id":"https://bobokick.github.io/Cpp_Guide_detailed/guide_files/chap1/%E7%AC%AC1%E7%AB%A0_%E9%A2%84%E5%A4%84%E7%90%86%E6%8C%87%E4%BB%A4.html"},"url":"https://bobokick.github.io/Cpp_Guide_detailed/guide_files/chap1/%E7%AC%AC1%E7%AB%A0_%E9%A2%84%E5%A4%84%E7%90%86%E6%8C%87%E4%BB%A4.html"}</script> <!-- End Jekyll SEO tag --> </head> <body> <a class="skip-to-main" href="#main-content">Skip to main content</a> <svg xmlns="http://www.w3.org/2000/svg" class="d-none"> <symbol id="svg-link" viewBox="0 0 24 24"> <title>Link</title> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link"> <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path> </svg> </symbol> <symbol id="svg-menu" viewBox="0 0 24 24"> <title>Menu</title> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"> <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line> </svg> </symbol> <symbol id="svg-arrow-right" viewBox="0 0 24 24"> <title>Expand</title> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"> <polyline points="9 18 15 12 9 6"></polyline> </svg> </symbol> <!-- Feather. MIT License: https://github.com/feathericons/feather/blob/master/LICENSE --> <symbol id="svg-external-link" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"> <title id="svg-external-link-title">(external link)</title> <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line> </symbol> <symbol id="svg-doc" viewBox="0 0 24 24"> <title>Document</title> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file"> <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline> </svg> </symbol> <symbol id="svg-search" viewBox="0 0 24 24"> <title>Search</title> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"> <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line> </svg> </symbol> <!-- Bootstrap Icons. MIT License: https://github.com/twbs/icons/blob/main/LICENSE.md --> <symbol id="svg-copy" viewBox="0 0 16 16"> <title>Copy</title> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16"> <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/> <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/> </svg> </symbol> <symbol id="svg-copied" viewBox="0 0 16 16"> <title>Copied</title> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-check-fill" viewBox="0 0 16 16"> <path d="M6.5 0A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3Zm3 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3Z"/> <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1A2.5 2.5 0 0 1 9.5 5h-3A2.5 2.5 0 0 1 4 2.5v-1Zm6.854 7.354-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708.708Z"/> </svg> </symbol> </svg> <div class="side-bar"> <div class="site-header" role="banner"> <a href="/Cpp_Guide_detailed/" class="site-title lh-tight"> C++语法教程 </a> <button id="menu-button" class="site-button btn-reset" aria-label="Toggle menu" aria-pressed="false"> <svg viewBox="0 0 24 24" class="icon" aria-hidden="true"><use xlink:href="#svg-menu"></use></svg> </button> </div> <nav aria-label="Main" id="site-nav" class="site-nav"> <ul class="nav-list"><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 第一章 c++入门介绍 category" aria-pressed="false"> <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg> </button><a href="/Cpp_Guide_detailed/guide_files/chap1/index.html" class="nav-list-link">第一章 c++入门介绍</a><ul class="nav-list"><li class="nav-list-item"><a href="/Cpp_Guide_detailed/guide_files/chap1/%E7%AC%AC1%E7%AB%A0_%E9%A2%84%E5%A4%84%E7%90%86%E6%8C%87%E4%BB%A4.html" class="nav-list-link">预处理指令概念详解</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 第二章 基本类型与变量 category" aria-pressed="false"> <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg> </button><a href="/Cpp_Guide_detailed/guide_files/chap2/index.html" class="nav-list-link">第二章 基本类型与变量</a><ul class="nav-list"><li class="nav-list-item"><a href="/Cpp_Guide_detailed/guide_files/chap2/%E7%AC%AC2%E7%AB%A0_%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E4%B8%8E%E5%8F%98%E9%87%8F.html" class="nav-list-link">类型与变量</a></li><li class="nav-list-item"><a href="/Cpp_Guide_detailed/guide_files/chap2/%E7%AC%AC2%E7%AB%A0_%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E4%B8%8E%E5%8F%98%E9%87%8F2.html" class="nav-list-link">复合类型</a></li><li class="nav-list-item"><a href="/Cpp_Guide_detailed/guide_files/chap2/%E7%AC%AC2%E7%AB%A0_%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E4%B8%8E%E5%8F%98%E9%87%8F3.html" class="nav-list-link">限定符与说明符</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 第三章 表达式 category" aria-pressed="false"> <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg> </button><a href="/Cpp_Guide_detailed/guide_files/chap3/index.html" class="nav-list-link">第三章 表达式</a><ul class="nav-list"><li class="nav-list-item"><a href="/Cpp_Guide_detailed/guide_files/chap3/%E7%AC%AC3%E7%AB%A0_%E8%A1%A8%E8%BE%BE%E5%BC%8F.html" class="nav-list-link">表达式概念详解</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 第四章 语句 category" aria-pressed="false"> <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg> </button><a href="/Cpp_Guide_detailed/guide_files/chap4/index.html" class="nav-list-link">第四章 语句</a><ul class="nav-list"><li class="nav-list-item"><a href="/Cpp_Guide_detailed/guide_files/chap4/%E7%AC%AC4%E7%AB%A0_%E8%AF%AD%E5%8F%A5.html" class="nav-list-link">语句概念详解</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 第五章 函数 category" aria-pressed="false"> <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg> </button><a href="/Cpp_Guide_detailed/guide_files/chap5/index.html" class="nav-list-link">第五章 函数</a><ul class="nav-list"><li class="nav-list-item"><a href="/Cpp_Guide_detailed/guide_files/chap5/%E7%AC%AC5%E7%AB%A0_%E5%87%BD%E6%95%B0.html" class="nav-list-link">函数概念详解</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 第六章 动态内存管理 category" aria-pressed="false"> <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg> </button><a href="/Cpp_Guide_detailed/guide_files/chap6/index.html" class="nav-list-link">第六章 动态内存管理</a><ul class="nav-list"><li class="nav-list-item"><a href="/Cpp_Guide_detailed/guide_files/chap6/%E7%AC%AC6%E7%AB%A0_%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86.html" class="nav-list-link">动态内存管理概念详解</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 第七章 类 category" aria-pressed="false"> <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg> </button><a href="/Cpp_Guide_detailed/guide_files/chap7/index.html" class="nav-list-link">第七章 类</a><ul class="nav-list"><li class="nav-list-item"><a href="/Cpp_Guide_detailed/guide_files/chap7/%E7%AC%AC7%E7%AB%A0_%E7%B1%BB%E7%B1%BB%E5%9E%8B.html" class="nav-list-link">类概念详解</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 第八章 重载运算符 category" aria-pressed="false"> <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg> </button><a href="/Cpp_Guide_detailed/guide_files/chap8/index.html" class="nav-list-link">第八章 重载运算符</a><ul class="nav-list"><li class="nav-list-item"><a href="/Cpp_Guide_detailed/guide_files/chap8/%E7%AC%AC8%E7%AB%A0_%E9%87%8D%E8%BD%BD%E8%BF%90%E7%AE%97%E7%AC%A6.html" class="nav-list-link">重载运算符概念详解</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 第九章 异常处理 category" aria-pressed="false"> <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg> </button><a href="/Cpp_Guide_detailed/guide_files/chap9/index.html" class="nav-list-link">第九章 异常处理</a><ul class="nav-list"><li class="nav-list-item"><a href="/Cpp_Guide_detailed/guide_files/chap9/%E7%AC%AC9%E7%AB%A0_%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86.html" class="nav-list-link">异常处理概念详解</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 第十章 模板 category" aria-pressed="false"> <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg> </button><a href="/Cpp_Guide_detailed/guide_files/chap10/index.html" class="nav-list-link">第十章 模板</a><ul class="nav-list"><li class="nav-list-item"><a href="/Cpp_Guide_detailed/guide_files/chap10/%E7%AC%AC10%E7%AB%A0_%E6%A8%A1%E6%9D%BF.html" class="nav-list-link">模板概念详解</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 第十一章 派生类类型 category" aria-pressed="false"> <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg> </button><a href="/Cpp_Guide_detailed/guide_files/chap11/index.html" class="nav-list-link">第十一章 派生类类型</a><ul class="nav-list"><li class="nav-list-item"><a href="/Cpp_Guide_detailed/guide_files/chap11/%E7%AC%AC11%E7%AB%A0_%E6%B4%BE%E7%94%9F%E7%B1%BB%E7%B1%BB%E5%9E%8B.html" class="nav-list-link">派生类类型概念详解</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 第十二章 命名空间 category" aria-pressed="false"> <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg> </button><a href="/Cpp_Guide_detailed/guide_files/chap12/index.html" class="nav-list-link">第十二章 命名空间</a><ul class="nav-list"><li class="nav-list-item"><a href="/Cpp_Guide_detailed/guide_files/chap12/%E7%AC%AC12%E7%AB%A0_%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4.html" class="nav-list-link">命名空间概念详解</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 第十三章 分离式编译 category" aria-pressed="false"> <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg> </button><a href="/Cpp_Guide_detailed/guide_files/chap13/index.html" class="nav-list-link">第十三章 分离式编译</a><ul class="nav-list"><li class="nav-list-item"><a href="/Cpp_Guide_detailed/guide_files/chap13/%E7%AC%AC13%E7%AB%A0_%E5%88%86%E7%A6%BB%E5%BC%8F%E7%BC%96%E8%AF%91.html" class="nav-list-link">分离式编译概念详解</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 第十四章 固有的不可移植特性 category" aria-pressed="false"> <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg> </button><a href="/Cpp_Guide_detailed/guide_files/chap14/index.html" class="nav-list-link">第十四章 固有的不可移植特性</a><ul class="nav-list"><li class="nav-list-item"><a href="/Cpp_Guide_detailed/guide_files/chap14/%E7%AC%AC14%E7%AB%A0_%E5%9B%BA%E6%9C%89%E7%9A%84%E4%B8%8D%E5%8F%AF%E7%A7%BB%E6%A4%8D%E7%89%B9%E6%80%A7.html" class="nav-list-link">固有的不可移植特性概念详解</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 第十五章 标准库 category" aria-pressed="false"> <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg> </button><a href="/Cpp_Guide_detailed/guide_files/chap15/index.html" class="nav-list-link">第十五章 标准库</a><ul class="nav-list"><li class="nav-list-item"><a href="/Cpp_Guide_detailed/guide_files/chap15/%E7%AC%AC15%E7%AB%A0_%E6%A0%87%E5%87%86%E5%BA%93.html" class="nav-list-link">标准库详解</a></li></ul></li></ul> </nav> <footer class="site-footer"> <button type="button" id="theme_switch_button" class="site-button btn-reset" theme_id="dark" onclick="switch_theme()">切换到<b id="current_theme_name">明亮</b>主题 </button> <script src=/Cpp_Guide_detailed/assets/js/cookie_manager.js></script> <script src=/Cpp_Guide_detailed/assets/js/theme_switch.js></script> </footer> </div> <div class="main" id="top"> <div id="main-header" class="main-header"> <div class="search" role="search"> <div class="search-input-wrap"> <input type="text" id="search-input" class="search-input" tabindex="0" placeholder="Search C++语法教程" aria-label="Search C++语法教程" autocomplete="off"> <label for="search-input" class="search-label"><svg viewBox="0 0 24 24" class="search-icon"><use xlink:href="#svg-search"></use></svg></label> </div> <div id="search-results" class="search-results"></div> </div> <nav aria-label="Auxiliary" class="aux-nav"> <ul class="aux-nav-list"> <li class="aux-nav-list-item"> <a href="https://github.com/bobokick/Cpp_Guide_detailed" class="site-button" > Cpp_Guide_detailed on GitHub </a> </li> </ul> </nav> </div> <div class="main-content-wrap"> <nav aria-label="Breadcrumb" class="breadcrumb-nav"> <ol class="breadcrumb-nav-list"> <li class="breadcrumb-nav-list-item"><a href="/Cpp_Guide_detailed/guide_files/chap1/index.html">第一章 c++入门介绍</a></li> <li class="breadcrumb-nav-list-item"><span>预处理指令概念详解</span></li> </ol> </nav> <div id="main-content" class="main-content"> <main> <div> <div id="table-of-contents"> <ul id="toc" class="section-nav"> <li class="toc-entry toc-h3"><a href="#11-预处理器介绍">1.1 预处理器介绍</a> <ul> <li class="toc-entry toc-h4"><a href="#111-预处理器历史">1.11 预处理器历史</a></li> <li class="toc-entry toc-h4"><a href="#112-从代码编辑到程序运行中的过程">1.12 从代码编辑到程序运行中的过程</a> <ul> <li class="toc-entry toc-h5"><a href="#1121-预处理阶段">1.121 预处理阶段</a></li> <li class="toc-entry toc-h5"><a href="#1122-编译阶段">1.122 编译阶段</a></li> <li class="toc-entry toc-h5"><a href="#1123-汇编阶段">1.123 汇编阶段</a></li> <li class="toc-entry toc-h5"><a href="#1124-链接阶段">1.124 链接阶段</a></li> </ul> </li> <li class="toc-entry toc-h4"><a href="#113-预处理阶段">1.13 预处理阶段</a></li> </ul> </li> <li class="toc-entry toc-h3"><a href="#12-预处理语法介绍">1.2 预处理语法介绍</a> <ul> <li class="toc-entry toc-h4"><a href="#121-词法元素">1.21 词法元素</a> <ul> <li class="toc-entry toc-h5"><a href="#1211-标识符">1.211 标识符</a></li> <li class="toc-entry toc-h5"><a href="#1212-字面值常量">1.212 字面值常量</a></li> <li class="toc-entry toc-h5"><a href="#1213-标点符号">1.213 标点符号</a></li> </ul> </li> <li class="toc-entry toc-h4"><a href="#122-空白符">1.22 空白符</a> <ul> <li class="toc-entry toc-h5"><a href="#1221-空格符">1.221 空格符</a></li> <li class="toc-entry toc-h5"><a href="#1222-制表符">1.222 制表符</a></li> <li class="toc-entry toc-h5"><a href="#1223-换行符">1.223 换行符</a></li> <li class="toc-entry toc-h5"><a href="#1224-换页符">1.224 换页符</a></li> <li class="toc-entry toc-h5"><a href="#1225-注释">1.225 注释</a></li> </ul> </li> <li class="toc-entry toc-h4"><a href="#123-预处理指令">1.23 预处理指令</a> <ul> <li class="toc-entry toc-h5"><a href="#1231-宏">1.231 宏</a> <ul> <li class="toc-entry toc-h6"><a href="#12311-宏的定义">1.2311 宏的定义</a></li> <li class="toc-entry toc-h6"><a href="#12312-宏调用">1.2312 宏调用</a></li> <li class="toc-entry toc-h6"><a href="#12313-宏展开流程">1.2313 宏展开流程</a></li> <li class="toc-entry toc-h6"><a href="#12314-可变参数宏的使用">1.2314 可变参数宏的使用</a></li> <li class="toc-entry toc-h6"><a href="#12315-undef指令">1.2315 #undef指令</a></li> <li class="toc-entry toc-h6"><a href="#12316-宏相关的运算符">1.2316 宏相关的运算符</a></li> </ul> </li> <li class="toc-entry toc-h5"><a href="#1232-条件编译">1.232 条件编译</a> <ul> <li class="toc-entry toc-h6"><a href="#if-elif-else-endif的介绍">#if #elif #else #endif的介绍</a></li> <li class="toc-entry toc-h6"><a href="#ifdef-ifndef-的介绍">#ifdef #ifndef 的介绍</a></li> </ul> </li> <li class="toc-entry toc-h5"><a href="#1233-阻止编译">1.233 阻止编译</a></li> <li class="toc-entry toc-h5"><a href="#1234-文件包含指令">1.234 文件包含指令</a> <ul> <li class="toc-entry toc-h6"><a href="#12341-include指令">1.2341 #include指令</a></li> <li class="toc-entry toc-h6"><a href="#12342-import指令编译器扩展-msvc">1.2342 #import指令(编译器扩展 msvc)</a></li> <li class="toc-entry toc-h6"><a href="#12343-using指令编译器扩展-msvc">1.2343 #using指令(编译器扩展 msvc)</a></li> </ul> </li> <li class="toc-entry toc-h5"><a href="#1235-调试操作">1.235 调试操作</a> <ul> <li class="toc-entry toc-h6"><a href="#12351-assert宏">1.2351 assert宏</a></li> <li class="toc-entry toc-h6"><a href="#12352-输出错误信息的宏">1.2352 输出错误信息的宏</a></li> <li class="toc-entry toc-h6"><a href="#12353-line指令">1.2353 #line指令</a></li> </ul> </li> <li class="toc-entry toc-h5"><a href="#1236-杂注操作编译器扩展-msvc">1.236 杂注操作(编译器扩展 msvc)</a></li> </ul> </li> </ul> </li> </ul> </div> <div id="markdown-content"> <h3 id="11-预处理器介绍"> <a href="#11-预处理器介绍" class="anchor-heading" aria-labelledby="11-预处理器介绍"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1.1 预处理器介绍 </h3> <p>C预处理器是多种计算机编程语言（如C、Objective-C、C++和各种Fortran语言）的宏预处理器。预处理器提供头文件、宏扩展、条件编译和行控制等操作。</p> <p>预处理器指令的语言与C语言的语法关系不大，因此有时用于处理其他类型的文本文件。</p> <h4 id="111-预处理器历史"> <a href="#111-预处理器历史" class="anchor-heading" aria-labelledby="111-预处理器历史"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1.11 预处理器历史 </h4> <p>预处理器于1973年左右，在Alan Snyder的敦促下引入到C语言中，也是为了认识到BCPL和PL/I中可用的文件包含机制的有用性。它的原始版本仅提供文件包含和简单的字符串替换，也就是使用<code class="language-plaintext highlighter-rouge">#include</code>和<code class="language-plaintext highlighter-rouge">#define</code>来进行。不久之后，它首先由Mike Lesk扩展，然后由John Reiser扩展，以将宏与参数和条件编译合并。</p> <p>C预处理器是贝尔实验室悠久的宏语言传统的一部分，该传统由Douglas Eastwood和Douglas McIlroy于1959年创立。</p> <h4 id="112-从代码编辑到程序运行中的过程"> <a href="#112-从代码编辑到程序运行中的过程" class="anchor-heading" aria-labelledby="112-从代码编辑到程序运行中的过程"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1.12 从代码编辑到程序运行中的过程 </h4> <p>c++和c语言一样，从源代码编写到程序运行时，分为四大阶段：</p> <ul> <li>预处理阶段</li> <li>编译阶段</li> <li>汇编阶段</li> <li>链接阶段</li> </ul> <p>执行这四个阶段的程序(预处理器、编译器、汇编器、链接器)一起构成了编译系统。</p> <h5 id="1121-预处理阶段"> <a href="#1121-预处理阶段" class="anchor-heading" aria-labelledby="1121-预处理阶段"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1.121 预处理阶段 </h5> <p>预处理阶段期间，预处理器会根据源文件(.cpp/.c)里的预处理指令，修改源文件(.cpp/.c)中的一些代码，修改完后的所有代码保存在一个预处理文本文件(.i)中。</p> <h5 id="1122-编译阶段"> <a href="#1122-编译阶段" class="anchor-heading" aria-labelledby="1122-编译阶段"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1.122 编译阶段 </h5> <p>编译阶段期间，编译器会将预处理文本文件(.i)里的所有代码翻译成一种能被汇编语言程序所识别的代码，所有翻译后的代码保存在汇编文本文件(.s)中。</p> <h5 id="1123-汇编阶段"> <a href="#1123-汇编阶段" class="anchor-heading" aria-labelledby="1123-汇编阶段"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1.123 汇编阶段 </h5> <p>汇编阶段期间，汇编器将汇编文本文件(.s)翻译成机器代码，也叫做机器语言指令(也就是由二进制值组成的代码，计算器能够识别的代码)，并将这些机器语言指令打包成一种叫做可重定位目标程序(relocate object program)的格式，并将结果保存在一个目标文件(.obj/.o)中。</p> <h5 id="1124-链接阶段"> <a href="#1124-链接阶段" class="anchor-heading" aria-labelledby="1124-链接阶段"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1.124 链接阶段 </h5> <p>通常我们所用的程序并不单单是由一个源文件的代码转换而来。 绝大多数都是由多个源文件的代码组合而来。所以就有了链接阶段。 链接阶段期间，链接器将会把所有程序代码转换而成的目标文件(.obj/.o)和可能要用到静态库文件的某些函数的部分(.lib/.a)(一些由常用代码的目标文件打包而成的二进制文件)链接到一起(如果要用到动态库文件，则会对这些用到的代码位置做上标记，而不会直接合在一起)，生成一个操作系统能够运行的程序文件，也叫做可执行目标文件(.exe/.out)。</p><hr /> <p>虽然编程时可以不需要预处理阶段的指令就能够生成出可执行程序文件了。但实际开发中，常常需要在编译阶段前对源文件进行一些简单的处理，比如替换一些代码，删除一些代码等操作。</p> <p>例如，我们希望自己的程序在Windows和Linux下都能够运行，那么就要在Windows下使用VS编译一遍，然后在Linux下使用GCC编译一遍。但是现在有个问题，程序中要实现的某个功能在VS和GCC下使用的函数不同(假设VS下使用a()，GCC下使用b())，怎么办呢？ 这就需要在编译之前先对源文件进行处理：如果检测到是VS，就保留a()删除b()；如果检测到是GCC，就保留b()删除a()。</p> <p>c提供了一些预处理功能，也就叫预处理指令。能够让我们在预处理阶段对代码进行一些处理工作，c++也继承了这些功能。</p> <h4 id="113-预处理阶段"> <a href="#113-预处理阶段" class="anchor-heading" aria-labelledby="113-预处理阶段"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1.13 预处理阶段 </h4> <p>预处理过程由C标准中规定的前四个（共八个）翻译阶段所定义:</p> <ul> <li>三元组替换(Trigraph replacement)：预处理器将所有三元组序列替换为它们所表示的字符。此阶段将会在<code class="language-plaintext highlighter-rouge">C23</code>标准中被删除。</li> <li>行拼接(Line splicing)：结尾带有<code class="language-plaintext highlighter-rouge">\</code>字符的原始的源码行将被拼接成一起，形成逻辑行。</li> <li>符号化(Tokenization)：预处理器将上一步的结果分解为预处理符号和空格。并将所有注释都替换为空格。</li> <li>宏扩展和预处理指令处理(Macro expansion and directive handling)：执行预处理指令行(<code class="language-plaintext highlighter-rouge">#line</code>)，文件包含(<code class="language-plaintext highlighter-rouge">#include</code>)和条件编译(<code class="language-plaintext highlighter-rouge">#if</code>, <code class="language-plaintext highlighter-rouge">#else</code>, …)。预处理器同时也会进行宏扩展，并处理<code class="language-plaintext highlighter-rouge">_Pragma</code>运算符(从1999年的C标准版本起)。</li> </ul> <h3 id="12-预处理语法介绍"> <a href="#12-预处理语法介绍" class="anchor-heading" aria-labelledby="12-预处理语法介绍"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1.2 预处理语法介绍 </h3> <p>在介绍预处理功能之前，我们需要了解一些概念。 c++语言中的代码文本，都是由两大部分组成：</p> <ul> <li>词法元素</li> <li>空白符</li> </ul> <h4 id="121-词法元素"> <a href="#121-词法元素" class="anchor-heading" aria-labelledby="121-词法元素"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1.21 词法元素 </h4> <p>词法元素(token)是c++程序中的==基本意义单元==，所有能被预处理器和编译器==识别==的==可见符号==都是词法元素，比如变量名，数据类型，各种语言的关键字等。</p> <blockquote> <p>词法元素是由一个或多个空白符分隔来区分的。 当两个词法元素之间没有空白符时，预处理器和编译器会认为这是一个词法元素。</p> </blockquote> <blockquote> <p>词法元素是指有其==自身意义==的==可见==符号单元，所以空白符不是词法元素，字符、字符串常量、字符串字面值和注释内的所有文本都不是词法元素。</p> </blockquote> <p>词法元素分为以下几种：</p> <ul> <li>标识符(Identifiers) <ul> <li>关键字(Keywords)</li> </ul> </li> <li>字面值常量(Literals)</li> <li>标点符号(Punctuators) <ul> <li>运算符符号(Operators)</li> </ul> </li> </ul> <h5 id="1211-标识符"> <a href="#1211-标识符" class="anchor-heading" aria-labelledby="1211-标识符"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1.211 标识符 </h5> <p>标识符就是用于表示各种对象，实体，操作等事物的==字符序列==(sequence of characters)。</p> <p>标识符可以用于表示以下这几种事物：</p> <ol> <li>对象或变量的名称</li> <li>类型、结构体、联合类和枚举类的名称以及它们成员的名称</li> <li>函数名称以及其参数的名称</li> <li>类型别名</li> <li>标签名称</li> <li>宏名称以及其参数的名称</li> </ol> <p>同一作用域下的某些事物的名称必须有所区别：</p> <ul> <li>各种类型的变量名要和函数名有所区别</li> <li>各种类型的变量名之间要有所区别</li> <li>各种类型名之间要有所区别</li> </ul> <blockquote> <p>标识符只能由==字母、数字、下划线_和美元符号$组成==，其中必须以字母、下划线或者美元符号开头。标识符的长度没有限制，但是对大小写字母敏感。</p> </blockquote> <p>同时C++语言也保留了一些名字供语言本身使用，这些名字也叫做关键字，关键字不能被当做名称来使用。</p> <p><strong>关键字</strong></p> <p>关键字也就是在c++中被预先定义好了的一些标识符，这些关键字用在c++中各种操作中，如class, if, else等都属于关键字。 以下是c++的关键字： <img src="/Cpp_Guide_detailed/assets/images/2021-05-12-13-00-22.png" alt="Keywords" /></p> <h5 id="1212-字面值常量"> <a href="#1212-字面值常量" class="anchor-heading" aria-labelledby="1212-字面值常量"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1.212 字面值常量 </h5> <p>字面值常量是一种可以直接表示值的词法元素，字面值常量的类型分为以下几种，之后我们会详细介绍字面值常量。</p> <ul> <li>整型字面值</li> <li>浮点型字面值</li> <li>字符字面值</li> <li>字符串字面值</li> <li>布尔字面值</li> <li>指针字面值</li> <li>自定义字面值</li> </ul> <h5 id="1213-标点符号"> <a href="#1213-标点符号" class="anchor-heading" aria-labelledby="1213-标点符号"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1.213 标点符号 </h5> <p>标点符号也是C++中的一种词法元素。之后会详细介绍标点符号。 C++中的标点符号分为两种：</p> <ul> <li>运算符符号</li> <li>其他符号</li> </ul> <p>对于非运算符符号来说，它们具有语法意义和语义含义，但它们本身不会指定一个产生数值的操作。 而运算符符号是一种有作用对象的特殊符号。运算符符号会根据其作用对象的值来产生一个新的值。</p> <p>以下为c++的标点符号：</p> <blockquote> <div class="table-wrapper"><table> <tbody> <tr> <td>! % ^ &amp; * ( ) - + = { }</td> <td>~ [ ] \ ; ‘ : “ &lt; &gt; ? , . / #</td> </tr> </tbody> </table></div> <p>标点符号 []、 ( ) 和 {} 必须成对出现</p> </blockquote> <blockquote> <p>要想某个标点符号不产生其特殊的意义，而只是单纯的当一个符号来使用时(也就是当成一个字符)，则需要在其符号之前紧跟一个转义字符\来使其变成普通的字符，形式为： \符号</p> <p>如： <code class="language-plaintext highlighter-rouge">\{ \"</code></p> <p>转义字符\本身也可以用这种方式来使用自己的普通字符版本</p> </blockquote> <h4 id="122-空白符"> <a href="#122-空白符" class="anchor-heading" aria-labelledby="122-空白符"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1.22 空白符 </h4> <p>空白符一般是指在c++代码编辑中不可见的符号，如空格，换行等。</p> <p>空白符会影响代码中的语句分割，从而影响预处理器分析语法，以下是空白符的分类：</p> <ul> <li>空格符(Blanks)</li> <li>制表符(Tabs) <ul> <li>水平或者垂直制表符(Horizontal or vertical tabs)</li> </ul> </li> <li>换行符(New lines)</li> <li>换页符(Form feeds)</li> <li>注释(Comments) <ul> <li>单行注释</li> <li>多行注释</li> </ul> </li> </ul> <blockquote> <p>各种空白符在字符串常量、字符串字面值中没有特殊含义。</p> </blockquote> <h5 id="1221-空格符"> <a href="#1221-空格符" class="anchor-heading" aria-labelledby="1221-空格符"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1.221 空格符 </h5> <p>空格符就是用键盘space键打出来的符号。 在没有明确说明的情况下，各种语句，表达式的词法元素之前、之间和之后可以有一个或多个空格符。</p> <h5 id="1222-制表符"> <a href="#1222-制表符" class="anchor-heading" aria-labelledby="1222-制表符"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1.222 制表符 </h5> <p>制表符就是用键盘tab键打出来的符号。 在大多数代码编辑器的编辑中，一个制表符是由多个空格符代替的。</p> <h5 id="1223-换行符"> <a href="#1223-换行符" class="anchor-heading" aria-labelledby="1223-换行符"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1.223 换行符 </h5> <p>换行符就是用键盘enter键打出来的符号。 在大多数代码编辑器的编辑中，换行符之后也就是另起一行了。</p> <p>在一般的表达式和语句中，换行符对其没有影响，不会产生切割作用(也就是将其分为两个语句或表达式)。 但在以下情形中，换行符会产生切割作用:</p> <ul> <li>字符串中</li> <li>单行注释中</li> <li>宏定义中</li> </ul> <p>要使换行符不产生切割作用，则要在该换行符之前紧跟一个转义字符\来使其变成一个普通的字符</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Im a good</span><span class="err">
+</span><span class="s">student."</span><span class="p">;</span>  <span class="c1">// 错误：字符串被切割，出错</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Im a good\
+student."</span><span class="p">;</span>  <span class="c1">// 正确：没有被切割，还是一个字符串</span>
+</code></pre></div></div> <h5 id="1224-换页符"> <a href="#1224-换页符" class="anchor-heading" aria-labelledby="1224-换页符"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1.224 换页符 </h5> <h5 id="1225-注释"> <a href="#1225-注释" class="anchor-heading" aria-labelledby="1225-注释"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1.225 注释 </h5> <p>注释是对于程序员非常有用的文本，通常用于批注代码以供将来参 考。 预处理器会将注释视为多个空格符。</p> <p>以下是注释的分类：</p> <ul> <li>单行注释</li> <li>多行注释</li> </ul> <blockquote> <p>注释字符 (/* 、 */ 和 //) 在字符串常量、字符串字面值或注释中没有特殊含义。 多行注释不能嵌套。</p> </blockquote> <p><strong>单行注释</strong></p> <p>单行注释是<em>由<code class="language-plaintext highlighter-rouge">//</code>(两个斜杠，中间不能有空白符)开头的</em>，后面跟任何字符序列的序列。一个单行注释以一个<em>有切割作用的换行符</em>作为结束。</p> <p>单行注释内的文本可以是任何字符(除了有切割作用的换行符)，所以可以嵌套。</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 这是一个单行注释，由换行符结束</span>
+<span class="c1">// 这是一个单行注释，\</span>
+    <span class="err">无切割作用的换行符</span>\
+    <span class="err">不会结束一个单行注释。</span>
+</code></pre></div></div> <p><strong>多行注释</strong></p> <p>多行注释是由<em><code class="language-plaintext highlighter-rouge">/*</code>(斜杠、星号，中间不能有空白符)开头的</em>，后面跟任何字符序列的序列。多行注释<em>以<code class="language-plaintext highlighter-rouge">*/</code>(星号、斜杠，中间不能有空白符)作为结束</em>。</p> <p>多行注释内的文本可以是任何字符(除了<code class="language-plaintext highlighter-rouge">*/</code>)，所以可以跨越多行，但不能嵌套。</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 下面是一个多行注释，由*/结束</span>
+<span class="cm">/* 这是一个多行注释 */</span> 
+
+<span class="c1">// 错误，多行注释不能嵌套</span>
+<span class="cm">/* 这是一个多行注释
+/*嵌套注释*/</span> <span class="err">*/</span> 
+</code></pre></div></div> <h4 id="123-预处理指令"> <a href="#123-预处理指令" class="anchor-heading" aria-labelledby="123-预处理指令"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1.23 预处理指令 </h4> <p>c提供了一些预处理功能，也就叫预处理指令。能够让我们在预处理阶段对代码进行一些处理工作，c++也继承了这些功能。</p> <ul> <li>宏定义</li> <li>条件编译</li> <li>阻止编译</li> <li>包含编译</li> <li>调试操作</li> <li>杂注操作</li> </ul> <blockquote> <p>预处理指令不是表达式，不是语句，但是所有预处理指令在使用时必须要在一行的开头。</p> </blockquote> <blockquote> <p>所有预处理指令都可以在任何地方使用(函数内，类内，控制语句块内，命名空间内)。但预处理指令没有局部全局作用域之分。</p> <p>如无明确说明，预处理指令的作用范围默认为从使用位置后到包含该指令的文件末尾。</p> </blockquote> <blockquote> <p>预处理指令都是以<code class="language-plaintext highlighter-rouge">#</code>开头的。符号<code class="language-plaintext highlighter-rouge">#</code>和指令的标识符之间可以有一个或多个空白符。</p> </blockquote> <blockquote> <p>所有预处理指令和单行注释一样，以有切割作用的换行符作为结束</p> </blockquote> <blockquote> <p>所有预处理指令内部不能包含有任何其他的预处理指令(包括自身类型的预处理指令)。 也就是预处理指令不能嵌套。</p> </blockquote> <p>最简单的预处理指令为空指令(Null)，使用形式为：</p> <blockquote> <p><code class="language-plaintext highlighter-rouge">#</code></p> <p>它只有一个<code class="language-plaintext highlighter-rouge">#</code>，后面不能有任何符号，它没有作用</p> </blockquote> <h5 id="1231-宏"> <a href="#1231-宏" class="anchor-heading" aria-labelledby="1231-宏"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1.231 宏 </h5> <p>宏(Macros)，也叫做预处理变量，类似于内联函数。宏是用宏指令定义的标识符或参数化的标识符与词法元素串的关联。</p> <p>宏的作用就是把其定义位置后的代码中的所有与该宏名相同的标识符(不管在什么位置)替换为其关联的词法元素串，这也称之为宏展开。</p> <h6 id="12311-宏的定义"> <a href="#12311-宏的定义" class="anchor-heading" aria-labelledby="12311-宏的定义"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1.2311 宏的定义 </h6> <p>宏根据定义分为两种:</p> <ul> <li>对象类宏: 对象类宏不包含任何参数， 定义形式为<code class="language-plaintext highlighter-rouge">#define 宏名 (可选 词法元素串)</code>。</li> <li>函数类宏: 对象类宏会包含参数（虽然可能为空）， 定义形式为<code class="language-plaintext highlighter-rouge">#define 宏名(可选 (形参名1, 形参名2)) (可选 词法元素串)</code>。</li> </ul> <p><strong>要注意函数类宏的参数表要紧跟宏名，之间不能含有空白符，否则就会被当成对象类宏而出现定义问题</strong>。</p> <blockquote> <p>带参数的宏定义形式中的，参数表内只需要填形参名，不同形参名之间必须要用逗号<code class="language-plaintext highlighter-rouge">,</code>分隔。</p> <p>参数表内不需要填也不必填其类型，参数表内不能有默认实参。</p> <p>每个参数名可以在词法元素串中可以出现0次到多次，并且名称可以按任意顺序出现。</p> </blockquote> <blockquote> <p>带参数的宏定义形式中的，参数表内还可以用省略符形参。</p> <p>和普通情况一样，省略符形参只能放在参数表最后一个位置，省略符形参与其他形参可以用逗号<code class="language-plaintext highlighter-rouge">,</code>分隔，也可以不用，效果一样。</p> </blockquote> <blockquote> <p>宏名必须为标识符，且尽量使用大写的字母来命名。 形参名也必须为标识符。</p> </blockquote> <blockquote> <p>如果一个宏在定义时没有词法元素串，则该宏的作用是将该文件中所有与其相同的标识符删除。</p> </blockquote> <blockquote> <p>可以定义多个相同宏名的宏，但是宏不能重载，后面定义的宏会覆盖前面定义的同名宏，且预处理器会警告。(不带参数的宏和带参数的宏都适用)。</p> </blockquote> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 定义了一个宏APPLE</span>
+<span class="cp">#define APPLE 8
+</span><span class="cm">/* 等价于
+int var1 = 8;*/</span>
+<span class="kt">int</span> <span class="n">var1</span> <span class="o">=</span> <span class="n">APPLE</span><span class="p">;</span>
+
+<span class="c1">// 定义了一个宏FUNC</span>
+<span class="cp">#define FUNC(x,y) x + y;
+</span><span class="cm">/* 等价于
+double dou = 3.5 + 8.48;*/</span>
+<span class="kt">double</span> <span class="n">dou</span> <span class="o">=</span> <span class="n">FUNC</span><span class="p">(</span><span class="mf">3.5</span><span class="p">,</span><span class="mf">8.48</span><span class="p">)</span>
+
+<span class="kt">int</span> <span class="n">ins</span> <span class="o">=</span> <span class="mi">66</span><span class="p">;</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ins</span><span class="p">;</span> <span class="c1">// 正确：ins为int的变量，输出66.</span>
+<span class="cp">#define ins
+</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ins</span><span class="p">;</span> <span class="c1">// 错误：ins已被删除，不存在名为ins的变量</span>
+</code></pre></div></div> <p><strong>词法元素串</strong></p> <p>词法元素串是指由一个或多个词法元素(如关键字、变量、表达式或语句)组合而成的序列。</p> <p>每个词法元素之间也必须有一个或多个空白符分隔，在词法元素串内的空白符和在最后一个词法元素之后的空白符不会被视为词法元素串的一部分。</p> <p>无特殊说明时，词法元素串中的词法元素可以是任何词法元素。</p><hr /> <blockquote> <p>词法元素串与宏名之间必须有一个或多个空白符分隔。</p> </blockquote> <blockquote> <p>宏生效于定义时，宏的替换范围为所在文件内。是将其定义位置后的代码中的所有与该宏名相同的标识符(不管在什么位置)替换为其关联的词法元素串。</p> </blockquote> <blockquote> <p>宏的词法元素串可以包含宏名，也就是可以包含其他宏的名称。该宏生效时会按照宏展开顺序原则依次进行宏展开。</p> </blockquote> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 定义TYPE宏为int类型</span>
+<span class="cp">#define TYPE int
+</span><span class="c1">// VAR_DEF宏嵌套TYPE宏用于变量定义</span>
+<span class="cp">#define VAR_DEF TYPE ins = 5;
+</span><span class="cm">/*
+宏展开顺序为:
+1. 先展开VAR_DEF宏，为: TYPE ins = 5;
+2. 再展开TYPE宏, 为: int ins = 5;
+*/</span>
+<span class="n">VAR_DEF</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ins</span><span class="p">;</span> <span class="c1">// 输出5</span>
+</code></pre></div></div> <blockquote> <p>宏名和形参名可以是任意的标识符，包括c++的关键字。</p> </blockquote> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 更改int关键字的含义，将其当做long long类型使用。</span>
+<span class="cp">#define int long long
+</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span> <span class="c1">// int现在为8字节的long long，所以输出8</span>
+</code></pre></div></div> <h6 id="12312-宏调用"> <a href="#12312-宏调用" class="anchor-heading" aria-labelledby="12312-宏调用"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1.2312 宏调用 </h6> <p>要注意，宏不是对象不是实体，宏只是预处理器在预处理阶段进行的批量替换，也就叫做宏展开。</p> <p>宏调用(macro invocation)时，要将宏看作为该宏关联的词法元素串代码。每使用一次宏名，==就是在使用的位置上写一遍该宏关联的词法元素串代码==。</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 使用宏DEF_INT时\</span>
+<span class="err">等价于</span><span class="kt">int</span> <span class="n">ins</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span>
+<span class="cp">#define DEF_INT int ins = 15;
+</span><span class="n">DEF_INT</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ins</span><span class="p">;</span> <span class="c1">// 输出15</span>
+</code></pre></div></div> <p>对于使用带参数的宏时，要类似于函数调用的形式：</p> <blockquote> <p>宏名(实参1, 实参2)</p> </blockquote> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 定义参数宏FUNC</span>
+<span class="cp">#define FUNC(x,y) x + y;
+</span><span class="kt">int</span> <span class="n">ins</span> <span class="o">=</span> <span class="mi">66</span><span class="p">;</span>
+<span class="kt">double</span> <span class="n">dou</span> <span class="o">=</span> <span class="mf">15.14</span><span class="p">;</span>
+<span class="c1">// 等价于\</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ins</span> <span class="o">+</span> <span class="n">dou</span><span class="p">;</span>\
+<span class="err">输出为</span><span class="mf">81.14</span><span class="err">。</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">FUNC</span><span class="p">(</span><span class="n">ins</span><span class="p">,</span><span class="n">dou</span><span class="p">)</span>
+</code></pre></div></div> <blockquote> <p>宏调用中的实参标识符可以是空(也就是不填任何符号)，也可以是任何词法元素(比如说对象，其他的宏，甚至可以是该宏本身，所以宏可以嵌套使用)，该词法元素还可以是不存在于当前文件中的。</p> </blockquote> <blockquote> <p>要注意非字符串的实参标识符中不能直接含有逗号<code class="language-plaintext highlighter-rouge">,</code>，必须要用( ) ‘ “几个标点符号将逗号<code class="language-plaintext highlighter-rouge">,</code>包围起来。 另外如果非字符串的实参标识符内要用( ) “ ‘这几个标点符号，则必须成对出现。</p> <p>不同实参之间必须要用逗号<code class="language-plaintext highlighter-rouge">,</code>分隔。 每个实参之前或之后的空白符不会被当作实参标识符的一部分，会被忽略。 非可变参数宏的实参数目必须与该宏的形参数目一致。</p> </blockquote> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 定义一个加法功能的宏</span>
+<span class="cp">#define ADD(a,b) a + b
+</span><span class="c1">// 宏调用合法，但由于不能只用\</span>
+<span class="err">逗号符</span><span class="p">(,)</span><span class="err">，所以出错。</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ADD</span><span class="p">(</span><span class="n">ADD</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span><span class="mi">25</span><span class="p">),</span><span class="n">ADD</span><span class="p">(,));</span>
+<span class="c1">// 正确：输出为70</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ADD</span><span class="p">(</span><span class="n">ADD</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">25</span><span class="p">),</span><span class="n">ADD</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">));</span>
+
+<span class="c1">// 定义一个无功能的宏</span>
+<span class="cp">#define NO_USE(a,b) a;b;
+</span><span class="c1">// 宏调用合法，不出错</span>
+<span class="n">NO_USE</span><span class="p">(</span><span class="s">"a_noUse"</span><span class="p">,</span>  <span class="err">#</span><span class="n">b_noUse</span><span class="p">)</span>
+<span class="c1">// 宏调用合法，不出错</span>
+<span class="n">NO_USE</span><span class="p">(,)</span>
+<span class="c1">// 宏调用不合法，实参数目不匹配，有3个</span>
+<span class="n">NO_USE</span><span class="p">(,</span><span class="mi">18</span><span class="p">,</span><span class="mi">15</span><span class="p">)</span>
+<span class="c1">// 宏调用不合法，语法错误</span>
+<span class="n">NO_USE</span><span class="p">(</span><span class="n">a_n</span><span class="p">(</span><span class="n">oUse</span><span class="p">,</span><span class="mi">1815</span><span class="p">)</span>
+<span class="c1">// 宏调用合法，不出错</span>
+<span class="n">NO_USE</span><span class="p">(</span><span class="n">a_n</span><span class="p">(</span><span class="n">o</span><span class="p">,</span><span class="n">Us</span><span class="p">)</span><span class="n">e</span><span class="p">,</span><span class="n">b_n</span><span class="err">'</span><span class="n">o</span><span class="p">,</span><span class="n">Us</span><span class="err">'</span><span class="n">e</span><span class="p">)</span>
+</code></pre></div></div> <h6 id="12313-宏展开流程"> <a href="#12313-宏展开流程" class="anchor-heading" aria-labelledby="12313-宏展开流程"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1.2313 宏展开流程 </h6> <p>在C99标准中，规定了符合标准的C预处理器的宏展开(Macro replacement)流程(<a href="http://www.open-std.org/jtc1/sc22/WG14/www/docs/n1256.pdf">c99_6.10.3</a>)，该流程基本如下：</p> <ol> <li>对于源码来说，预处理器以从左到右，从上到下的顺序，逐个扫描每个词法元素，并进行以下操作: <ul> <li>对于每个<code class="language-plaintext highlighter-rouge">#define</code>/<code class="language-plaintext highlighter-rouge">#undef</code>行，将对应的宏的标识符从已定义宏集合<code class="language-plaintext highlighter-rouge">def_m</code>加入/移除，并将函数类宏从已定义函数类宏集合<code class="language-plaintext highlighter-rouge">def_fm</code>加入/移除。</li> <li>对于其他的行，确认该词法元素（非字符/字符串字面值）是否为宏并决定后续相应的宏替换。当词法元素为集合<code class="language-plaintext highlighter-rouge">def_m</code>中时，它都会被替换为对应的词法元素串，该串可以为空。对于声明为函数类宏的宏名标识符，仅当紧跟其后的符号为宏调用实参表的左括号时，才会对该宏名标识符进行替换(以与其匹配的右括号为终止，忽略中间所匹配的括号对)。此时还会进行宏调用合法检测，如果调用语法不合法，则会报错。</li> </ul> </li> <li>检测到宏后，进行此宏的宏替换。宏替换流程如下: <ol> <li>参数替换(argument substitution): 对于函数类宏来说，预处理器找到该宏对应的词法元素串，从左到右，逐个对词法串中存在的所有形参（包括<code class="language-plaintext highlighter-rouge">__VA_ARGS__</code>），用对应的实参进行替换，并对替换后的参数（除了被字符串化运算符(<code class="language-plaintext highlighter-rouge">#</code>)以及词法元素粘贴运算符(<code class="language-plaintext highlighter-rouge">##</code>)所运算的以外）进行<strong>宏展开操作</strong>，直至所有参数已经完成宏展开操作。</li> <li>宏运算符处理(<code class="language-plaintext highlighter-rouge">#</code> and <code class="language-plaintext highlighter-rouge">##</code> preprocessing): 然后，预处理器找到该宏对应的词法元素串（对于函数类宏来说就是上一步处理完毕的词法串），从左到右，对该词法元素串存在的字符串化运算符(<code class="language-plaintext highlighter-rouge">#</code>)以及词法元素粘贴运算符(<code class="language-plaintext highlighter-rouge">##</code>)，进行相应的预处理（也就是相关的词法元素都被替换为对应的运算形式）。</li> <li>重扫替换(rescanning and further replacement): 在已替换宏集合<code class="language-plaintext highlighter-rouge">rep_m</code>中加入该宏，标记是否已被替换(replaced macro tracking)，防止递归替换同一个宏。 接着，预处理器根据上一步处理完毕的词法串，从左到右，对该词法元素串中的每个词法元素进行扫描，并进行以下操作，直至所有词法元素都已进行了该操作。最后，在源码该宏处的位置，用操作完毕后的词法元素串替换该宏的标识符，此时宏替换流程完毕，并清空集合<code class="language-plaintext highlighter-rouge">rep_m</code>: <ol> <li>检测该词法元素是否为宏: 如果是，则进行下一步；否则该词法元素操作结束，进行下一个词法元素的操作。</li> <li>检测宏是否已被替换: 在已替换宏集合<code class="language-plaintext highlighter-rouge">rep_m</code>中搜索是否存在该词法元素对应的宏：如果存在，则该宏不进行任何替换(painted blue)；否则对该宏进行<strong>宏展开操作</strong>，完毕后该词法元素操作结束，进行下一个词法元素的操作。</li> </ol> </li> </ol> </li> </ol> <blockquote> <p>要注意宏展开后的词法元素串不会被作为预处理指令(就算形式一样)，因此无法用宏来动态生成预处理指令。</p> </blockquote> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+</span>
+<span class="c1">// 定义了一个普通宏</span>
+<span class="cp">#define NUMBER_MACRO_M1 66
+</span><span class="c1">// 定义了一个字符串化参数宏，参数不进行宏展开</span>
+<span class="cp">#define STRINGIZE(x) #x
+</span><span class="c1">// 定义了一个字符串化参数宏，参数进行宏展开</span>
+<span class="cp">#define STRINGIZE_VALUE_OF(x) STRINGIZE(x)
+</span><span class="c1">// 定义了一个词法元素粘贴参数宏，参数不进行宏展开</span>
+<span class="cp">#define CONT(a, b) a ## b
+</span><span class="c1">// 定义了一个词法元素粘贴参数宏，参数进行宏展开</span>
+<span class="cp">#define CONT_VALUE_OF(a, b) CONT(a,b)
+</span><span class="c1">// 定义了一个加法参数宏，参数进行宏展开</span>
+<span class="cp">#define ADD(a, b) a + b
+</span><span class="c1">// 定义了一个普通宏，该宏包含另一个宏</span>
+<span class="cp">#define IDENTIFIER_MACRO_M1 NUMBER_MACRO_
+</span><span class="c1">// 定义了一个普通宏，该宏包含另一个宏</span>
+<span class="cp">#define IDENTIFIER_MACRO_M2 M1
+</span><span class="c1">// 定义了一个普通宏</span>
+<span class="cp">#define IDENTIFIER_MACRO_M1IDENTIFIER_MACRO_M2 -1
+</span><span class="c1">// 定义了一个普通宏</span>
+<span class="cp">#define NUMBER_MACRO_ 8
+</span><span class="c1">// 定义了一个普通宏</span>
+<span class="cp">#define M1 7
+</span><span class="c1">// 定义了一个比较参数宏，参数进行宏展开</span>
+<span class="cp">#define _MAX(x, y) (((x) &gt; (y)) ? (x) : (y))
+</span><span class="c1">// 定义了一个普通宏，该宏包含另一个宏</span>
+<span class="cp">#define MAX1 _MAX(1,
+</span><span class="c1">// 定义了一个普通宏，该宏包含另一个宏</span>
+<span class="cp">#define MAX2 _MAX(2,0))
+</span><span class="c1">// 定义了一个普通宏，该宏包含另一个宏</span>
+<span class="cp">#define MAX21 _MAX(2,0)
+</span><span class="c1">// 定义了一个普通宏，该宏包含另一个宏</span>
+<span class="cp">#define RIGHT _MAX(1,_MAX(2,0))
+</span><span class="c1">// 定义了一个普通宏，该宏包含另一个宏</span>
+<span class="cp">#define WRONG MAX1 MAX2
+</span><span class="c1">// 定义了一个普通宏，该宏包含另一个宏</span>
+<span class="cp">#define WRONG2 MAX1 MAX21)
+</span><span class="c1">// 定义了一个普通宏，该宏包含另一个宏，参数不进行宏展开</span>
+<span class="cp">#define CON_MACRO NUMBER_MACRO_ ## M1
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="cm">/**
+     * 以下为展开演变:
+     * $ 20 + 25
+     * 
+     * 输出为:
+     * 45
+     */</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ADD</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">25</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="cm">/**
+     * 以下为展开演变:
+     * $ (NUMBER_MACRO_ ## M1)
+     * $ NUMBER_MACRO_M1
+     * $ 66
+     * 
+     * 输出为:
+     * 66
+     */</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">CON_MACRO</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="cm">/**
+     * 以下为展开演变:
+     * $ #(ADD(20,25))
+     * $ "ADD(20,25)"
+     * 
+     * 输出为:
+     * ADD(20,25)
+     */</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">STRINGIZE</span><span class="p">(</span><span class="n">ADD</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">25</span><span class="p">))</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="cm">/**
+     * 以下为展开演变:
+     * $ STRINGIZE(ADD(20,25))
+     * $ STRINGIZE(20 + 25)
+     *  $ #(20 + 25)
+     *  $ "20 + 25"
+     * 
+     * 输出为:
+     * 20 + 25
+     */</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">STRINGIZE_VALUE_OF</span><span class="p">(</span><span class="n">ADD</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">25</span><span class="p">))</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="cm">/**
+     * 以下为展开演变:
+     * $ CONT(NUMBER_MACRO_, M1) + 25
+     *  $ (NUMBER_MACRO_ ## M1) + 25
+     *  $ NUMBER_MACRO_M1 + 25
+     *  $ 66 + 25
+     * 
+     * 输出为:
+     * 91
+     */</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ADD</span><span class="p">(</span><span class="n">CONT</span><span class="p">(</span><span class="n">NUMBER_MACRO_</span><span class="p">,</span> <span class="n">M1</span><span class="p">),</span> <span class="mi">25</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="cm">/**
+     * 以下为展开演变:
+     * $ CONT_VALUE_OF(NUMBER_MACRO_, M1) + 25
+     *  $ CONT(NUMBER_MACRO_,M1) + 25
+     *  $ CONT(8,7) + 25
+     *      $ (8 ## 7) + 25
+     *      $ 87 + 25
+     * 
+     * 输出为:
+     * 112
+     */</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ADD</span><span class="p">(</span><span class="n">CONT_VALUE_OF</span><span class="p">(</span><span class="n">NUMBER_MACRO_</span><span class="p">,</span> <span class="n">M1</span><span class="p">),</span> <span class="mi">25</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="cm">/**
+     * 以下为展开演变:
+     * $ CONT(IDENTIFIER_MACRO_M1, IDENTIFIER_MACRO_M2) + 25
+     *  $ (IDENTIFIER_MACRO_M1 ## IDENTIFIER_MACRO_M2) + 25
+     *  $ IDENTIFIER_MACRO_M1IDENTIFIER_MACRO_M2 + 25
+     *  $ -1 + 25
+     * 
+     * 输出为:
+     * 24
+     */</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ADD</span><span class="p">(</span><span class="n">CONT</span><span class="p">(</span><span class="n">IDENTIFIER_MACRO_M1</span><span class="p">,</span> <span class="n">IDENTIFIER_MACRO_M2</span><span class="p">),</span> <span class="mi">25</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="cm">/**
+     * 以下为展开演变:
+     * $ CONT_VALUE_OF(IDENTIFIER_MACRO_M1, IDENTIFIER_MACRO_M2) + 25
+     *  $ CONT(IDENTIFIER_MACRO_M1,IDENTIFIER_MACRO_M2) + 25
+     *  $ CONT(NUMBER_MACRO_,M1) + 25
+     *      $ (NUMBER_MACRO_ ## M1) + 25
+     *      $ NUMBER_MACRO_M1 + 25
+     *      $ 66 + 25
+     * 
+     * 输出为:
+     * 112
+     */</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ADD</span><span class="p">(</span><span class="n">CONT_VALUE_OF</span><span class="p">(</span><span class="n">IDENTIFIER_MACRO_M1</span><span class="p">,</span> <span class="n">IDENTIFIER_MACRO_M2</span><span class="p">),</span> <span class="mi">25</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="cm">/**
+     * 以下为展开演变:
+     * $ #(CONT(NUMBER_MACRO_, M1))
+     * $ "CONT(NUMBER_MACRO_, M1)"
+     * 
+     * 输出为:
+     * CONT(NUMBER_MACRO_, M1)
+     */</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">STRINGIZE</span><span class="p">(</span><span class="n">CONT</span><span class="p">(</span><span class="n">NUMBER_MACRO_</span><span class="p">,</span> <span class="n">M1</span><span class="p">))</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="cm">/**
+     * 以下为展开演变:
+     * $ #(CONT_VALUE_OF(NUMBER_MACRO_, M1))
+     * $ "CONT_VALUE_OF(NUMBER_MACRO_, M1)"
+     * 
+     * 输出为:
+     * CONT_VALUE_OF(NUMBER_MACRO_, M1)
+     */</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">STRINGIZE</span><span class="p">(</span><span class="n">CONT_VALUE_OF</span><span class="p">(</span><span class="n">NUMBER_MACRO_</span><span class="p">,</span> <span class="n">M1</span><span class="p">))</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="cm">/**
+     * 以下为展开演变:
+     * $ #(CONT(IDENTIFIER_MACRO_M1, IDENTIFIER_MACRO_M2))
+     * $ "CONT(IDENTIFIER_MACRO_M1, IDENTIFIER_MACRO_M2)"
+     * 
+     * 输出为:
+     * CONT(IDENTIFIER_MACRO_M1, IDENTIFIER_MACRO_M2)
+     */</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">STRINGIZE</span><span class="p">(</span><span class="n">CONT</span><span class="p">(</span><span class="n">IDENTIFIER_MACRO_M1</span><span class="p">,</span> <span class="n">IDENTIFIER_MACRO_M2</span><span class="p">))</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="cm">/**
+     * 以下为展开演变:
+     * $ #(CONT_VALUE_OF(IDENTIFIER_MACRO_M1, IDENTIFIER_MACRO_M2))
+     * $ "CONT_VALUE_OF(IDENTIFIER_MACRO_M1, IDENTIFIER_MACRO_M2)"
+     * 
+     * 输出为:
+     * CONT_VALUE_OF(IDENTIFIER_MACRO_M1, IDENTIFIER_MACRO_M2)
+     */</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">STRINGIZE</span><span class="p">(</span><span class="n">CONT_VALUE_OF</span><span class="p">(</span><span class="n">IDENTIFIER_MACRO_M1</span><span class="p">,</span> <span class="n">IDENTIFIER_MACRO_M2</span><span class="p">))</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="cm">/**
+     * 以下为展开演变:
+     * $ STRINGIZE(CONT(NUMBER_MACRO_, M1))
+     *  $ STRINGIZE((NUMBER_MACRO_ ## M1))
+     *  $ STRINGIZE(NUMBER_MACRO_M1)
+     *  $ STRINGIZE(66)
+     * $ #(66)
+     * $ "66"
+     * 
+     * 输出为:
+     * 66
+     */</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">STRINGIZE_VALUE_OF</span><span class="p">(</span><span class="n">CONT</span><span class="p">(</span><span class="n">NUMBER_MACRO_</span><span class="p">,</span> <span class="n">M1</span><span class="p">))</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="cm">/**
+     * 以下为展开演变:
+     * $ STRINGIZE(CONT_VALUE_OF(NUMBER_MACRO_, M1))
+     *  $ STRINGIZE(CONT(NUMBER_MACRO_, M1))
+     *  $ STRINGIZE(CONT(8, 7))
+     *  $ STRINGIZE((8 ## 7))
+     *  $ STRINGIZE(87)
+     * $ #(87)
+     * $ "87"
+     * 
+     * 输出为:
+     * 87
+     */</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">STRINGIZE_VALUE_OF</span><span class="p">(</span><span class="n">CONT_VALUE_OF</span><span class="p">(</span><span class="n">NUMBER_MACRO_</span><span class="p">,</span> <span class="n">M1</span><span class="p">))</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="cm">/**
+     * 以下为展开演变:
+     * $ STRINGIZE(CONT(IDENTIFIER_MACRO_M1, IDENTIFIER_MACRO_M2))
+     *  $ STRINGIZE((IDENTIFIER_MACRO_M1 ## IDENTIFIER_MACRO_M2))
+     *  $ STRINGIZE(IDENTIFIER_MACRO_M1IDENTIFIER_MACRO_M2)
+     *  $ STRINGIZE(-1)
+     * $ #(-1)
+     * $ "-1"
+     * 
+     * 输出为:
+     * -1
+     */</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">STRINGIZE_VALUE_OF</span><span class="p">(</span><span class="n">CONT</span><span class="p">(</span><span class="n">IDENTIFIER_MACRO_M1</span><span class="p">,</span> <span class="n">IDENTIFIER_MACRO_M2</span><span class="p">))</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="cm">/**
+     * 以下为展开演变:
+     * $ STRINGIZE(CONT_VALUE_OF(IDENTIFIER_MACRO_M1, IDENTIFIER_MACRO_M2))
+     *  $ STRINGIZE(CONT(IDENTIFIER_MACRO_M1, IDENTIFIER_MACRO_M2))
+     *  $ STRINGIZE(CONT(NUMBER_MACRO_, M1))
+     *  $ STRINGIZE(CONT(8, 7))
+     *  $ STRINGIZE((8 ## 7))
+     *  $ STRINGIZE(87)
+     * $ #(87)
+     * $ "87"
+     * 
+     * 输出为:
+     * 87
+     */</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">STRINGIZE_VALUE_OF</span><span class="p">(</span><span class="n">CONT_VALUE_OF</span><span class="p">(</span><span class="n">IDENTIFIER_MACRO_M1</span><span class="p">,</span> <span class="n">IDENTIFIER_MACRO_M2</span><span class="p">))</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="cm">/**
+     * 以下为展开演变:
+     * $ ADD(20,25) + ADD(15,10)
+     * $ 20 + 25 + ADD(15,10)
+     * $ 20 + 25 + 15 + 10
+     * 
+     * 输出为:
+     * 70
+     */</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ADD</span><span class="p">(</span><span class="n">ADD</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">25</span><span class="p">),</span><span class="n">ADD</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="cm">/**
+     * 以下为展开演变:
+     * $ _MAX(1,_MAX(2,0))
+     * $ (((1) &gt; (_MAX(2,0))) ? (1) : (_MAX(2,0)))
+     *  $ (((1) &gt; ((((2) &gt; (0)) ? (2) : (0)))) ? (1) : (_MAX(2,0)))
+     *  $ (((1) &gt; ((((2) &gt; (0)) ? (2) : (0)))) ? (1) : ((((2) &gt; (0)) ? (2) : (0))))
+     * 
+     * 输出为:
+     * 2
+     */</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">RIGHT</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="cm">/**
+     * 以下为展开演变:
+     * $ MAX1 MAX21)
+     * $ _MAX(1, MAX21)
+     *  $ (((1) &gt; (MAX21)) ? (1) : (MAX21))
+     *  $ (((1) &gt; (_MAX(2,0))) ? (1) : (_MAX(2,0)))
+     *      $ (((1) &gt; ((((2) &gt; (0)) ? (2) : (0)))) ? (1) : (_MAX(2,0)))
+     *      $ (((1) &gt; ((((2) &gt; (0)) ? (2) : (0)))) ? (1) : ((((2) &gt; (0)) ? (2) : (0))))
+     * 
+     * 输出为:
+     * 2
+     */</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">WRONG2</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="cm">/**
+     * 以下为展开演变:
+     * $ MAX1 MAX2
+     * $ _MAX(1, MAX2
+     * $ error occurred!
+     * 
+     * 编译错误：因为按照展开顺序原则，MAX1先被展开，展开后为_MAX参数宏，当想展开_MAX参数宏时因为格式不正确导致出错。
+     */</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">WRONG</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <blockquote> <p>根据宏展开流程可以看出，预处理器进行宏展开的操作只有当某词法元素串当前为宏时才进行展开，而对于要靠另一些宏展开后才会变成宏的词法元素串来说，预处理器并不会自动识别。需要利用宏展开流程特性，让该词法元素串变成宏后再次进行宏展开：</p> </blockquote> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 用于使x进行一次宏展开</span>
+<span class="cp">#define EXPAND_1(x) x
+</span><span class="c1">// 空宏</span>
+<span class="cp">#define M_EMPTY
+</span><span class="c1">// 括号宏</span>
+<span class="cp">#define M_PARANTHESIS() ()
+</span><span class="c1">// 包装了括号宏的宏，需要宏展开2次才会变为()</span>
+<span class="cp">#define M_WRAP_PARANTHESIS M_PARANTHESIS M_EMPTY ()
+</span><span class="c1">// 定义int_var变量</span>
+<span class="cp">#define DEF_INT_VAR() int int_var = 34;
+#define M_WRAP_DEF_INT_VAR() DEF_INT_VAR M_EMPTY ()
+#define M_WRAP2_DEF_INT_VAR M_WRAP_DEF_INT_VAR M_EMPTY ()
+</span>
+<span class="cm">/**
+ * 以下为展开演变:
+ * $ DEF_INT_VAR ()
+ */</span>
+<span class="n">DEF_INT_VAR</span> <span class="n">M_EMPTY</span> <span class="p">()</span>
+<span class="cm">/**
+ * 以下为展开演变:
+ * $ DEF_INT_VAR M_EMPTY ()
+ * $ DEF_INT_VAR ()
+ *  $ int int_var = 34;
+ */</span>
+<span class="n">EXPAND_1</span><span class="p">(</span><span class="n">DEF_INT_VAR</span> <span class="n">M_EMPTY</span> <span class="p">())</span>
+<span class="cm">/**
+ * 以下为展开演变:
+ * $ DEF_INT_VAR M_EMPTY M_WRAP_PARANTHESIS
+ * $ DEF_INT_VAR M_WRAP_PARANTHESIS
+ * $ DEF_INT_VAR M_PARANTHESIS M_EMPTY ()
+ * $ DEF_INT_VAR M_PARANTHESIS ()
+ *  $ DEF_INT_VAR ()
+ */</span>
+<span class="n">EXPAND_1</span><span class="p">(</span><span class="n">DEF_INT_VAR</span> <span class="n">M_EMPTY</span> <span class="n">M_WRAP_PARANTHESIS</span><span class="p">)</span>
+<span class="cm">/**
+ * 以下为展开演变:
+ * $ EXPAND_1(DEF_INT_VAR M_EMPTY M_WRAP_PARANTHESIS)
+ * $ DEF_INT_VAR M_EMPTY M_WRAP_PARANTHESIS
+ * $ DEF_INT_VAR M_WRAP_PARANTHESIS
+ * $ DEF_INT_VAR M_PARANTHESIS M_EMPTY ()
+ * $ DEF_INT_VAR M_PARANTHESIS ()
+ *  $ DEF_INT_VAR ()
+ *   $ int int_var = 34;
+ */</span>
+<span class="n">EXPAND_1</span><span class="p">(</span><span class="n">EXPAND_1</span><span class="p">(</span><span class="n">DEF_INT_VAR</span> <span class="n">M_EMPTY</span> <span class="n">M_WRAP_PARANTHESIS</span><span class="p">))</span>
+
+<span class="c1">// 最终展开为</span>
+<span class="c1">// DEF_INT_VAR ()</span>
+<span class="n">M_WRAP_DEF_INT_VAR</span><span class="p">()</span>
+<span class="c1">// 最终展开为</span>
+<span class="c1">// int int_var = 34;</span>
+<span class="n">EXPAND_1</span><span class="p">(</span><span class="n">M_WRAP_DEF_INT_VAR</span><span class="p">())</span>
+<span class="c1">// 最终展开为</span>
+<span class="c1">// M_WRAP_DEF_INT_VAR ()</span>
+<span class="n">M_WRAP2_DEF_INT_VAR</span>
+<span class="c1">// 最终展开为</span>
+<span class="c1">// DEF_INT_VAR ()</span>
+<span class="n">EXPAND_1</span><span class="p">(</span><span class="n">M_WRAP2_DEF_INT_VAR</span><span class="p">)</span>
+<span class="c1">// 最终展开为</span>
+<span class="c1">// int int_var = 34;</span>
+<span class="n">EXPAND_1</span><span class="p">(</span><span class="n">EXPAND_1</span><span class="p">(</span><span class="n">M_WRAP2_DEF_INT_VAR</span><span class="p">))</span>
+</code></pre></div></div> <h6 id="12314-可变参数宏的使用"> <a href="#12314-可变参数宏的使用" class="anchor-heading" aria-labelledby="12314-可变参数宏的使用"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1.2314 可变参数宏的使用 </h6> <p>当调用一个含有省略符形参的宏时，也就是调用了一个可变参数宏，当调用可变参数宏时，实参的数目必须要大于等于减去了省略符形参的形参数目。多余的实参都传递给了省略符形参。</p> <p>有一个系统定义的宏，名为<code class="language-plaintext highlighter-rouge">__VA_ARGS__</code>。这个宏只能用于含有省略符形参的宏定义的词法元素串中(用于其他类型的宏和其他位置时会出错)。 使用该宏的位置会被替换成传给省略符形参的所有实参标识符(包括这些实参之间的逗号)，所以可以用该宏来定义可变参数宏。</p> <blockquote> <p>有一些编译器会规定必须至少将一个参数传递给省略符形参，以确保宏不会解析为带有尾随逗号的表达式。如果没有参数传递给省略号，该编译则会出错。</p> </blockquote> <blockquote> <p>有一些编译器提供了一个扩展(如gcc编译器提供编译参数<code class="language-plaintext highlighter-rouge">std=gnucxxx</code>)，允许<code class="language-plaintext highlighter-rouge">##</code>出现在逗号之后和<code class="language-plaintext highlighter-rouge">__VA_ARGS__</code>之前。在这种情况下，<code class="language-plaintext highlighter-rouge">##</code>在变量参数存在时不执行任何操作，但在变量参数不存在时删除逗号：这使得定义像<code class="language-plaintext highlighter-rouge">fprintf (stderr， format， ##__VA_ARGS__)</code>等宏成为可能。但这也可以使用宏<code class="language-plaintext highlighter-rouge">__VA_OPT__</code>以c++标准方式实现(c++20以后)。</p> </blockquote> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// variadic_macros.cpp</span>
+<span class="cp">#include &lt;stdio.h&gt;
+#define EMPTY
+#define CHECK1(x, ...) if (!(x)) { printf(__VA_ARGS__); }
+#define CHECK2(x, ...) if ((x)) { printf(__VA_ARGS__); }
+#define CHECK3(...) { printf(__VA_ARGS__); }
+#define MACRO(s, ...) printf(s, __VA_ARGS__)
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> 
+<span class="p">{</span>
+    <span class="c1">// 输出here are some varargs1(1)</span>
+    <span class="n">CHECK1</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">"here %s %s %s"</span><span class="p">,</span> <span class="s">"are"</span><span class="p">,</span> <span class="s">"some"</span><span class="p">,</span> <span class="s">"varargs1(1)</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="n">CHECK1</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">"here %s %s %s"</span><span class="p">,</span> <span class="s">"are"</span><span class="p">,</span> <span class="s">"some"</span><span class="p">,</span> <span class="s">"varargs1(2)</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>   <span class="c1">// won't print</span>
+
+    <span class="n">CHECK2</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">"here %s %s %s"</span><span class="p">,</span> <span class="s">"are"</span><span class="p">,</span> <span class="s">"some"</span><span class="p">,</span> <span class="s">"varargs2(3)</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>   <span class="c1">// won't print</span>
+    <span class="c1">// 输出here are some varargs2(4)</span>
+    <span class="n">CHECK2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">"here %s %s %s"</span><span class="p">,</span> <span class="s">"are"</span><span class="p">,</span> <span class="s">"some"</span><span class="p">,</span> <span class="s">"varargs2(4)</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+
+    <span class="c1">// always invokes printf in the macro</span>
+    <span class="c1">// 输出here are some varargs3(5)</span>
+    <span class="n">CHECK3</span><span class="p">(</span><span class="s">"here %s %s %s"</span><span class="p">,</span> <span class="s">"are"</span><span class="p">,</span> <span class="s">"some"</span><span class="p">,</span> <span class="s">"varargs3(5)</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+
+    <span class="c1">// 输出hello, world</span>
+    <span class="n">MACRO</span><span class="p">(</span><span class="s">"hello, world</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+
+    <span class="c1">// 错误：输出error</span>
+    <span class="n">MACRO</span><span class="p">(</span><span class="s">"error</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">EMPTY</span><span class="p">);</span> <span class="c1">// would cause error C2059, except VC++</span>
+                             <span class="c1">// suppresses the trailing comma</span>
+<span class="p">}</span>
+</code></pre></div></div> <h6 id="12315-undef指令"> <a href="#12315-undef指令" class="anchor-heading" aria-labelledby="12315-undef指令"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1.2315 <code class="language-plaintext highlighter-rouge">#undef</code>指令 </h6> <p><code class="language-plaintext highlighter-rouge">#undef</code>指令移除(也就是取消定义)本文件内在该指令之前存在的，宏名为给定标识符的所有宏。 使用形式为：</p> <blockquote> <p><code class="language-plaintext highlighter-rouge">#undef 标识符</code></p> </blockquote> <p><code class="language-plaintext highlighter-rouge">#undef</code>指令只对是宏的标识符起作用，如果给定的标识符不是宏或者根本不存在该标识符的词法元素，那么该指令不起作用(也就是无影响)</p> <blockquote> <p>如果给定标识符的宏有多个，则移除对应的所有宏</p> </blockquote> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">ins</span> <span class="o">=</span> <span class="mi">66</span><span class="p">;</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ins</span><span class="p">;</span> <span class="c1">// 正确：ins为int的变量，输出66。</span>
+<span class="cp">#define ins
+</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ins</span><span class="p">;</span> <span class="c1">// 错误：ins已被删除，不存在名为ins的变量。</span>
+<span class="cp">#undef ins
+</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ins</span><span class="p">;</span> <span class="c1">// 正确：宏ins已被移除，所以ins又恢复为int的变量，输出66。</span>
+</code></pre></div></div> <h6 id="12316-宏相关的运算符"> <a href="#12316-宏相关的运算符" class="anchor-heading" aria-labelledby="12316-宏相关的运算符"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1.2316 宏相关的运算符 </h6> <p>对于宏，我们有两种运算符来处理其关联的词法元素串，使其满足我们的一些要求：</p> <ul> <li>字符串化运算符(Stringizing operator)</li> <li>词法元素粘贴运算符(Token-pasting operator)</li> </ul> <blockquote> <p>这两种运算符只用于宏定义，不能用于其他操作</p> </blockquote> <p><strong>字符串化运算符(#)</strong></p> <p>字符串化运算符只能用于带参数的宏。是将宏参数转换为字符串字面值的运算符。</p> <blockquote> <p>字符串化运算符只有一个运算对象，且该运算对象在其右侧，该运算对象只能是宏定义中词法元素串内的形参标识符</p> <p>字符串化运算符返回一个运算对象对应的实参标识符的字符串字面值版本</p> </blockquote> <p>字符串化运算符只作用于宏定义中词法元素串内的形参标识符，使用形式为：</p> <blockquote> <p>#形参标识符</p> </blockquote> <blockquote> <p>#和形参标识符之间不能有空白符</p> </blockquote> <p>字符串化运算符和普通参数宏调用过程差不多。 在宏调用过程时，对于非<code class="language-plaintext highlighter-rouge">#</code>开头的形参标识符，预处理器将该形参标识符替换成实参表里对应的标识符；对于<code class="language-plaintext highlighter-rouge">#</code>开头的形参标识符，预处理器会用对应实参标识符的字符串字面值版本来进行替换。最后再进行宏展开。</p> <blockquote> <p>如果需要字符串化的实参标识符所包含的字符在转化时需要转义序列(例如，引号<code class="language-plaintext highlighter-rouge">"</code>或反斜杠<code class="language-plaintext highlighter-rouge">\</code>字符)，则预处理器会自动插入必要的转义反斜杠。</p> </blockquote> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;stdio.h&gt;
+</span><span class="c1">// 定义输出功能的宏</span>
+<span class="cp">#define stringer(x) printf_s( #x "\n" )
+</span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// 等价于printf_s( "In quotes in the printf function call" "\n" );</span>
+    <span class="c1">// 输出为In quotes in the printf function call</span>
+    <span class="n">stringer</span><span class="p">(</span> <span class="n">In</span> <span class="n">quotes</span> <span class="n">in</span> <span class="n">the</span> <span class="n">printf</span> <span class="n">function</span> <span class="n">call</span> <span class="p">);</span>
+    <span class="c1">// 等价于printf_s( "\"In quotes when printed to the screen\"" "\n" );</span>
+    <span class="c1">// 输出为"In quotes when printed to the screen"</span>
+    <span class="n">stringer</span><span class="p">(</span><span class="s">"In quotes when printed to the screen"</span><span class="p">);</span>
+    <span class="c1">// 等价于printf_s( "\"This: \\\" prints an escaped double quote\"" "\n" );</span>
+    <span class="c1">// 输出为"This: \"  prints an escaped double quote"</span>
+    <span class="n">stringer</span><span class="p">(</span> <span class="s">"This: </span><span class="se">\"</span><span class="s"> prints an escaped double quote"</span> <span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <p><strong>词法元素粘贴运算符(##)</strong></p> <p>词法元素粘贴运算符，有时称为合并运算符或组合运算符。该运算符可用于两种形式的宏。</p> <p>词法元素粘贴运算符的作用就是连接两个词法元素，使其成为一个词法元素。</p> <blockquote> <p>词法元素粘贴运算符有两个运算对象，分别在在其左右侧，该运算对象可以是宏定义中词法元素串内的任何词法元素(包括形参标识符)</p> <p>词法元素粘贴运算符返回一个其两个运算对象合并后的词法元素。该词法元素的前缀为运算符左侧运算对象，后缀为运算符右侧运算对象。</p> </blockquote> <p>词法元素粘贴运算符的使用形式为：</p> <blockquote> <p><code class="language-plaintext highlighter-rouge">词法元素1 ## 词法元素2</code></p> </blockquote> <p>词法元素粘贴运算符与其运算对象之间可以有多个空白符</p> <p>当词法元素粘贴运算符的某运算对象为形参标识符时，宏调用时和其他参数宏调用类似，不同之处就是把对应实参标识符和另一个运算对象组合成了一个新的词法元素。</p> <p>合并后的词法元素如果不满足成为标识符的条件，则不能作为标识符使用(可以作为字符串字面值使用)。</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 定义了DEF_INT宏\</span>
+<span class="err">等价于</span><span class="kt">int</span> <span class="n">int_num</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span>
+<span class="cp">#define DEF_INT int int ## _num = 15;
+</span><span class="n">DEF_INT</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">_num</span><span class="p">;</span> <span class="c1">// 错误：未定义_num</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">int_num</span><span class="p">;</span> <span class="c1">// 正确：输出15</span>
+<span class="c1">// 错误定义，因为int?不是标识符，不能用于定义变量</span>
+<span class="cp">#define DEF_INT int int? ## _num = 15;
+</span></code></pre></div></div> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 等价于int No_id = id;</span>
+<span class="cp">#define DEF_INT(id) int No_ ## id = id;
+</span><span class="n">DEF_INT</span><span class="p">(</span><span class="mi">26</span><span class="p">)</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">No_id</span><span class="p">;</span> <span class="c1">// 错误：未定义No_id\</span>
+<span class="n">id</span><span class="err">是形参名，要写成具体的实参名，比如</span><span class="n">No_26</span><span class="err">。</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">No_26</span><span class="p">;</span> <span class="c1">// 正确：输出26</span>
+</code></pre></div></div> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 换句话说，扩展hash_hash会产生一个新的符号，由两个相邻的#符号组成，但此新词法元素不是##运算符。</span>
+<span class="cp">#define hash_hash # ## #
+#define mkstr(a) # a
+#define in_between(a) mkstr(a)
+#define join(c, d) in_between(c hash_hash d)
+</span><span class="c1">// 等价于</span>
+<span class="c1">// char p[] = "x ## y";</span>
+<span class="cm">/*
+宏展开的演变为:
+join(x, y)
+in_between(x hash_hash y)
+in_between(x ## y)
+mkstr(x ## y)
+"x ## y"
+*/</span>
+<span class="kt">char</span> <span class="n">p</span><span class="p">[]</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
+</code></pre></div></div> <h5 id="1232-条件编译"> <a href="#1232-条件编译" class="anchor-heading" aria-labelledby="1232-条件编译"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1.232 条件编译 </h5> <p>条件编译类的预处理指令是用来控制源文件部分的编译。 条件编译类的预处理指令有六个，分别为：</p> <ul> <li><code class="language-plaintext highlighter-rouge">#if</code></li> <li><code class="language-plaintext highlighter-rouge">#elif</code></li> <li><code class="language-plaintext highlighter-rouge">#else</code></li> <li><code class="language-plaintext highlighter-rouge">#endif</code></li> <li><code class="language-plaintext highlighter-rouge">#ifdef</code></li> <li><code class="language-plaintext highlighter-rouge">#ifndef</code></li> </ul> <p>这几个指令的作用和条件控制语句类似，用法也是类似</p> <h6 id="if-elif-else-endif的介绍"> <a href="#if-elif-else-endif的介绍" class="anchor-heading" aria-labelledby="if-elif-else-endif的介绍"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> <code class="language-plaintext highlighter-rouge">#if #elif #else #endif</code>的介绍 </h6> <p>和条件控制语句类似，<code class="language-plaintext highlighter-rouge">#if</code>和<code class="language-plaintext highlighter-rouge">#elif</code>后面也是跟着判断条件的。</p> <p>和条件控制语句不一样的是这两个指令的条件判断不需要括号，且判断条件必须为常量表达式。 而且除此之外，这两个指令还有一种条件判断形式。 使用形式为：</p> <blockquote> <p><code class="language-plaintext highlighter-rouge">#if</code> 常量表达式/defined (宏名)/宏名 各种代码 (可选 <code class="language-plaintext highlighter-rouge">#elif</code> 常量表达式/defined (宏名)/宏名 各种代码) (可选 <code class="language-plaintext highlighter-rouge">#else</code> 常量表达式/defined (宏名)/宏名 各种代码) <code class="language-plaintext highlighter-rouge">#endif</code></p> </blockquote> <blockquote> <p>第二种条件判断形式中，宏名必须为标识符。宏名可以加括号或者不加</p> </blockquote> <blockquote> <p>这两种判断条件都可以用宏，只要其宏满足对应的条件就行。</p> </blockquote> <p>和条件控制语句一样，一组匹配的条件编译指令，有且只有一个<code class="language-plaintext highlighter-rouge">#if</code>，在最前面；有且只有一个<code class="language-plaintext highlighter-rouge">#endif</code>，在最后面；中间可以有多个<code class="language-plaintext highlighter-rouge">#elif</code>；可以有一个<code class="language-plaintext highlighter-rouge">#else</code>，且必须是<code class="language-plaintext highlighter-rouge">#endif</code>的上一个指令。 如果存在不匹配的条件编译指令，则会出错。</p> <p>和条件控制语句一样，<code class="language-plaintext highlighter-rouge">#if</code>，<code class="language-plaintext highlighter-rouge">#ifdef</code>，<code class="language-plaintext highlighter-rouge">#ifndef</code>，<code class="language-plaintext highlighter-rouge">#elif</code>和<code class="language-plaintext highlighter-rouge">#else</code>指令的作用范围为从使用位置后到遇到的第一个与其匹配的其他条件编译指令为止。</p> <blockquote> <p>和条件控制语句一样，每个<code class="language-plaintext highlighter-rouge">#else</code>、<code class="language-plaintext highlighter-rouge">#elif</code>或<code class="language-plaintext highlighter-rouge">#endif</code>指令与上一个离其最近的<code class="language-plaintext highlighter-rouge">#if</code>或<code class="language-plaintext highlighter-rouge">#ifdef</code>或<code class="language-plaintext highlighter-rouge">#ifndef</code>指令匹配。</p> </blockquote> <blockquote> <p>和条件控制语句一样，条件编译指令可以嵌套，注意匹配规则就行</p> </blockquote> <p>第一种形式中，如果给定的常量表达式所转换的布尔值为false，则预处理器就会忽略掉对应指令作用范围内的所有代码；如果为true就会忽略与其匹配的其他条件编译指令作用范围内的所有代码。</p> <p>第二种形式中，如果对应指令之前存在给定的宏名的宏，那么就视为true，否则为false。之后的操作和第一种形式的一样。</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 一组匹配的条件编译指令，\</span>
+<span class="err">该条件编译指令表示只编译</span>\
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"elif 2</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>\
+<span class="err">最后程序输出</span><span class="n">elif</span> <span class="mi">2</span><span class="err">。</span>
+<span class="cp">#define DEF_ELIF3
+</span><span class="k">const</span> <span class="kt">int</span> <span class="n">elif1_val</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">elif2_val</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="cp">#if defined (DEF_IF)
+</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"if</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="cp">#elif elif1_val
+</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"elif 1</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="cp">#elif elif2_val
+</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"elif 2</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="cp">#elif defined DEF_ELIF3
+</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"elif 2</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="cp">#else
+</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"else</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="cp">#endif
+</span></code></pre></div></div> <h6 id="ifdef-ifndef-的介绍"> <a href="#ifdef-ifndef-的介绍" class="anchor-heading" aria-labelledby="ifdef-ifndef-的介绍"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> <code class="language-plaintext highlighter-rouge">#ifdef #ifndef</code> 的介绍 </h6> <p><code class="language-plaintext highlighter-rouge">#ifdef</code>和<code class="language-plaintext highlighter-rouge">#ifndef</code>的作用效果与</p> <blockquote> <p><code class="language-plaintext highlighter-rouge">#if defined (宏名)/宏名</code> <code class="language-plaintext highlighter-rouge">#if !defined (宏名)/宏名</code></p> </blockquote> <p>一样。</p> <p>使用形式为</p> <blockquote> <p><code class="language-plaintext highlighter-rouge">#ifdef 宏名</code> <code class="language-plaintext highlighter-rouge">#ifndef 宏名</code></p> </blockquote> <p>其他特性和属性和<code class="language-plaintext highlighter-rouge">#if</code>一样，可以参考上面<code class="language-plaintext highlighter-rouge">#if</code>的介绍。</p> <h5 id="1233-阻止编译"> <a href="#1233-阻止编译" class="anchor-heading" aria-labelledby="1233-阻止编译"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1.233 阻止编译 </h5> <p>阻止编译是指<code class="language-plaintext highlighter-rouge">#error</code>指令，该指令会在编译时发出用户指定的错误消息，然后终止编译。</p> <p>使用形式为：</p> <blockquote> <p><code class="language-plaintext highlighter-rouge">#error 词法元素串</code></p> </blockquote> <p><code class="language-plaintext highlighter-rouge">#error</code>指令发出的错误消息也就是使用时的所写的词法元素串。</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#if !defined(__cplusplus)
+#error C++ compiler required.
+#endif
+</span></code></pre></div></div> <h5 id="1234-文件包含指令"> <a href="#1234-文件包含指令" class="anchor-heading" aria-labelledby="1234-文件包含指令"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1.234 文件包含指令 </h5> <p>文件包含类预处理指令是将其他文件包含到所使用该指令的文件中。</p> <p>其中C标准中的包含指令为<code class="language-plaintext highlighter-rouge">#include</code>指令。 部分编译器(如<code class="language-plaintext highlighter-rouge">msvc</code>)增加了一些指令，增加的指令如下：</p> <ul> <li><code class="language-plaintext highlighter-rouge">#import</code>指令</li> <li><code class="language-plaintext highlighter-rouge">#using</code>指令</li> </ul> <h6 id="12341-include指令"> <a href="#12341-include指令" class="anchor-heading" aria-labelledby="12341-include指令"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1.2341 <code class="language-plaintext highlighter-rouge">#include</code>指令 </h6> <p><code class="language-plaintext highlighter-rouge">#include</code>指令是通知预处理器将指定文件的内容包含在指令出现的位置的指令。</p> <p>每次使用<code class="language-plaintext highlighter-rouge">#include</code>指令时，预处理器会自动展开包含文件的代码到该使用位置。</p> <p><code class="language-plaintext highlighter-rouge">#include</code>指令的使用形式有两种：</p> <blockquote> <p><code class="language-plaintext highlighter-rouge">#include "指定路径"</code> <code class="language-plaintext highlighter-rouge">#include &lt;指定路径&gt;</code></p> </blockquote> <p>指定路径可以是一个文件名，也可以是文件的相对或绝对路径。指定路径的语法取决于编译程序的操作系统。</p> <blockquote> <p>包含文件内可以包含宏和其他代码，但是要注意对象和类型重复定义的问题</p> </blockquote> <blockquote> <p>父文件是<code class="language-plaintext highlighter-rouge">#include</code>指令所给的文件。 <code class="language-plaintext highlighter-rouge">#include</code>指令可以嵌套，可以出现在由<code class="language-plaintext highlighter-rouge">#include</code>指令的包含文件内</p> </blockquote> <p><code class="language-plaintext highlighter-rouge">#include</code>指令两种使用形式的差别主要在于预处理器搜索文件路径的顺序。</p> <div class="table-wrapper"><table> <thead> <tr> <th>语法形式</th> <th>搜索操作</th> </tr> </thead> <tbody> <tr> <td>带引号的形式</td> <td>预处理器按以下顺序搜索包含文件：<br /><br /> 1. 指定的路径所在的目录中<br /><br /> 2. 当前文件之前的已展开的包含文件的目录中，以其打开的相反顺序排列搜索。从父包含文件的目录中开始进行，然后继续向上到任何祖父包含文件的目录。<br /><br /> 3. 沿着每个编译器选项中指定的路径<code class="language-plaintext highlighter-rouge">/I</code> 。<br /><br /> 4. 沿环境变量指定的路径。</td> </tr> <tr> <td>尖括号的形式</td> <td>预处理器按以下顺序搜索包含文件: <br /><br /> 1. 沿着每个编译器选项中指定的路径<code class="language-plaintext highlighter-rouge">/I</code> 。<br /><br /> 2. 沿环境变量指定的路径。</td> </tr> </tbody> </table></div> <p>只要找到具有给定名称的文件，预处理器就会停止搜索。如果指定路径是以双引号(““)括起来的绝对路径，则预处理器只搜索该指定路径并忽略搜索规则。</p> <blockquote> <p><code class="language-plaintext highlighter-rouge">#include</code>通常使用头文件保护宏或<code class="language-plaintext highlighter-rouge">#pragma once</code>来防止头文件双重包含。</p> </blockquote> <h6 id="12342-import指令编译器扩展-msvc"> <a href="#12342-import指令编译器扩展-msvc" class="anchor-heading" aria-labelledby="12342-import指令编译器扩展-msvc"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1.2342 <code class="language-plaintext highlighter-rouge">#import</code>指令(编译器扩展 msvc) </h6> <p><code class="language-plaintext highlighter-rouge">#import</code>指令是c++特有的指令，是用于合并类型库的信息，该类型库的内容将会被转换成c++类，大多数用于描述COM的接口。</p> <p>使用形式也是两种：</p> <blockquote> <p><code class="language-plaintext highlighter-rouge">#import "文件名" [文件属性]</code> <code class="language-plaintext highlighter-rouge">#import &lt;文件名&gt; [文件属性]</code></p> </blockquote> <p>文件名可以是以下类型之一：</p> <ul> <li>包含该类型库的文件的名称，如.olb、.tlb或.dll文件。 每个文件名之前可以使用关键字<code class="language-plaintext highlighter-rouge">file:</code></li> <li>类型库中控件的progid。在64位操作系统上使用32位交叉编译器时，编译器只能读取32位注册表配置单元。您可能需要使用本机64位编译器才能生成和注册64位类型库。 每个控件的progid之前可以使用关键字<code class="language-plaintext highlighter-rouge">progid:</code></li> <li>类型库的库ID。如果未指定<code class="language-plaintext highlighter-rouge">version</code>或<code class="language-plaintext highlighter-rouge">lcid</code>，则应用于的规则<code class="language-plaintext highlighter-rouge">progid:</code>也应用于<code class="language-plaintext highlighter-rouge">libid:</code>。 每个库ID之前可以使用关键字<code class="language-plaintext highlighter-rouge">libid:</code></li> <li>可执行 (.exe) 文件。</li> <li>库(.dll)文件包含类型库资源(如.ocx)</li> <li>包含类型库的复合文档。</li> <li>可由 LoadTypeLib API 理解的任何其他文件格式。</li> </ul> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#import "progid:my.prog.id.1.5"
+</span></code></pre></div></div> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#import "..\drawctl\drawctl.tlb" no_namespace raw_interfaces_only
+</span></code></pre></div></div> <p>文件属性可以是一个或多个#import特性，用空格或逗号分隔每个特性。</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#import "..\drawctl\drawctl.tlb" no_namespace, raw_interfaces_only
+#import "..\drawctl\drawctl.tlb" no_namespace raw_interfaces_only
+</span></code></pre></div></div> <h6 id="12343-using指令编译器扩展-msvc"> <a href="#12343-using指令编译器扩展-msvc" class="anchor-heading" aria-labelledby="12343-using指令编译器扩展-msvc"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1.2343 <code class="language-plaintext highlighter-rouge">#using</code>指令(编译器扩展 msvc) </h6> <p><code class="language-plaintext highlighter-rouge">#using</code>指令是将元数据导入使用公共语言运行编译的程序中。</p> <p>使用形式：</p> <blockquote> <p><code class="language-plaintext highlighter-rouge">#using 文件 [as_friend]</code></p> </blockquote> <p>文件要是<code class="language-plaintext highlighter-rouge">.dll</code>、<code class="language-plaintext highlighter-rouge">.exe</code>、<code class="language-plaintext highlighter-rouge">.netmodule</code>或<code class="language-plaintext highlighter-rouge">.obj</code>后缀的文件。 <code class="language-plaintext highlighter-rouge">as_friend</code>是指定该文件中的所有类型为可访问的。</p> <h5 id="1235-调试操作"> <a href="#1235-调试操作" class="anchor-heading" aria-labelledby="1235-调试操作"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1.235 调试操作 </h5> <p>有一些系统预先定义的宏和某些预处理指令可以帮助我们进行一些调试工作。</p> <blockquote> <p>调试是在编译链接完成后的一种检查工作，是在程序运行时所进行的。</p> </blockquote> <p>一种基本调试思想是：程序可以包含一些用于调试的代码，但是这些代码只在开发程序时使用。当应用程序编写完成准备发布时，要先屏蔽掉调试代码。</p> <p>这种方法通常会用到以下这几种预处理宏和一个预处理指令：</p> <ul> <li><code class="language-plaintext highlighter-rouge">assert</code></li> <li><code class="language-plaintext highlighter-rouge">__func__</code></li> <li><code class="language-plaintext highlighter-rouge">__FILE__</code></li> <li><code class="language-plaintext highlighter-rouge">__LINE__</code></li> <li><code class="language-plaintext highlighter-rouge">__TIME__</code></li> <li><code class="language-plaintext highlighter-rouge">__DATE__</code></li> <li><code class="language-plaintext highlighter-rouge">#line</code></li> </ul> <h6 id="12351-assert宏"> <a href="#12351-assert宏" class="anchor-heading" aria-labelledby="12351-assert宏"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1.2351 <code class="language-plaintext highlighter-rouge">assert</code>宏 </h6> <p><code class="language-plaintext highlighter-rouge">assert</code>宏定义在<code class="language-plaintext highlighter-rouge">cassert</code>头文件中。 <code class="language-plaintext highlighter-rouge">assert</code>宏需要传递一个表达式作为它的条件，使用形式为:</p> <blockquote> <p><code class="language-plaintext highlighter-rouge">assert(表达式);</code></p> </blockquote> <p>如果表达式为假(即0)，<code class="language-plaintext highlighter-rouge">assert</code>输出信息并终止程序的执行。如果表达式为真(即非0)，<code class="language-plaintext highlighter-rouge">assert</code>什么也不做。</p> <p><code class="language-plaintext highlighter-rouge">assert</code>宏常用于检查“不能发生”的条件。例如，一个对输入文本进行操作的程序可能要求所有给定单词的长度都大于某个阈值。此时，程序可以包含一条如下所示的语句</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">assert</span><span class="p">(</span><span class="n">word</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">);</span>
+</code></pre></div></div> <p>默认状态下<code class="language-plaintext highlighter-rouge">assert</code>宏一直处于生效状态，但是我们可以进行设置来使<code class="language-plaintext highlighter-rouge">assert</code>宏不生效(也就是无论其表达式为什么，都不执行操作)。</p> <p><code class="language-plaintext highlighter-rouge">assert</code>的生效状态依赖于一个标识符为<code class="language-plaintext highlighter-rouge">NDEBUG</code>的宏的状态。如果在定义<code class="language-plaintext highlighter-rouge">assert</code>宏之前存在<code class="language-plaintext highlighter-rouge">NDEBUG</code>宏，则<code class="language-plaintext highlighter-rouge">assert</code>不生效，什么也不做。</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 错误操作，NDEBUG\</span>
+<span class="err">要在定义</span><span class="n">assert</span><span class="err">宏之前存在才行</span>
+<span class="cp">#include &lt;cassert&gt;
+#define NDEBUG
+</span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">assert</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">// 仍然终止程序的运行</span>
+</code></pre></div></div> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 正确操作，NDEBUG\</span>
+<span class="err">在定义</span><span class="n">assert</span><span class="err">宏之前已经存在</span>
+<span class="cp">#define NDEBUG
+#include &lt;cassert&gt;
+</span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">assert</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">// assert宏什么也不做</span>
+</code></pre></div></div> <h6 id="12352-输出错误信息的宏"> <a href="#12352-输出错误信息的宏" class="anchor-heading" aria-labelledby="12352-输出错误信息的宏"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1.2352 输出错误信息的宏 </h6> <p>有时我们希望在程序出错后能够输出一些有用的错误信息，方便我们去修改调试程序，所以我们需要一些宏来输出一些有用的错误信息，以下是一些用于输出有关错误信息的宏：</p> <ul> <li><code class="language-plaintext highlighter-rouge">__func__</code></li> <li><code class="language-plaintext highlighter-rouge">__FILE__</code></li> <li><code class="language-plaintext highlighter-rouge">__TIME__</code></li> <li><code class="language-plaintext highlighter-rouge">__DATE__</code></li> <li><code class="language-plaintext highlighter-rouge">__LINE__</code></li> </ul> <p><em><code class="language-plaintext highlighter-rouge">__func__</code>宏</em></p> <p><code class="language-plaintext highlighter-rouge">__func__</code>宏主要用于输出当前调用点所在的函数的名称标识符，预处理器为每个函数都定义了一个<code class="language-plaintext highlighter-rouge">__func__</code>宏，该宏的词法元素串为一个静态字符串字面值(static const char)。</p> <blockquote> <p>不能在函数外使用<code class="language-plaintext highlighter-rouge">__func__</code>，<code class="language-plaintext highlighter-rouge">__func__</code>输出的是离其调用点最里层的函数名。</p> </blockquote> <p><em><code class="language-plaintext highlighter-rouge">__FILE__</code>宏</em></p> <p><code class="language-plaintext highlighter-rouge">__FILE__</code>宏主要用于输出当前调用点所在的绝对路径文件名称(包含后缀)，该宏的词法元素串为一个静态字符串字面值(static const char)。</p> <p><em><code class="language-plaintext highlighter-rouge">__TIME__</code>宏</em></p> <p><code class="language-plaintext highlighter-rouge">__TIME__</code>宏主要用于输出当前调用点所在文件最后一次预处理完成的时间，该时间是hh:mm:ss格式。该宏的词法元素串为一个静态字符串字面值(static const char)。</p> <p><em><code class="language-plaintext highlighter-rouge">__DATE__</code>宏</em></p> <p><code class="language-plaintext highlighter-rouge">__DATE__</code>宏主要用于输出当前调用点所在文件最后一次编译完成的日期，该日期是<code class="language-plaintext highlighter-rouge">Mmm dd yyyy</code>格式。该宏的词法元素串为一个静态字符串字面值(static const char)。</p> <p><em><code class="language-plaintext highlighter-rouge">__LINE__</code>宏</em></p> <p><code class="language-plaintext highlighter-rouge">__LINE__</code>宏主要用于输出当前调用点所在的行号，该日期是<code class="language-plaintext highlighter-rouge">Mmm dd yyyy</code>格式。该宏的词法元素串为一个整数。</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="cm">/* 输出为
+the current function name is
+main
+the current filename is
+e:\test.cpp
+the current time of compiling is
+13:56:04
+May 18 2021
+the current line is
+13
+*/</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"the current function name is</span><span class="se">\n</span><span class="s">"</span> <span class="o">&lt;&lt;</span> <span class="n">__func__</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">the current filename is</span><span class="se">\n</span><span class="s">"</span> <span class="o">&lt;&lt;</span> <span class="n">__FILE__</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">the current time of compiling is</span><span class="se">\n</span><span class="s">"</span> <span class="o">&lt;&lt;</span> <span class="n">__TIME__</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span> <span class="o">&lt;&lt;</span> <span class="n">__DATE__</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">the current line is</span><span class="se">\n</span><span class="s">"</span> <span class="o">&lt;&lt;</span> <span class="n">__LINE__</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <h6 id="12353-line指令"> <a href="#12353-line指令" class="anchor-heading" aria-labelledby="12353-line指令"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1.2353 <code class="language-plaintext highlighter-rouge">#line</code>指令 </h6> <p><code class="language-plaintext highlighter-rouge">#line</code>指令是作用于__LINE__和__FILE__这两个宏的预处理指令，该指令能修改这两个宏所存的信息。</p> <p><code class="language-plaintext highlighter-rouge">#line</code>指令将其调用位置的下一行行号修改为指定的行号，之后的行号根据该修改的行号逐个增加。</p> <p><code class="language-plaintext highlighter-rouge">#line</code>指令将当前的文件名修改为指定的文件名。</p> <p><code class="language-plaintext highlighter-rouge">#line</code>指令的使用形式为：</p> <blockquote> <p><code class="language-plaintext highlighter-rouge">#line 行号 (可选 文件名)</code></p> </blockquote> <p>行号可以是任何整数字面值，也可以是宏，只要该宏展开后是整数字面值就行。</p> <p>文件名可以任意的字符串字面值，如果省略文件名，则前一个指定的文件名保持不变</p> <blockquote> <p><code class="language-plaintext highlighter-rouge">#line</code>指令可以多次使用，后使用的<code class="language-plaintext highlighter-rouge">#line</code>指令覆盖前面的<code class="language-plaintext highlighter-rouge">#line</code>指令。</p> </blockquote> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="cm">/* 输出为：
+the current filename is e:\test.cpp
+the current line is 11
+the current filename is e:\test.cpp
+the current line is 55
+the current filename is open.cpp
+the current line is 13
+the current filename is open.cpp
+the current line is 31
+*/</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">the current filename is "</span> <span class="o">&lt;&lt;</span> <span class="n">__FILE__</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">the current line is "</span> <span class="o">&lt;&lt;</span> <span class="n">__LINE__</span><span class="p">;</span>
+    <span class="cp">#line 50
+</span>    <span class="p">;</span>
+    <span class="p">;</span>
+    <span class="p">;</span>
+    <span class="p">;</span> 
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">the current filename is "</span> <span class="o">&lt;&lt;</span> <span class="n">__FILE__</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">the current line is "</span> <span class="o">&lt;&lt;</span> <span class="n">__LINE__</span><span class="p">;</span>
+    <span class="cp">#line 10 "open.cpp"
+</span>    <span class="p">;</span>
+    <span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">the current filename is "</span> <span class="o">&lt;&lt;</span> <span class="n">__FILE__</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">the current line is "</span> <span class="o">&lt;&lt;</span> <span class="n">__LINE__</span><span class="p">;</span>
+    <span class="cp">#line 30
+</span>    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">the current filename is "</span> <span class="o">&lt;&lt;</span> <span class="n">__FILE__</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">the current line is "</span> <span class="o">&lt;&lt;</span> <span class="n">__LINE__</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <h5 id="1236-杂注操作编译器扩展-msvc"> <a href="#1236-杂注操作编译器扩展-msvc" class="anchor-heading" aria-labelledby="1236-杂注操作编译器扩展-msvc"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1.236 杂注操作(编译器扩展 msvc) </h5> <p>杂注指令是用来指定计算机特定或操作系统特定的编译器功能的指令。 C和C++支持某些对其主机或操作系统的独特功能。例如，某些程序必须对内存中的数据位置进行精确控制，或控制某些函数接收参数的方式。杂注指令为每个编译器提供了一种提供计算机和操作系统特定功能的方法，同时保持与c和c++语言的总体兼容性。</p> <p>杂注指令一般有两种形式：</p> <blockquote> <p><code class="language-plaintext highlighter-rouge">#pragma 词法元素串</code> <code class="language-plaintext highlighter-rouge">_Pragma (字符串字面值)</code></p> </blockquote> <p>c++预处理器识别以下的<code class="language-plaintext highlighter-rouge">pragma</code>指令： <img src="/Cpp_Guide_detailed/assets/images/2021-05-18-14-51-55.png" alt="pragma_directive" /></p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 这些指令等价于在控制台上输入以下指令\</span>
+<span class="n">cl</span> <span class="o">/</span><span class="n">Zp8</span> <span class="n">some_file</span><span class="p">.</span><span class="n">cpp</span>
+<span class="c1">// some_file.cpp - packing is 8</span>
+<span class="c1">// ...</span>
+<span class="cp">#pragma pack(push, 1) - packing is now 1
+</span><span class="c1">// ...</span>
+<span class="cp">#pragma pack(pop) - packing is 8 again
+</span><span class="c1">// ...</span>
+</code></pre></div></div> </div> </div> </main> <hr> <footer> <!-- # Footer content # appears at the bottom of every page's main content --> <p class="text-small text-grey-dk-100 mb-0"> Copyright &copy; 2020-2024 bobokick. Distributed by an <a href="https://github.com/bobokick/Cpp_Guide_detailed/blob/master/LICENSE">Apache License 2.0.</a> </p> <div class="d-flex mt-2"> <p class="text-small text-grey-dk-000 mb-0"> <a href="https://github.com/bobokick/Cpp_Guide_detailed/tree/master/docs/my_collections/_guide_files/chap1/第1章_预处理指令.md" id="edit-this-page">Edit this page on GitHub.</a> </p> </div> </footer> </div> </div> <div class="search-overlay"></div> </div> <script src="https://cdn.jsdelivr.net/npm/mermaid@9.1.3/dist/mermaid.min.js"></script> <script> var config = {} ; mermaid.initialize(config); window.mermaid.init(undefined, document.querySelectorAll('.language-mermaid')); </script> </body> </html>

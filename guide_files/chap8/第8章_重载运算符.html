@@ -1,0 +1,646 @@
+<!DOCTYPE html> <html lang="en-US"> <head> <meta charset="UTF-8"> <meta http-equiv="X-UA-Compatible" content="IE=Edge"> <link rel="stylesheet" href="/Cpp_Guide_detailed/assets/css/just-the-docs-default.css"> <link rel="stylesheet" href="/Cpp_Guide_detailed/assets/css/just-the-docs-head-nav.css" id="jtd-head-nav-stylesheet"> <style id="jtd-nav-activation"> .site-nav > ul:nth-of-type(1) > li > ul > li > a, .site-nav > ul:nth-of-type(1) > li > ul > li > ul > li:not(:nth-child(1)) > a, .site-nav > ul:nth-of-type(1) > li > ul > li > ul > li > ul > li > a { background-image: none; } .site-nav > ul:not(:nth-of-type(1)) a, .site-nav li.external a { background-image: none; } .site-nav > ul:nth-of-type(1) > li > ul > li:nth-child(8) > ul > li:nth-child(1) > a { font-weight: 600; text-decoration: none; } .site-nav > ul.nav-category-list > li > button svg, .site-nav > ul:nth-of-type(1) > li > ul > li:nth-child(8) > button svg, .site-nav > ul:nth-of-type(1) > li > ul > li:nth-child(8) > ul > li:nth-child(1) > button svg { transform: rotate(-90deg); } .site-nav > ul.nav-category-list > li.nav-list-item > ul.nav-list, .site-nav > ul:nth-of-type(1) > li > ul > li.nav-list-item:nth-child(8) > ul.nav-list, .site-nav > ul:nth-of-type(1) > li > ul > li.nav-list-item:nth-child(8) > ul.nav-list > li.nav-list-item:nth-child(1) > ul.nav-list { display: block; } </style> <script src="/Cpp_Guide_detailed/assets/js/vendor/lunr.min.js"></script> <script src="/Cpp_Guide_detailed/assets/js/vendor/lunr.stemmer.support.min.js"></script> <script src="/Cpp_Guide_detailed/assets/js/vendor/lunr.zh.min.js"></script> <script src="/Cpp_Guide_detailed/assets/js/vendor/lunr.multi.min.js"></script> <script src="/Cpp_Guide_detailed/assets/js/just-the-docs.js"></script> <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Begin Jekyll SEO tag v2.8.0 --> <title>重载运算符概念详解 | C++语法教程</title> <meta name="generator" content="Jekyll v3.9.3" /> <meta property="og:title" content="重载运算符概念详解" /> <meta name="author" content="BBK" /> <meta property="og:locale" content="en_US" /> <meta name="description" content="之前在类的介绍中，我们简述了一下关于重载 运算符的一些知识，接下来我们会详细讲述重载运算符。" /> <meta property="og:description" content="之前在类的介绍中，我们简述了一下关于重载 运算符的一些知识，接下来我们会详细讲述重载运算符。" /> <link rel="canonical" href="https://bobokick.github.io/Cpp_Guide_detailed/guide_files/chap8/%E7%AC%AC8%E7%AB%A0_%E9%87%8D%E8%BD%BD%E8%BF%90%E7%AE%97%E7%AC%A6.html" /> <meta property="og:url" content="https://bobokick.github.io/Cpp_Guide_detailed/guide_files/chap8/%E7%AC%AC8%E7%AB%A0_%E9%87%8D%E8%BD%BD%E8%BF%90%E7%AE%97%E7%AC%A6.html" /> <meta property="og:site_name" content="C++语法教程" /> <meta property="og:type" content="article" /> <meta property="article:published_time" content="2025-02-11T03:16:47+00:00" /> <meta name="twitter:card" content="summary" /> <meta property="twitter:title" content="重载运算符概念详解" /> <script type="application/ld+json"> {"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"BBK"},"dateModified":"2025-02-11T03:16:47+00:00","datePublished":"2025-02-11T03:16:47+00:00","description":"之前在类的介绍中，我们简述了一下关于重载 运算符的一些知识，接下来我们会详细讲述重载运算符。","headline":"重载运算符概念详解","mainEntityOfPage":{"@type":"WebPage","@id":"https://bobokick.github.io/Cpp_Guide_detailed/guide_files/chap8/%E7%AC%AC8%E7%AB%A0_%E9%87%8D%E8%BD%BD%E8%BF%90%E7%AE%97%E7%AC%A6.html"},"url":"https://bobokick.github.io/Cpp_Guide_detailed/guide_files/chap8/%E7%AC%AC8%E7%AB%A0_%E9%87%8D%E8%BD%BD%E8%BF%90%E7%AE%97%E7%AC%A6.html"}</script> <!-- End Jekyll SEO tag --> </head> <body> <a class="skip-to-main" href="#main-content">Skip to main content</a> <svg xmlns="http://www.w3.org/2000/svg" class="d-none"> <symbol id="svg-link" viewBox="0 0 24 24"> <title>Link</title> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link"> <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path> </svg> </symbol> <symbol id="svg-menu" viewBox="0 0 24 24"> <title>Menu</title> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"> <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line> </svg> </symbol> <symbol id="svg-arrow-right" viewBox="0 0 24 24"> <title>Expand</title> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"> <polyline points="9 18 15 12 9 6"></polyline> </svg> </symbol> <!-- Feather. MIT License: https://github.com/feathericons/feather/blob/master/LICENSE --> <symbol id="svg-external-link" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"> <title id="svg-external-link-title">(external link)</title> <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line> </symbol> <symbol id="svg-doc" viewBox="0 0 24 24"> <title>Document</title> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file"> <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline> </svg> </symbol> <symbol id="svg-search" viewBox="0 0 24 24"> <title>Search</title> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"> <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line> </svg> </symbol> <!-- Bootstrap Icons. MIT License: https://github.com/twbs/icons/blob/main/LICENSE.md --> <symbol id="svg-copy" viewBox="0 0 16 16"> <title>Copy</title> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16"> <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/> <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/> </svg> </symbol> <symbol id="svg-copied" viewBox="0 0 16 16"> <title>Copied</title> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-check-fill" viewBox="0 0 16 16"> <path d="M6.5 0A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3Zm3 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3Z"/> <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1A2.5 2.5 0 0 1 9.5 5h-3A2.5 2.5 0 0 1 4 2.5v-1Zm6.854 7.354-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708.708Z"/> </svg> </symbol> </svg> <div class="side-bar"> <div class="site-header" role="banner"> <a href="/Cpp_Guide_detailed/" class="site-title lh-tight"> C++语法教程 </a> <button id="menu-button" class="site-button btn-reset" aria-label="Toggle menu" aria-pressed="false"> <svg viewBox="0 0 24 24" class="icon" aria-hidden="true"><use xlink:href="#svg-menu"></use></svg> </button> </div> <nav aria-label="Main" id="site-nav" class="site-nav"> <ul class="nav-list"><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 第一章 c++入门介绍 category" aria-pressed="false"> <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg> </button><a href="/Cpp_Guide_detailed/guide_files/chap1/index.html" class="nav-list-link">第一章 c++入门介绍</a><ul class="nav-list"><li class="nav-list-item"><a href="/Cpp_Guide_detailed/guide_files/chap1/%E7%AC%AC1%E7%AB%A0_%E9%A2%84%E5%A4%84%E7%90%86%E6%8C%87%E4%BB%A4.html" class="nav-list-link">预处理指令概念详解</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 第二章 基本类型与变量 category" aria-pressed="false"> <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg> </button><a href="/Cpp_Guide_detailed/guide_files/chap2/index.html" class="nav-list-link">第二章 基本类型与变量</a><ul class="nav-list"><li class="nav-list-item"><a href="/Cpp_Guide_detailed/guide_files/chap2/%E7%AC%AC2%E7%AB%A0_%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E4%B8%8E%E5%8F%98%E9%87%8F.html" class="nav-list-link">类型与变量</a></li><li class="nav-list-item"><a href="/Cpp_Guide_detailed/guide_files/chap2/%E7%AC%AC2%E7%AB%A0_%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E4%B8%8E%E5%8F%98%E9%87%8F2.html" class="nav-list-link">复合类型</a></li><li class="nav-list-item"><a href="/Cpp_Guide_detailed/guide_files/chap2/%E7%AC%AC2%E7%AB%A0_%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E4%B8%8E%E5%8F%98%E9%87%8F3.html" class="nav-list-link">限定符与说明符</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 第三章 表达式 category" aria-pressed="false"> <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg> </button><a href="/Cpp_Guide_detailed/guide_files/chap3/index.html" class="nav-list-link">第三章 表达式</a><ul class="nav-list"><li class="nav-list-item"><a href="/Cpp_Guide_detailed/guide_files/chap3/%E7%AC%AC3%E7%AB%A0_%E8%A1%A8%E8%BE%BE%E5%BC%8F.html" class="nav-list-link">表达式概念详解</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 第四章 语句 category" aria-pressed="false"> <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg> </button><a href="/Cpp_Guide_detailed/guide_files/chap4/index.html" class="nav-list-link">第四章 语句</a><ul class="nav-list"><li class="nav-list-item"><a href="/Cpp_Guide_detailed/guide_files/chap4/%E7%AC%AC4%E7%AB%A0_%E8%AF%AD%E5%8F%A5.html" class="nav-list-link">语句概念详解</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 第五章 函数 category" aria-pressed="false"> <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg> </button><a href="/Cpp_Guide_detailed/guide_files/chap5/index.html" class="nav-list-link">第五章 函数</a><ul class="nav-list"><li class="nav-list-item"><a href="/Cpp_Guide_detailed/guide_files/chap5/%E7%AC%AC5%E7%AB%A0_%E5%87%BD%E6%95%B0.html" class="nav-list-link">函数概念详解</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 第六章 动态内存管理 category" aria-pressed="false"> <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg> </button><a href="/Cpp_Guide_detailed/guide_files/chap6/index.html" class="nav-list-link">第六章 动态内存管理</a><ul class="nav-list"><li class="nav-list-item"><a href="/Cpp_Guide_detailed/guide_files/chap6/%E7%AC%AC6%E7%AB%A0_%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86.html" class="nav-list-link">动态内存管理概念详解</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 第七章 类 category" aria-pressed="false"> <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg> </button><a href="/Cpp_Guide_detailed/guide_files/chap7/index.html" class="nav-list-link">第七章 类</a><ul class="nav-list"><li class="nav-list-item"><a href="/Cpp_Guide_detailed/guide_files/chap7/%E7%AC%AC7%E7%AB%A0_%E7%B1%BB%E7%B1%BB%E5%9E%8B.html" class="nav-list-link">类概念详解</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 第八章 重载运算符 category" aria-pressed="false"> <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg> </button><a href="/Cpp_Guide_detailed/guide_files/chap8/index.html" class="nav-list-link">第八章 重载运算符</a><ul class="nav-list"><li class="nav-list-item"><a href="/Cpp_Guide_detailed/guide_files/chap8/%E7%AC%AC8%E7%AB%A0_%E9%87%8D%E8%BD%BD%E8%BF%90%E7%AE%97%E7%AC%A6.html" class="nav-list-link">重载运算符概念详解</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 第九章 异常处理 category" aria-pressed="false"> <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg> </button><a href="/Cpp_Guide_detailed/guide_files/chap9/index.html" class="nav-list-link">第九章 异常处理</a><ul class="nav-list"><li class="nav-list-item"><a href="/Cpp_Guide_detailed/guide_files/chap9/%E7%AC%AC9%E7%AB%A0_%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86.html" class="nav-list-link">异常处理概念详解</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 第十章 模板 category" aria-pressed="false"> <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg> </button><a href="/Cpp_Guide_detailed/guide_files/chap10/index.html" class="nav-list-link">第十章 模板</a><ul class="nav-list"><li class="nav-list-item"><a href="/Cpp_Guide_detailed/guide_files/chap10/%E7%AC%AC10%E7%AB%A0_%E6%A8%A1%E6%9D%BF.html" class="nav-list-link">模板概念详解</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 第十一章 派生类类型 category" aria-pressed="false"> <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg> </button><a href="/Cpp_Guide_detailed/guide_files/chap11/index.html" class="nav-list-link">第十一章 派生类类型</a><ul class="nav-list"><li class="nav-list-item"><a href="/Cpp_Guide_detailed/guide_files/chap11/%E7%AC%AC11%E7%AB%A0_%E6%B4%BE%E7%94%9F%E7%B1%BB%E7%B1%BB%E5%9E%8B.html" class="nav-list-link">派生类类型概念详解</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 第十二章 命名空间 category" aria-pressed="false"> <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg> </button><a href="/Cpp_Guide_detailed/guide_files/chap12/index.html" class="nav-list-link">第十二章 命名空间</a><ul class="nav-list"><li class="nav-list-item"><a href="/Cpp_Guide_detailed/guide_files/chap12/%E7%AC%AC12%E7%AB%A0_%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4.html" class="nav-list-link">命名空间概念详解</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 第十三章 分离式编译 category" aria-pressed="false"> <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg> </button><a href="/Cpp_Guide_detailed/guide_files/chap13/index.html" class="nav-list-link">第十三章 分离式编译</a><ul class="nav-list"><li class="nav-list-item"><a href="/Cpp_Guide_detailed/guide_files/chap13/%E7%AC%AC13%E7%AB%A0_%E5%88%86%E7%A6%BB%E5%BC%8F%E7%BC%96%E8%AF%91.html" class="nav-list-link">分离式编译概念详解</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 第十四章 固有的不可移植特性 category" aria-pressed="false"> <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg> </button><a href="/Cpp_Guide_detailed/guide_files/chap14/index.html" class="nav-list-link">第十四章 固有的不可移植特性</a><ul class="nav-list"><li class="nav-list-item"><a href="/Cpp_Guide_detailed/guide_files/chap14/%E7%AC%AC14%E7%AB%A0_%E5%9B%BA%E6%9C%89%E7%9A%84%E4%B8%8D%E5%8F%AF%E7%A7%BB%E6%A4%8D%E7%89%B9%E6%80%A7.html" class="nav-list-link">固有的不可移植特性概念详解</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 第十五章 标准库 category" aria-pressed="false"> <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg> </button><a href="/Cpp_Guide_detailed/guide_files/chap15/index.html" class="nav-list-link">第十五章 标准库</a><ul class="nav-list"><li class="nav-list-item"><a href="/Cpp_Guide_detailed/guide_files/chap15/%E7%AC%AC15%E7%AB%A0_%E6%A0%87%E5%87%86%E5%BA%93.html" class="nav-list-link">标准库详解</a></li></ul></li></ul> </nav> <footer class="site-footer"> <button type="button" id="theme_switch_button" class="site-button btn-reset" theme_id="dark" onclick="switch_theme()">切换到<b id="current_theme_name">明亮</b>主题 </button> <script src=/Cpp_Guide_detailed/assets/js/cookie_manager.js></script> <script src=/Cpp_Guide_detailed/assets/js/theme_switch.js></script> </footer> </div> <div class="main" id="top"> <div id="main-header" class="main-header"> <div class="search" role="search"> <div class="search-input-wrap"> <input type="text" id="search-input" class="search-input" tabindex="0" placeholder="Search C++语法教程" aria-label="Search C++语法教程" autocomplete="off"> <label for="search-input" class="search-label"><svg viewBox="0 0 24 24" class="search-icon"><use xlink:href="#svg-search"></use></svg></label> </div> <div id="search-results" class="search-results"></div> </div> <nav aria-label="Auxiliary" class="aux-nav"> <ul class="aux-nav-list"> <li class="aux-nav-list-item"> <a href="https://github.com/bobokick/Cpp_Guide_detailed" class="site-button" > Cpp_Guide_detailed on GitHub </a> </li> </ul> </nav> </div> <div class="main-content-wrap"> <nav aria-label="Breadcrumb" class="breadcrumb-nav"> <ol class="breadcrumb-nav-list"> <li class="breadcrumb-nav-list-item"><a href="/Cpp_Guide_detailed/guide_files/chap8/index.html">第八章 重载运算符</a></li> <li class="breadcrumb-nav-list-item"><span>重载运算符概念详解</span></li> </ol> </nav> <div id="main-content" class="main-content"> <main> <div> <div id="table-of-contents"> <ul id="toc" class="section-nav"> <li class="toc-entry toc-h2"><a href="#81-重载运算符概念">8.1 重载运算符概念</a> <ul> <li class="toc-entry toc-h3"><a href="#811-重载运算符的形式">8.11 重载运算符的形式</a></li> <li class="toc-entry toc-h3"><a href="#812-重载运算符的规则">8.12 重载运算符的规则</a></li> <li class="toc-entry toc-h3"><a href="#813-重载运算符的使用">8.13 重载运算符的使用</a></li> <li class="toc-entry toc-h3"><a href="#814-关于重载运算符的建议">8.14 关于重载运算符的建议</a></li> </ul> </li> <li class="toc-entry toc-h2"><a href="#82-输入和输出运算符">8.2 输入和输出运算符</a> <ul> <li class="toc-entry toc-h3"><a href="#821-输出运算符">8.21 输出运算符</a></li> <li class="toc-entry toc-h3"><a href="#822-输入运算符">8.22 输入运算符</a></li> </ul> </li> <li class="toc-entry toc-h2"><a href="#83-赋值运算符">8.3 赋值运算符</a> <ul> <li class="toc-entry toc-h3"><a href="#831-复合赋值运算符">8.31 复合赋值运算符</a></li> </ul> </li> <li class="toc-entry toc-h2"><a href="#84-算术运算符">8.4 算术运算符</a></li> <li class="toc-entry toc-h2"><a href="#85-关系运算符">8.5 关系运算符</a> <ul> <li class="toc-entry toc-h3"><a href="#851-相等运算符">8.51 相等运算符</a></li> <li class="toc-entry toc-h3"><a href="#852-其他关系运算符">8.52 其他关系运算符</a></li> </ul> </li> <li class="toc-entry toc-h2"><a href="#86-递增和递减运算符">8.6 递增和递减运算符</a> <ul> <li class="toc-entry toc-h3"><a href="#861-前置递增递减运算符">8.61 前置递增/递减运算符</a></li> <li class="toc-entry toc-h3"><a href="#862-后置递增递减运算符">8.62 后置递增/递减运算符</a></li> </ul> </li> <li class="toc-entry toc-h2"><a href="#87-下标运算符">8.7 下标运算符</a></li> <li class="toc-entry toc-h2"><a href="#88-解引用以及成员访问运算符">8.8 解引用以及成员访问运算符</a></li> </ul> </div> <div id="markdown-content"> <p>之前在类的介绍中，我们简述了一下关于重载 运算符的一些知识，接下来我们会详细讲述重载运算符。</p> <h2 id="81-重载运算符概念"> <a href="#81-重载运算符概念" class="anchor-heading" aria-labelledby="81-重载运算符概念"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 8.1 重载运算符概念 </h2> <p>重载运算符(overloaded operator)本质上就是函数，可以声明或者定义。其名字由operator关键字后接表示要定义的运算符的符号组成。</p> <h3 id="811-重载运算符的形式"> <a href="#811-重载运算符的形式" class="anchor-heading" aria-labelledby="811-重载运算符的形式"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 8.11 重载运算符的形式 </h3> <p>大部分的重载运算符声明形式为:</p> <ol> <li> <blockquote> <p>返回类型 operator 运算符号 形参表 (可选 限定符);</p> </blockquote> </li> <li> <blockquote> <p>auto operator 运算符号 形参表 -&gt; 返回类型 (可选 限定符);</p> </blockquote> </li> </ol> <p>比如，赋值运算符就是一个函数。 类似于任何其他函数，大部分的运算符函数也有一个返回类型和一个参数列表。</p> <blockquote> <p>和普通函数一样，相同运算符的重载运算符可以定义多个，也就是重载运算符的重载，其也要遵循函数重载的规则。</p> </blockquote> <p>重载运算符的每个形参是表示运算符的每个运算对象，一个重载运算符的形参数量必须要与其运算对象数目相同。 比如：</p> <ul> <li>一元运算符有一个参数， 对于一元运算符来说，不存在左侧运算对象，而只有右侧运算对象，且一般为成员函数。 因此其形参表一般为空。</li> <li>二元运算符有两个参数， 对于二元运算符来说，左侧运算对象传递给第一个参数，而右侧运算对象传递给第二个参数。</li> </ul> <p>除了重载的函数调用运算符<code class="language-plaintext highlighter-rouge">operator()</code>之外，其他重载运算符都不能含有默认实参。</p> <p>对于大多数重载运算符来说，它们既可以是普通函数，也可以是成员函数，比如算术运算符；不过有些重载运算符只能是普通函数或者是成员函数，比如赋值运算符只能为成员函数。</p> <blockquote> <p>作为成员函数的重载运算符和普通成员函数一样，某些运算符可以定义在类内或类外，也可以为静态、const、引用或者虚函数成员。</p> </blockquote> <p>如果一个二元运算符是一个非静态成员函数，则其左侧的运算对象就绑定到隐式的this参数，其他的运算对象就按照顺序绑定到其他显式形参上。 比如，对于一个二元运算符如赋值运算符来说，左侧的运算对象绑定到隐式的this参数，其右侧运算对象就作为显式参数传递。</p> <p>对于所有重载运算符来说，不管是隐式还是显式形参，都必须至少含有一个类类型(也就是不能运算对象全是内置类型)。</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span> <span class="nc">Cls</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">ins</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+    <span class="c1">// 赋值运算符：\</span>
+    <span class="err">为成员函数，</span>\
+    <span class="err">左侧运算对象为该类对象，</span>\
+    <span class="err">右侧运算对象为</span><span class="kt">int</span><span class="err">对象，</span>\
+    <span class="err">返回赋值后的左侧运算对象</span>
+    <span class="n">Cls</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="kt">int</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">ins</span> <span class="o">=</span> <span class="n">val</span><span class="p">;</span> <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+<span class="c1">// 加法运算符：\</span>
+  <span class="err">为普通函数，</span>\
+  <span class="err">左侧运算对象为</span><span class="n">Cls</span><span class="err">类对象，</span>\
+  <span class="err">右侧运算对象为</span><span class="kt">int</span><span class="err">对象，</span>\
+  <span class="err">返回执行加法后的</span><span class="kt">int</span><span class="err">值。</span>
+<span class="kt">int</span> <span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="n">Cls</span><span class="o">&amp;</span> <span class="n">cls</span><span class="p">,</span> <span class="kt">int</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">cls</span><span class="p">.</span><span class="n">ins</span> <span class="o">+</span> <span class="n">val</span><span class="p">;</span> <span class="p">}</span>
+</code></pre></div></div> <h3 id="812-重载运算符的规则"> <a href="#812-重载运算符的规则" class="anchor-heading" aria-labelledby="812-重载运算符的规则"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 8.12 重载运算符的规则 </h3> <p>我们可以重载大多数（但不是全部）运算符。下表指明了哪些运算符可以被重载，哪些不行。 <img src="/Cpp_Guide_detailed/assets/images/2021-06-10-10-27-39.png" alt="operator" /></p> <p>我们只能重载上表已有的运算符，而无权发明新的运算符号。例如，我们不能提供<code class="language-plaintext highlighter-rouge">operator**</code>来执行幂操作。</p> <p>当某些符号可以表示多种不同的运算符时，我们可以从参数的数量推断到底定义的是哪种运算符。 比如符号<code class="language-plaintext highlighter-rouge">-</code>既是一元运算符也是二元运算符，<code class="language-plaintext highlighter-rouge">&amp;</code>虽然系统中的运用是为一元运算符，但也可以当作二元运算符使用等。</p> <p>不管我们重载什么运算符，我们都<strong>无法改变该运算符的优先级和结合律</strong>。 当我们<strong>重载规定了求值顺序或者含有短路求值属性的运算符时，该运算符的求值顺序和短路求值属性就不再生效了</strong>。</p> <h3 id="813-重载运算符的使用"> <a href="#813-重载运算符的使用" class="anchor-heading" aria-labelledby="813-重载运算符的使用"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 8.13 重载运算符的使用 </h3> <p>对于重载运算符，我们有两种调用方法：</p> <ul> <li>隐式调用： 当我们定义了重载运算符后，在这些重载运算符的可用范围内，当出现含有运算符的表达式时，就会根据运算符的运算对象的类型隐式调用匹配的重载运算符；比如，对于某个运算对象为类类型对象来说，编译器会首先自动调用该对象类型的对应非静态重载运算符。</li> <li>显式调用： 因为重载运算符也是函数，所以我们可以用调用函数的形式显式调用重载运算符，并在实参表中传递对应类型的实参。</li> </ul> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="k">struct</span> <span class="nc">Cls</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">ins</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+    <span class="n">Cls</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="kt">int</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">ins</span> <span class="o">=</span> <span class="n">val</span><span class="p">;</span> <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+<span class="kt">int</span> <span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="n">Cls</span><span class="o">&amp;</span> <span class="n">cls</span><span class="p">,</span> <span class="kt">int</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">cls</span><span class="p">.</span><span class="n">ins</span> <span class="o">+</span> <span class="n">val</span><span class="p">;</span> <span class="p">}</span>
+
+<span class="n">Cls</span> <span class="n">obj</span><span class="p">;</span>
+<span class="c1">// 隐式调用成员函数Cls&amp; operator=(int val)。</span>
+<span class="n">obj</span> <span class="o">=</span> <span class="mi">78</span><span class="p">;</span>
+<span class="c1">// 显式调用成员函数Cls&amp; operator=(int val)。</span>
+<span class="n">obj</span><span class="p">.</span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="mi">30</span><span class="p">);</span>
+<span class="c1">// 输出30</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">obj</span><span class="p">.</span><span class="n">ins</span><span class="p">;</span>
+<span class="c1">// 以下都为调用普通函数int operator+(Cls&amp; cls, int val)。</span>
+<span class="c1">// 隐式调用，输出45</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">obj</span> <span class="o">+</span> <span class="mi">15</span><span class="p">;</span>
+<span class="c1">// 显式调用，输出45</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="mi">15</span><span class="p">);</span>
+</code></pre></div></div> <blockquote> <p>所以对于某些支持静态的重载运算符来说，只能显式调用来使用该运算符函数。</p> </blockquote> <h3 id="814-关于重载运算符的建议"> <a href="#814-关于重载运算符的建议" class="anchor-heading" aria-labelledby="814-关于重载运算符的建议"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 8.14 关于重载运算符的建议 </h3> <p>虽然我们可以在重载运算符的规则内定义任何合法的运算符，但是为了保证用户在使用重载运算符不会出现错误以及良好的理解，我们在重载运算符时应该注意一下几点：</p> <ul> <li>不应该被重载的运算符。</li> <li>定义时要与内置类型的运算符含义一致。</li> <li>复合赋值运算符的定义时机。</li> <li>成员或者非成员运算符函数的选择。</li> </ul> <p><strong>不应该被重载的运算符</strong></p> <ul> <li>含有求值顺序或短路求值属性的运算符（如<code class="language-plaintext highlighter-rouge">&amp;&amp;</code>和<code class="language-plaintext highlighter-rouge">||</code>运算符）。</li> <li>逗号运算符和取地址运算符。</li> </ul> <p>对于本身就含有求值顺序或短路求值属性的运算符，我们不应该重载，因为这些运算符的重载版本无法保留这些属性，因此不建议重载它们。 当代码使用了这些运算符的重载版本时，用户可能会突然发现他们一直习惯的求值规则不再适用了。</p> <p>我们一般也不重载逗号运算符（<code class="language-plaintext highlighter-rouge">,</code>）和取地址运算符（<code class="language-plaintext highlighter-rouge">&amp;</code>）：因为C++语言已经定义了这两种运算符用于类类型对象时的特殊含义，这一点与大多数运算符都不相同。 因为这两种运算符已经有了内置的含义，所以一般来说它们不应该被重载，否则它们的行为将异于常态，从而导致类的用户无法适应。</p> <p><strong>定义时要与内置类型的运算符含义一致</strong></p> <p>当你开始设计一个类时，首先应该考虑的是这个类将提供哪些操作。在确定类需要哪些操作之后，才能思考到底应该把每个类操作设成普通函数还是重载的运算符。如果某些操作在逻辑上与运算符相关，则它们适合于定义成重载的运算符，否则就不要定义重载的运算符。 也就是只有当操作的含义对于用户来说清晰明了时才使用运算符。</p> <p><strong>复合赋值运算符的定义时机</strong></p> <p>赋值运算符的行为与复合版本的类似：赋值之后，左侧运算对象和右侧运算对象的值相等，并且运算符应该返回它左侧运算对象的一个引用。重载的赋值运算应该继承而非违背其内置版本的含义。</p> <p>如果类含有算术运算符或者位运算符，则最好也提供对应的复合赋值运算符。无须赘言，<code class="language-plaintext highlighter-rouge">+=</code>运算符的行为显然应该与其内置版本一致，即先执行<code class="language-plaintext highlighter-rouge">+</code>，再执行<code class="language-plaintext highlighter-rouge">=</code>。</p> <p><strong>成员或者非成员运算符函数的选择</strong></p> <p>当我们定义重载的运算符时，必须首先决定是将其声明为类的成员函数还是声明为一个普通的非成员函数。在某些时候我们别无选择，因为有的运算符必须作为成员；另一些情况下，运算符作为普通函数比作为成员更好。</p> <p>下面的准则有助于我们在将运算符定义为成员函数还是普通的非成员函数做出抉择：</p> <ul> <li>赋值<code class="language-plaintext highlighter-rouge">=</code>、下标<code class="language-plaintext highlighter-rouge">[]</code>、调用<code class="language-plaintext highlighter-rouge">()</code>和成员访问箭头<code class="language-plaintext highlighter-rouge">-&gt;</code>运算符被规定必须是成员。</li> <li>复合赋值运算符一般來说应该是成员。</li> <li>改变对象状态的运算符或者与给定类型密切相关的运算符，如正号、负号、逻辑非、递增、递减以及解引用运算符等，通常应该是成员。</li> <li>具有对称性的运算符可能转换任意一端的运算对象，例如算术、关系和位运算符等，因此它们通常应该是普通的非成员函数。</li> <li>左边类型为非本身类型的运算符，就应该设计为非成员函数，如输入输出运算符等。</li> </ul> <h2 id="82-输入和输出运算符"> <a href="#82-输入和输出运算符" class="anchor-heading" aria-labelledby="82-输入和输出运算符"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 8.2 输入和输出运算符 </h2> <p>如我们所知，IO标准库分别使用<code class="language-plaintext highlighter-rouge">&gt;&gt;</code>和<code class="language-plaintext highlighter-rouge">&lt;&lt;</code>执行输入和输出操作。 对于这两个运算符来说，IO库定义了用其读写内置类型的版本，而类则需要自定义适合其对象的新版本以支持IO操作。</p> <p>输入输出运算符必须是非成员函数，否则，它们的左侧运算对象将是我们的类的一个对象，则它们也必须<code class="language-plaintext highlighter-rouge">istream</code>或<code class="language-plaintext highlighter-rouge">ostream</code>的成员。 然而，这两个类属于标准库，并且我们无法给标准厍中的类添加任何成员。所以只能是<strong>非成员函数</strong>。</p> <p>IO运算符通常都需要读写类的非公有数据成员，所以IO运算符一般被声明为友元。</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+</span><span class="c1">// 类Cls</span>
+<span class="k">class</span> <span class="nc">Cls</span>
+<span class="p">{</span>
+<span class="k">friend</span> <span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="n">os</span><span class="p">,</span> <span class="k">const</span> <span class="n">Cls</span><span class="o">&amp;</span> <span class="n">obj</span><span class="p">);</span>
+<span class="k">friend</span> <span class="n">std</span><span class="o">::</span><span class="n">istream</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">istream</span><span class="o">&amp;</span> <span class="n">is</span><span class="p">,</span> <span class="n">Cls</span><span class="o">&amp;</span> <span class="n">obj</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">val_</span><span class="p">;</span>
+<span class="nl">public:</span>
+    <span class="k">explicit</span> <span class="n">Cls</span><span class="p">(</span><span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span><span class="o">:</span> <span class="n">val_</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="p">{}</span>
+<span class="p">};</span>
+
+<span class="c1">// 类Cls的输出运算符</span>
+<span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="n">os</span><span class="p">,</span> <span class="k">const</span> <span class="n">Cls</span><span class="o">&amp;</span> <span class="n">obj</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">os</span> <span class="o">&lt;&lt;</span> <span class="n">obj</span><span class="p">.</span><span class="n">val_</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">os</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">// 类Cls的输入运算符</span>
+<span class="n">std</span><span class="o">::</span><span class="n">istream</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">istream</span><span class="o">&amp;</span> <span class="n">is</span><span class="p">,</span> <span class="n">Cls</span><span class="o">&amp;</span> <span class="n">obj</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">is</span> <span class="o">&gt;&gt;</span> <span class="n">obj</span><span class="p">.</span><span class="n">val_</span><span class="p">;</span>
+    <span class="c1">// 处理输入失败的情况</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">is</span><span class="p">)</span>
+        <span class="n">obj</span><span class="p">.</span><span class="n">val_</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">is</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// 类Cls的对象</span>
+    <span class="n">Cls</span> <span class="n">obj</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+    <span class="c1">// 输出5</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">obj</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span> <span class="o">&lt;&lt;</span> <span class="s">"请输入一个整数（回车结束输入）：</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+    <span class="c1">// 终端输入</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">obj</span><span class="p">;</span>
+    <span class="c1">// 输出</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">obj</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <h3 id="821-输出运算符"> <a href="#821-输出运算符" class="anchor-heading" aria-labelledby="821-输出运算符"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 8.21 输出运算符 </h3> <p>通常情况下，输出运算符的第一个形参是一个非常量<code class="language-plaintext highlighter-rouge">ostream</code>对象的引用。之所以<code class="language-plaintext highlighter-rouge">ostream</code>是非常量是因为向流写入内容会改变其状态；而该形参是引用是因为我们无法直接复制一个<code class="language-plaintext highlighter-rouge">ostream</code>对象。 第二个形参一般來说是一个常量的引用，该常量是我们想要打印的类类型。第二个形参是引用的原因是我们希望避免复制实参；而之所以该形参可以是常量是因为(通常情况下)打印对象不会改变对象的内容。 为了与其他输出运算符保持一致，<code class="language-plaintext highlighter-rouge">operator&lt;&lt;</code>般要返回它的<code class="language-plaintext highlighter-rouge">ostream</code>形参。</p> <p>输出运算符尽量减少格式化操作： 用于内置类型的输出运算符不太考虑格式化操作，尤其不会打印换行符，用户希望类的输出运算符也像如此行事。如果运算符打印了换行符，则用户就无法在对象的同一行内接着打印一些描述性的文本了。相反，令输出运算符尽量减少格式化操作可以使用户有权控制输出的细节。</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+</span><span class="c1">// 类Cls</span>
+<span class="k">class</span> <span class="nc">Cls</span>
+<span class="p">{</span>
+<span class="k">friend</span> <span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="n">os</span><span class="p">,</span> <span class="k">const</span> <span class="n">Cls</span><span class="o">&amp;</span> <span class="n">obj</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">val_</span><span class="p">;</span>
+<span class="nl">public:</span>
+    <span class="k">explicit</span> <span class="n">Cls</span><span class="p">(</span><span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span><span class="o">:</span> <span class="n">val_</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="p">{}</span>
+<span class="p">};</span>
+
+<span class="c1">// 类Cls的输出运算符</span>
+<span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="n">os</span><span class="p">,</span> <span class="k">const</span> <span class="n">Cls</span><span class="o">&amp;</span> <span class="n">obj</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">os</span> <span class="o">&lt;&lt;</span> <span class="n">obj</span><span class="p">.</span><span class="n">val_</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">os</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// 类Cls的对象</span>
+    <span class="n">Cls</span> <span class="n">obj</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+    <span class="c1">// 输出5</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">obj</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span> <span class="o">&lt;&lt;</span> <span class="s">"请输入一个整数（回车结束输入）：</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <h3 id="822-输入运算符"> <a href="#822-输入运算符" class="anchor-heading" aria-labelledby="822-输入运算符"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 8.22 输入运算符 </h3> <p>通常情况下，输入运算符的第一个形参是运算符将要读取的流的引用，第二个形参是将要读入到的（非常量）对象的引用。该运算符通常会返回某个给定流的引用。第二个形参之所以必须是个非常量是因为输入运算符本身的目的就是将数据读入到这个对象中。</p> <p>输入运算符必须处理输入可能失败的情况，当读取操作发生错误时，输入运算符应该负责从错误中恢复。</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+</span><span class="c1">// 类Cls</span>
+<span class="k">class</span> <span class="nc">Cls</span>
+<span class="p">{</span>
+<span class="k">friend</span> <span class="n">std</span><span class="o">::</span><span class="n">istream</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">istream</span><span class="o">&amp;</span> <span class="n">is</span><span class="p">,</span> <span class="n">Cls</span><span class="o">&amp;</span> <span class="n">obj</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">val_</span><span class="p">;</span>
+<span class="nl">public:</span>
+    <span class="k">explicit</span> <span class="n">Cls</span><span class="p">(</span><span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span><span class="o">:</span> <span class="n">val_</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="p">{}</span>
+<span class="p">};</span>
+
+<span class="c1">// 类Cls的输入运算符</span>
+<span class="n">std</span><span class="o">::</span><span class="n">istream</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">istream</span><span class="o">&amp;</span> <span class="n">is</span><span class="p">,</span> <span class="n">Cls</span><span class="o">&amp;</span> <span class="n">obj</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">is</span> <span class="o">&gt;&gt;</span> <span class="n">obj</span><span class="p">.</span><span class="n">val_</span><span class="p">;</span>
+    <span class="c1">// 处理输入失败的情况</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">is</span><span class="p">)</span>
+        <span class="n">obj</span><span class="p">.</span><span class="n">val_</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">is</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// 类Cls的对象</span>
+    <span class="n">Cls</span> <span class="n">obj</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+    <span class="c1">// 终端输入</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">obj</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <h2 id="83-赋值运算符"> <a href="#83-赋值运算符" class="anchor-heading" aria-labelledby="83-赋值运算符"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 8.3 赋值运算符 </h2> <p>之前已经介绍过拷贝赋值和移动赋值运算符，它们可以把类的一个对象赋值给该类的另一个对象。此外，类还可以定义其他赋值运算符以使用别的类型作为右侧运算对象。</p> <p>和拷贝赋值及移动赋值运算符一样，其他重载的赋值运算符也必须先释放当前内存空间，再创建一片新空间。</p> <blockquote> <p>我们可以重载赋值运算符。不论形参的类型是什么，赋值运算符都必须定义为成员函数。</p> </blockquote> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+</span><span class="c1">// 类Cls</span>
+<span class="k">class</span> <span class="nc">Cls</span>
+<span class="p">{</span>
+<span class="k">friend</span> <span class="kt">int</span> <span class="n">main</span><span class="p">();</span>
+    <span class="kt">int</span> <span class="n">val_</span><span class="p">;</span>
+<span class="nl">public:</span>
+    <span class="k">explicit</span> <span class="n">Cls</span><span class="p">(</span><span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span><span class="o">:</span> <span class="n">val_</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="p">{}</span>
+    <span class="c1">// 赋值运算符</span>
+    <span class="n">Cls</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="kt">double</span> <span class="n">val</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">this</span><span class="o">-&gt;</span><span class="n">val_</span> <span class="o">=</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">val</span><span class="p">);</span>
+        <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// 类Cls的对象</span>
+    <span class="n">Cls</span> <span class="n">obj</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="mf">45.66</span><span class="p">;</span>
+    <span class="c1">// 输出45</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">obj</span><span class="p">.</span><span class="n">val_</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <h3 id="831-复合赋值运算符"> <a href="#831-复合赋值运算符" class="anchor-heading" aria-labelledby="831-复合赋值运算符"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 8.31 复合赋值运算符 </h3> <p>复合赋值运算符不非得是类的成员，不过我们还是倾向于把包括复合赋值在内的所有赋值运算都定义在类的内部。为了与内置类型的复合赋值保持一致，类中的复合赋值运算符也要返回其左侧运算对象的引用。</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+</span><span class="c1">// 类Cls</span>
+<span class="k">class</span> <span class="nc">Cls</span>
+<span class="p">{</span>
+<span class="k">friend</span> <span class="kt">int</span> <span class="n">main</span><span class="p">();</span>
+    <span class="kt">int</span> <span class="n">val_</span><span class="p">;</span>
+<span class="nl">public:</span>
+    <span class="k">explicit</span> <span class="n">Cls</span><span class="p">(</span><span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span><span class="o">:</span> <span class="n">val_</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="p">{}</span>
+    <span class="c1">// 加法赋值运算符</span>
+    <span class="n">Cls</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">+=</span><span class="p">(</span><span class="k">const</span> <span class="n">Cls</span><span class="o">&amp;</span> <span class="n">obj</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">this</span><span class="o">-&gt;</span><span class="n">val_</span> <span class="o">+=</span> <span class="n">obj</span><span class="p">.</span><span class="n">val_</span><span class="p">;</span>
+        <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">// 减法赋值运算符</span>
+    <span class="n">Cls</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">-=</span><span class="p">(</span><span class="k">const</span> <span class="n">Cls</span><span class="o">&amp;</span> <span class="n">obj</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">this</span><span class="o">-&gt;</span><span class="n">val_</span> <span class="o">-=</span> <span class="n">obj</span><span class="p">.</span><span class="n">val_</span><span class="p">;</span>
+        <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">// 乘法赋值运算符</span>
+    <span class="n">Cls</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">*=</span><span class="p">(</span><span class="k">const</span> <span class="n">Cls</span><span class="o">&amp;</span> <span class="n">obj</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">this</span><span class="o">-&gt;</span><span class="n">val_</span> <span class="o">*=</span> <span class="n">obj</span><span class="p">.</span><span class="n">val_</span><span class="p">;</span>
+        <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">// 除法赋值运算符</span>
+    <span class="n">Cls</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">/=</span><span class="p">(</span><span class="k">const</span> <span class="n">Cls</span><span class="o">&amp;</span> <span class="n">obj</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">this</span><span class="o">-&gt;</span><span class="n">val_</span> <span class="o">/=</span> <span class="n">obj</span><span class="p">.</span><span class="n">val_</span><span class="p">;</span>
+        <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">// 除余赋值运算符</span>
+    <span class="n">Cls</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">%=</span><span class="p">(</span><span class="k">const</span> <span class="n">Cls</span><span class="o">&amp;</span> <span class="n">obj</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">this</span><span class="o">-&gt;</span><span class="n">val_</span> <span class="o">%=</span> <span class="n">obj</span><span class="p">.</span><span class="n">val_</span><span class="p">;</span>
+        <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// 类Cls的对象</span>
+    <span class="n">Cls</span> <span class="n">obj</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+    <span class="n">Cls</span> <span class="n">obj2</span><span class="p">(</span><span class="mi">53</span><span class="p">);</span>
+    <span class="n">obj</span> <span class="o">+=</span> <span class="n">obj2</span><span class="p">;</span>
+    <span class="c1">// 输出58</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">obj</span><span class="p">.</span><span class="n">val_</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="n">obj</span> <span class="o">*=</span> <span class="n">obj2</span><span class="p">;</span>
+    <span class="c1">// 输出3074</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">obj</span><span class="p">.</span><span class="n">val_</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="n">obj</span> <span class="o">/=</span> <span class="n">obj2</span><span class="p">;</span>
+    <span class="c1">// 输出58</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">obj</span><span class="p">.</span><span class="n">val_</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="n">obj</span> <span class="o">-=</span> <span class="n">obj2</span><span class="p">;</span>
+    <span class="c1">// 输出5</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">obj</span><span class="p">.</span><span class="n">val_</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="n">obj2</span> <span class="o">%=</span> <span class="n">obj</span><span class="p">;</span>
+    <span class="c1">// 输出3</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">obj2</span><span class="p">.</span><span class="n">val_</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <h2 id="84-算术运算符"> <a href="#84-算术运算符" class="anchor-heading" aria-labelledby="84-算术运算符"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 8.4 算术运算符 </h2> <p>通常情况下，我们把算术运算符定义成非成员函数以允许对左侧或右侧的运算对象进行转换。因为这些运算符一般不需要改变运算对象的状态，所以形参都是常量的引用。</p> <p>如果类同时定义了算术运算符和相关的复合赋值运算符，则通常情况下应该使用复合赋值来实现算术运算符。</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+</span>
+<span class="c1">// 类Cls</span>
+<span class="k">class</span> <span class="nc">Cls</span>
+<span class="p">{</span>
+<span class="k">friend</span> <span class="kt">int</span> <span class="n">main</span><span class="p">();</span>
+    <span class="kt">int</span> <span class="n">val_</span><span class="p">;</span>
+<span class="nl">public:</span>
+    <span class="k">explicit</span> <span class="n">Cls</span><span class="p">(</span><span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span><span class="o">:</span> <span class="n">val_</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="p">{}</span>
+    <span class="c1">// 加法赋值运算符</span>
+    <span class="n">Cls</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">+=</span><span class="p">(</span><span class="k">const</span> <span class="n">Cls</span><span class="o">&amp;</span> <span class="n">obj</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">this</span><span class="o">-&gt;</span><span class="n">val_</span> <span class="o">+=</span> <span class="n">obj</span><span class="p">.</span><span class="n">val_</span><span class="p">;</span>
+        <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">// 减法赋值运算符</span>
+    <span class="n">Cls</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">-=</span><span class="p">(</span><span class="k">const</span> <span class="n">Cls</span><span class="o">&amp;</span> <span class="n">obj</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">this</span><span class="o">-&gt;</span><span class="n">val_</span> <span class="o">-=</span> <span class="n">obj</span><span class="p">.</span><span class="n">val_</span><span class="p">;</span>
+        <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">// 乘法赋值运算符</span>
+    <span class="n">Cls</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">*=</span><span class="p">(</span><span class="k">const</span> <span class="n">Cls</span><span class="o">&amp;</span> <span class="n">obj</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">this</span><span class="o">-&gt;</span><span class="n">val_</span> <span class="o">*=</span> <span class="n">obj</span><span class="p">.</span><span class="n">val_</span><span class="p">;</span>
+        <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">// 除法赋值运算符</span>
+    <span class="n">Cls</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">/=</span><span class="p">(</span><span class="k">const</span> <span class="n">Cls</span><span class="o">&amp;</span> <span class="n">obj</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">this</span><span class="o">-&gt;</span><span class="n">val_</span> <span class="o">/=</span> <span class="n">obj</span><span class="p">.</span><span class="n">val_</span><span class="p">;</span>
+        <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">// 除余赋值运算符</span>
+    <span class="n">Cls</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">%=</span><span class="p">(</span><span class="k">const</span> <span class="n">Cls</span><span class="o">&amp;</span> <span class="n">obj</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">this</span><span class="o">-&gt;</span><span class="n">val_</span> <span class="o">%=</span> <span class="n">obj</span><span class="p">.</span><span class="n">val_</span><span class="p">;</span>
+        <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">// 正号运算符（一元），不改变对象的状态，所以一般为常量</span>
+    <span class="n">Cls</span> <span class="k">operator</span><span class="o">+</span><span class="p">()</span> <span class="k">const</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">Cls</span><span class="p">(</span><span class="n">val_</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="c1">// 负号运算符（一元），不改变对象的状态，所以一般为常量</span>
+    <span class="n">Cls</span> <span class="k">operator</span><span class="o">-</span><span class="p">()</span> <span class="k">const</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">Cls</span><span class="p">(</span><span class="o">-</span><span class="n">val_</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="c1">// 加法运算符</span>
+<span class="n">Cls</span> <span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="k">const</span> <span class="n">Cls</span><span class="o">&amp;</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="n">Cls</span><span class="o">&amp;</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Cls</span> <span class="n">res</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>
+    <span class="n">res</span> <span class="o">+=</span> <span class="n">b</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 减法运算符</span>
+<span class="n">Cls</span> <span class="k">operator</span><span class="o">-</span><span class="p">(</span><span class="k">const</span> <span class="n">Cls</span><span class="o">&amp;</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="n">Cls</span><span class="o">&amp;</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Cls</span> <span class="n">res</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>
+    <span class="n">res</span> <span class="o">-=</span> <span class="n">b</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 乘法运算符</span>
+<span class="n">Cls</span> <span class="k">operator</span><span class="o">*</span><span class="p">(</span><span class="k">const</span> <span class="n">Cls</span><span class="o">&amp;</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="n">Cls</span><span class="o">&amp;</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Cls</span> <span class="n">res</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>
+    <span class="n">res</span> <span class="o">*=</span> <span class="n">b</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 除法运算符</span>
+<span class="n">Cls</span> <span class="k">operator</span><span class="o">/</span><span class="p">(</span><span class="k">const</span> <span class="n">Cls</span><span class="o">&amp;</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="n">Cls</span><span class="o">&amp;</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Cls</span> <span class="n">res</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>
+    <span class="n">res</span> <span class="o">/=</span> <span class="n">b</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 除余运算符</span>
+<span class="n">Cls</span> <span class="k">operator</span><span class="o">%</span><span class="p">(</span><span class="k">const</span> <span class="n">Cls</span><span class="o">&amp;</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="n">Cls</span><span class="o">&amp;</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Cls</span> <span class="n">res</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>
+    <span class="n">res</span> <span class="o">%=</span> <span class="n">b</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// 类Cls的对象</span>
+    <span class="k">const</span> <span class="n">Cls</span> <span class="n">kObj</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+    <span class="k">const</span> <span class="n">Cls</span> <span class="n">kObj2</span><span class="p">(</span><span class="mi">53</span><span class="p">);</span>
+    <span class="c1">// 输出-5</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="o">-</span><span class="n">kObj</span><span class="p">).</span><span class="n">val_</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="c1">// 输出53</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="o">+</span><span class="n">kObj2</span><span class="p">).</span><span class="n">val_</span>  <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="c1">// 输出58</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">kObj</span> <span class="o">+</span> <span class="n">kObj2</span><span class="p">).</span><span class="n">val_</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="c1">// 输出-48</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">kObj</span> <span class="o">-</span> <span class="n">kObj2</span><span class="p">).</span><span class="n">val_</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="c1">// 输出265</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">kObj</span> <span class="o">*</span> <span class="n">kObj2</span><span class="p">).</span><span class="n">val_</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="c1">// 输出0</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">kObj</span> <span class="o">/</span> <span class="n">kObj2</span><span class="p">).</span><span class="n">val_</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="c1">// 输出3</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">kObj2</span> <span class="o">%</span> <span class="n">kObj</span><span class="p">).</span><span class="n">val_</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <h2 id="85-关系运算符"> <a href="#85-关系运算符" class="anchor-heading" aria-labelledby="85-关系运算符"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 8.5 关系运算符 </h2> <p>和算术运算符一样，通常情况下，我们把关系运算符定义成非成员函数以允许对左侧或右侧的运算对象进行转换。因为这些运算符一般不需要改变运算对象的状态，所以形参都是常量的引用。</p> <h3 id="851-相等运算符"> <a href="#851-相等运算符" class="anchor-heading" aria-labelledby="851-相等运算符"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 8.51 相等运算符 </h3> <p>通常情况下，C++中的类通过定义相等运算符来检验两个对象是否相等。也就是说，它们会比较对象的每一个数据成员，只有当所有对应的成员都相等时才认为两个对象相等。</p> <p>所以对于相等运算符的定义，应该考虑以下设计准则：</p> <ul> <li>如果一个类含有判断两个对象是否相等的操作，则它显然应该把函数定义成<code class="language-plaintext highlighter-rouge">operator==</code>而非一个普通的命名函数： 因为用户肯定希望能使用<code class="language-plaintext highlighter-rouge">==</code>比较对象，所以提供了<code class="language-plaintext highlighter-rouge">==</code>就意味着用户无须再费时费力地学习并记忆一个全新的函数名字；此外，类定义了<code class="language-plaintext highlighter-rouge">==</code>运算符之后也更容易使用标准库容器和算法。</li> <li>如果类定义了<code class="language-plaintext highlighter-rouge">operator==</code>，则该运算符应该能判断一组给定的对象中是否含有重复数据。</li> <li>通常情况下，相等运算符应该具有传递性，换句话说，如果<code class="language-plaintext highlighter-rouge">a==b</code>和<code class="language-plaintext highlighter-rouge">b==c</code>都为真，则<code class="language-plaintext highlighter-rouge">a==c</code>也应该为真。</li> <li>如果类定义了<code class="language-plaintext highlighter-rouge">operator==</code>,则这个类也应该定义<code class="language-plaintext highlighter-rouge">operator!=</code>。对于用户来说，当他们能使用<code class="language-plaintext highlighter-rouge">==</code>时肯定也希望能使用<code class="language-plaintext highlighter-rouge">!=</code>，反之亦然。</li> <li>相等运算符和不相等运算符中的一个应该把工作委托给另外一个，这意味着其中一个运算符应该负责实际比较对象的工作，而另一个运算符则只是调用那个真正工作的运算符。</li> </ul> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 类Cls</span>
+<span class="k">class</span> <span class="nc">Cls</span>
+<span class="p">{</span>
+<span class="k">friend</span> <span class="kt">bool</span> <span class="k">operator</span><span class="o">==</span><span class="p">(</span><span class="k">const</span> <span class="n">Cls</span><span class="o">&amp;</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="n">Cls</span><span class="o">&amp;</span> <span class="n">b</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">val_</span><span class="p">;</span>
+<span class="nl">public:</span>
+    <span class="k">explicit</span> <span class="n">Cls</span><span class="p">(</span><span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span><span class="o">:</span> <span class="n">val_</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="p">{}</span>
+<span class="p">};</span>
+
+<span class="c1">// 类Cls的相等运算符</span>
+<span class="kt">bool</span> <span class="k">operator</span><span class="o">==</span><span class="p">(</span><span class="k">const</span> <span class="n">Cls</span><span class="o">&amp;</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="n">Cls</span><span class="o">&amp;</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">a</span><span class="p">.</span><span class="n">val_</span> <span class="o">==</span> <span class="n">b</span><span class="p">.</span><span class="n">val_</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 类Cls的不相等运算符，不用为友元，因为实现用相等运算符</span>
+<span class="kt">bool</span> <span class="k">operator</span><span class="o">!=</span><span class="p">(</span><span class="k">const</span> <span class="n">Cls</span><span class="o">&amp;</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="n">Cls</span><span class="o">&amp;</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="o">!</span><span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// 类Cls的对象</span>
+    <span class="n">Cls</span> <span class="n">obj</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+    <span class="n">Cls</span> <span class="n">obj2</span><span class="p">(</span><span class="mi">48</span><span class="p">);</span>
+    <span class="c1">// 输出0</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">obj</span> <span class="o">==</span> <span class="n">obj2</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="c1">// 输出1</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">obj</span> <span class="o">!=</span> <span class="n">obj2</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <h3 id="852-其他关系运算符"> <a href="#852-其他关系运算符" class="anchor-heading" aria-labelledby="852-其他关系运算符"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 8.52 其他关系运算符 </h3> <p>定义了相等运算符的类也常常（但不总是）包含关系运算符。特别是，因为关联容器和一些算法要用到小于运算符，所以定义<code class="language-plaintext highlighter-rouge">operator&lt;</code>会比较有用。</p> <p>通常情况下关系运算符应该考虑以下设计准则：</p> <ul> <li>定义顺序关系，令其与关联容器中对关键字的要求一致</li> <li>如果类同时也含有<code class="language-plaintext highlighter-rouge">==</code>运算符的话，则定义一种关系令其与<code class="language-plaintext highlighter-rouge">==</code>保持一致。特别是，如果两个对象是<code class="language-plaintext highlighter-rouge">!=</code>的，那么一个对象应该<code class="language-plaintext highlighter-rouge">&lt;</code>另外一个。</li> </ul> <blockquote> <p>如果存在唯一一种逻辑可靠的<code class="language-plaintext highlighter-rouge">&lt;</code>定义，则应该考虑为这个类定义<code class="language-plaintext highlighter-rouge">&lt;</code>运算符。如果类同时还包含<code class="language-plaintext highlighter-rouge">==</code>，则当且仅当<code class="language-plaintext highlighter-rouge">&lt;</code>的定义和<code class="language-plaintext highlighter-rouge">==</code>产生的结果一致时才定义<code class="language-plaintext highlighter-rouge">&lt;</code>运算符。</p> </blockquote> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 类Cls</span>
+<span class="k">class</span> <span class="nc">Cls</span>
+<span class="p">{</span>
+<span class="k">friend</span> <span class="kt">bool</span> <span class="k">operator</span><span class="o">==</span><span class="p">(</span><span class="k">const</span> <span class="n">Cls</span><span class="o">&amp;</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="n">Cls</span><span class="o">&amp;</span> <span class="n">b</span><span class="p">);</span>
+<span class="k">friend</span> <span class="kt">bool</span> <span class="k">operator</span><span class="o">&lt;</span><span class="p">(</span><span class="k">const</span> <span class="n">Cls</span><span class="o">&amp;</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="n">Cls</span><span class="o">&amp;</span> <span class="n">b</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">val_</span><span class="p">;</span>
+<span class="nl">public:</span>
+    <span class="k">explicit</span> <span class="n">Cls</span><span class="p">(</span><span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span><span class="o">:</span> <span class="n">val_</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="p">{}</span>
+<span class="p">};</span>
+
+<span class="c1">// 类Cls的相等运算符</span>
+<span class="kt">bool</span> <span class="k">operator</span><span class="o">==</span><span class="p">(</span><span class="k">const</span> <span class="n">Cls</span><span class="o">&amp;</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="n">Cls</span><span class="o">&amp;</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">a</span><span class="p">.</span><span class="n">val_</span> <span class="o">==</span> <span class="n">b</span><span class="p">.</span><span class="n">val_</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 类Cls的小于运算符</span>
+<span class="kt">bool</span> <span class="k">operator</span><span class="o">&lt;</span><span class="p">(</span><span class="k">const</span> <span class="n">Cls</span><span class="o">&amp;</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="n">Cls</span><span class="o">&amp;</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="p">))</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">val_</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">.</span><span class="n">val_</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// 类Cls的大于运算符</span>
+<span class="kt">bool</span> <span class="k">operator</span><span class="o">&gt;</span><span class="p">(</span><span class="k">const</span> <span class="n">Cls</span><span class="o">&amp;</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="n">Cls</span><span class="o">&amp;</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="o">!</span><span class="p">(</span><span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span> <span class="o">||</span> <span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// 类Cls的小于等于运算符</span>
+<span class="kt">bool</span> <span class="k">operator</span><span class="o">&lt;=</span><span class="p">(</span><span class="k">const</span> <span class="n">Cls</span><span class="o">&amp;</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="n">Cls</span><span class="o">&amp;</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span> <span class="o">||</span> <span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 类Cls的大于等于运算符</span>
+<span class="kt">bool</span> <span class="k">operator</span><span class="o">&gt;=</span><span class="p">(</span><span class="k">const</span> <span class="n">Cls</span><span class="o">&amp;</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="n">Cls</span><span class="o">&amp;</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="o">!</span><span class="p">(</span><span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// 类Cls的对象</span>
+    <span class="n">Cls</span> <span class="n">obj</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+    <span class="n">Cls</span> <span class="n">obj2</span><span class="p">(</span><span class="mi">48</span><span class="p">);</span>
+    <span class="n">Cls</span> <span class="n">obj3</span><span class="p">(</span><span class="mi">48</span><span class="p">);</span>
+    <span class="c1">// 输出1</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">obj</span> <span class="o">&lt;</span> <span class="n">obj2</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="c1">// 输出0</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">obj2</span> <span class="o">&lt;</span> <span class="n">obj3</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="c1">// 输出0</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">obj</span> <span class="o">&gt;</span> <span class="n">obj2</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="c1">// 输出0</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">obj2</span> <span class="o">&gt;</span> <span class="n">obj3</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="c1">// 输出1</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">obj</span> <span class="o">&lt;=</span> <span class="n">obj2</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="c1">// 输出1</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">obj2</span> <span class="o">&lt;=</span> <span class="n">obj3</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="c1">// 输出0</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">obj</span> <span class="o">&gt;=</span> <span class="n">obj2</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="c1">// 输出1</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">obj2</span> <span class="o">&gt;=</span> <span class="n">obj3</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <h2 id="86-递增和递减运算符"> <a href="#86-递增和递减运算符" class="anchor-heading" aria-labelledby="86-递增和递减运算符"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 8.6 递增和递减运算符 </h2> <p>在迭代器类中通常会实现递增运算符<code class="language-plaintext highlighter-rouge">++</code>和递减运算符<code class="language-plaintext highlighter-rouge">--</code>这两种运算符使得类可以在元素的序列中前后移动。</p> <p>C++语言并不要求递增和递减运算符必须是类的成员，但是因为它们改变的正好是所操作对象的状态，所以建议将其设定为成员函数。</p> <p>对于内置类型来说，递增和递减运算符既有前置版本也有后置版本。同样，我们也应该为类定义两个版本的递增和递减运算符。</p> <h3 id="861-前置递增递减运算符"> <a href="#861-前置递增递减运算符" class="anchor-heading" aria-labelledby="861-前置递增递减运算符"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 8.61 前置递增/递减运算符 </h3> <p>假设类为Index，则通常成员函数的前置递增/递减运算符为：</p> <blockquote> <p>为了与内置版本保持一致，前置运算符应该返回<strong>递增或递减后对象的引用</strong>。</p> </blockquote> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+</span>
+<span class="c1">// 类Index</span>
+<span class="k">class</span> <span class="nc">Index</span>
+<span class="p">{</span>
+<span class="k">friend</span> <span class="kt">int</span> <span class="n">main</span><span class="p">();</span>
+    <span class="kt">int</span> <span class="n">val_</span><span class="p">;</span>
+<span class="nl">public:</span>
+    <span class="k">explicit</span> <span class="n">Index</span><span class="p">(</span><span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span><span class="o">:</span> <span class="n">val_</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="p">{}</span>
+    <span class="c1">// 前置递增运算符</span>
+    <span class="n">Index</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">++</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">this</span><span class="o">-&gt;</span><span class="n">val_</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">// 前置递减运算符</span>
+    <span class="n">Index</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">--</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">this</span><span class="o">-&gt;</span><span class="n">val_</span> <span class="o">-=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// 输出0-10</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">Index</span> <span class="n">i</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span> <span class="n">i</span><span class="p">.</span><span class="n">val_</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;)</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="o">++</span><span class="n">i</span><span class="p">).</span><span class="n">val_</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="c1">// 输出10-0</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">Index</span> <span class="n">i</span><span class="p">{</span><span class="mi">11</span><span class="p">};</span> <span class="n">i</span><span class="p">.</span><span class="n">val_</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;)</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="o">--</span><span class="n">i</span><span class="p">).</span><span class="n">val_</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <h3 id="862-后置递增递减运算符"> <a href="#862-后置递增递减运算符" class="anchor-heading" aria-labelledby="862-后置递增递减运算符"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 8.62 后置递增/递减运算符 </h3> <p>因为前置和后置版本的符号一样，为了解决这个问题，后置版本接受一个额外的(不被使用)int类型的形参。</p> <blockquote> <p>只接受唯一一个int形参，不能有更多的形参或者非int形参。</p> </blockquote> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span> <span class="nc">Cls</span>
+<span class="p">{</span>
+    <span class="c1">// 后置递增运算符</span>
+    <span class="n">Cls</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">++</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span>
+    <span class="c1">// 后置递减运算符</span>
+    <span class="n">Cls</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">--</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span>
+<span class="p">};</span>
+</code></pre></div></div> <p>当我们使用后置运算符时，编译器为这个形参提供一个值为0的实参。</p> <p>尽管从语法上来说后置函数可以使用这个额外的形参，但是在实际过程中通常不会这么做。这个形参的唯一作用就是区分前置版本和后置版本的函数，而不是真的要在实现后置版本时参与运算。</p> <blockquote> <p>因为我们不会用到int形参，所以无须为其命名。</p> </blockquote> <blockquote> <p>为了与内置版本保持一致，后置运算符应该返回<strong>对象的原值(递增或递减之前的值)</strong>，返回的形式是一个值而非引用。</p> </blockquote> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+</span>
+<span class="c1">// 类Index</span>
+<span class="k">class</span> <span class="nc">Index</span>
+<span class="p">{</span>
+<span class="k">friend</span> <span class="kt">int</span> <span class="n">main</span><span class="p">();</span>
+    <span class="kt">int</span> <span class="n">val_</span><span class="p">;</span>
+<span class="nl">public:</span>
+    <span class="k">explicit</span> <span class="n">Index</span><span class="p">(</span><span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span><span class="o">:</span> <span class="n">val_</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="p">{}</span>
+    <span class="c1">// 后置递增运算符</span>
+    <span class="n">Index</span> <span class="k">operator</span><span class="o">++</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">Index</span> <span class="n">res</span> <span class="o">=</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+        <span class="k">this</span><span class="o">-&gt;</span><span class="n">val_</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">// 后置递减运算符</span>
+    <span class="n">Index</span> <span class="k">operator</span><span class="o">--</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">Index</span> <span class="n">res</span> <span class="o">=</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+        <span class="k">this</span><span class="o">-&gt;</span><span class="n">val_</span> <span class="o">-=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// 输出0-10</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">Index</span> <span class="n">i</span><span class="p">;</span> <span class="n">i</span><span class="p">.</span><span class="n">val_</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">;)</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">i</span><span class="o">++</span><span class="p">).</span><span class="n">val_</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="c1">// 输出10-0</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">Index</span> <span class="n">i</span><span class="p">{</span><span class="mi">10</span><span class="p">};</span> <span class="n">i</span><span class="p">.</span><span class="n">val_</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;)</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">i</span><span class="o">--</span><span class="p">).</span><span class="n">val_</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <p><strong>后置版本的显式调用</strong></p> <p>当显式地调用后置运算符时，必须要向其传递一个int实参，因为编译器只有通过它才能知道应该使用后置版本。</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+</span>
+<span class="c1">// 类Index</span>
+<span class="k">class</span> <span class="nc">Index</span>
+<span class="p">{</span>
+<span class="k">friend</span> <span class="kt">int</span> <span class="n">main</span><span class="p">();</span>
+    <span class="kt">int</span> <span class="n">val_</span><span class="p">;</span>
+<span class="nl">public:</span>
+    <span class="k">explicit</span> <span class="n">Index</span><span class="p">(</span><span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span><span class="o">:</span> <span class="n">val_</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="p">{}</span>
+    <span class="c1">// 后置递增运算符</span>
+    <span class="n">Index</span> <span class="k">operator</span><span class="o">++</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">Index</span> <span class="n">res</span> <span class="o">=</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+        <span class="k">this</span><span class="o">-&gt;</span><span class="n">val_</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">// 后置递减运算符</span>
+    <span class="n">Index</span> <span class="k">operator</span><span class="o">--</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">Index</span> <span class="n">res</span> <span class="o">=</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+        <span class="k">this</span><span class="o">-&gt;</span><span class="n">val_</span> <span class="o">-=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// 输出0-10</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">Index</span> <span class="n">i</span><span class="p">;</span> <span class="n">i</span><span class="p">.</span><span class="n">val_</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">;)</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">i</span><span class="p">.</span><span class="k">operator</span><span class="o">++</span><span class="p">(</span><span class="mi">0</span><span class="p">)).</span><span class="n">val_</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">// 显式调用</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="c1">// 输出10-0</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">Index</span> <span class="n">i</span><span class="p">{</span><span class="mi">10</span><span class="p">};</span> <span class="n">i</span><span class="p">.</span><span class="n">val_</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;)</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">i</span><span class="p">.</span><span class="k">operator</span><span class="o">--</span><span class="p">(</span><span class="mi">184</span><span class="p">)).</span><span class="n">val_</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">// 显式调用</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <h2 id="87-下标运算符"> <a href="#87-下标运算符" class="anchor-heading" aria-labelledby="87-下标运算符"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 8.7 下标运算符 </h2> <p>表示容器的类通常可以通过元素在容器中的位置访问元素，这些类一般会定义下标运算符<code class="language-plaintext highlighter-rouge">operator[]</code>。</p> <blockquote> <p>下标运算符必须是成员函数。</p> </blockquote> <p>为了与下标的原始定义兼容，下标运算符通常以所访问元素的引用作为返回值，这样做的好处是下标可以出现在赋值运算符的任意一端。</p> <p>进一步，我们最好同时定义下标运算符的常量版本和非常量版本，当作用于一个常量对象时，下标运算符返回常量引用以确保我们不会给返回的对象赋值。</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+</span>
+<span class="c1">// 类模板Array</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">const</span> <span class="kt">unsigned</span> <span class="n">N</span><span class="p">&gt;</span>
+<span class="k">class</span> <span class="nc">Array</span>
+<span class="p">{</span>
+<span class="k">friend</span> <span class="kt">int</span> <span class="n">main</span><span class="p">();</span>
+    <span class="kt">int</span> <span class="o">*</span><span class="n">ptr_vals_</span><span class="p">;</span>
+<span class="nl">public:</span>
+    <span class="k">explicit</span> <span class="n">Array</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">ptr</span><span class="p">)</span><span class="o">:</span> <span class="n">ptr_vals_</span><span class="p">(</span><span class="n">ptr</span><span class="p">)</span> <span class="p">{}</span>
+    <span class="c1">// 下标运算符</span>
+    <span class="kt">int</span><span class="o">&amp;</span> <span class="k">operator</span><span class="p">[](</span><span class="k">const</span> <span class="kt">unsigned</span> <span class="n">index</span><span class="p">)</span> 
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">ptr_vals_</span><span class="p">[</span><span class="n">index</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="c1">// 下标运算符</span>
+    <span class="k">const</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="k">operator</span><span class="p">[](</span><span class="k">const</span> <span class="kt">unsigned</span> <span class="n">index</span><span class="p">)</span> <span class="k">const</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">ptr_vals_</span><span class="p">[</span><span class="n">index</span><span class="p">];</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">list</span><span class="p">[]{</span><span class="mi">8</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">};</span>
+    <span class="n">Array</span><span class="o">&lt;</span><span class="mi">4</span><span class="o">&gt;</span> <span class="n">arr</span><span class="p">(</span><span class="n">list</span><span class="p">);</span>
+    <span class="c1">// 输出8</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">arr</span><span class="p">.</span><span class="n">ptr_vals_</span><span class="p">)[</span><span class="mi">3</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="n">arr</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">33</span><span class="p">;</span>
+    <span class="c1">// 输出33</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">arr</span><span class="p">.</span><span class="n">ptr_vals_</span><span class="p">)[</span><span class="mi">3</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <h2 id="88-解引用以及成员访问运算符"> <a href="#88-解引用以及成员访问运算符" class="anchor-heading" aria-labelledby="88-解引用以及成员访问运算符"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 8.8 解引用以及成员访问运算符 </h2> <p>在迭代器类及智能指针类中常常用到解引用运算符<code class="language-plaintext highlighter-rouge">*</code>和箭头运算符<code class="language-plaintext highlighter-rouge">-&gt;</code>。</p> <p>解引用运算符：</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;string&gt;
+</span>
+<span class="c1">// 类IntegerPointer</span>
+<span class="k">class</span> <span class="nc">IntegerPointer</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="o">*</span><span class="n">ptr_</span><span class="p">;</span>
+<span class="nl">public:</span>
+    <span class="n">IntegerPointer</span><span class="p">(</span><span class="kt">int</span> <span class="o">&amp;</span><span class="n">val</span><span class="p">)</span><span class="o">:</span> <span class="n">ptr_</span><span class="p">(</span><span class="o">&amp;</span><span class="n">val</span><span class="p">)</span> <span class="p">{}</span>
+    <span class="n">IntegerPointer</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">val</span><span class="p">)</span><span class="o">:</span> <span class="n">ptr_</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="p">{}</span>
+    <span class="c1">// 解引用运算符</span>
+    <span class="kt">int</span> <span class="o">&amp;</span><span class="k">operator</span><span class="o">*</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="o">*</span><span class="n">ptr_</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">// 解引用运算符，用于常量</span>
+    <span class="k">const</span> <span class="kt">int</span> <span class="o">&amp;</span><span class="k">operator</span><span class="o">*</span><span class="p">()</span> <span class="k">const</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="o">*</span><span class="n">ptr_</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">ins</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">ins2</span> <span class="o">=</span> <span class="o">-</span><span class="mi">48</span><span class="p">;</span>
+    <span class="c1">// 类IntegerPointer的对象</span>
+    <span class="k">const</span> <span class="n">IntegerPointer</span> <span class="n">kObj</span><span class="p">(</span><span class="n">ins</span><span class="p">);</span>
+    <span class="n">IntegerPointer</span> <span class="n">obj</span><span class="p">(</span><span class="n">ins2</span><span class="p">);</span>
+    <span class="c1">// 输出7</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">kObj</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="c1">// 输出48</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">obj</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <p>箭头操作符与众不同，它是对对象解引用以获取成员。 它其实是一元操作符，却表现得像二元操作符一样：接受一个对象和一个成员名。但它不接受任何显式形参，形参表为空，因为<code class="language-plaintext highlighter-rouge">-&gt;</code>的右操作数不是表达式，相反，是对应着类成员的一个标识符。没有明显可行的途径将一个标识符作为形参传递给函数，该操作由编译器来自动获取其对应的成员。</p> <blockquote> <p>箭头运算符必须是类的成员。而解引用运算符通常也是类的成员，尽管并非必须如此。</p> </blockquote> <p><strong>箭头运算符的限制</strong></p> <p>和大多数其他运算符一样(尽管这么做不太好)，我们能令<code class="language-plaintext highlighter-rouge">operator*</code>完成任何我们指定的操作。换句话说，我们可以让<code class="language-plaintext highlighter-rouge">operator*</code>返回一个固定值42,或者打印对象的内容，或者其他。</p> <p>箭头运算符则不是这样，它永远不能丢掉成员访问这个最基本的含义。当我们重载箭头时，可以改变的是箭头从哪个对象当中获取成员，而箭头获取成员这一事实则永远不变。</p> <p>对于形如<code class="language-plaintext highlighter-rouge">point-&gt;mem</code>的表达式来说，<code class="language-plaintext highlighter-rouge">point</code>必须是指向类对象的指针或者是一个重载了 <code class="language-plaintext highlighter-rouge">operator-&gt;</code>的类的对象。</p> <p>根据<code class="language-plaintext highlighter-rouge">point</code>类型的不同，<code class="language-plaintext highlighter-rouge">point-&gt;mem</code>分別等价于</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="o">*</span><span class="n">point</span><span class="p">).</span><span class="n">mem</span><span class="p">;</span> <span class="c1">// point是一个内置的指针类型</span>
+<span class="n">point</span><span class="p">.</span><span class="k">operator</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">mem</span><span class="p">;</span> <span class="c1">// point是类的一个对象</span>
+</code></pre></div></div> <p>除此之外，代码都将发生错误。</p> <p><code class="language-plaintext highlighter-rouge">point-&gt;mem</code>的执行过程如下所示：</p> <ol> <li>如果<code class="language-plaintext highlighter-rouge">point</code>是指针，则我们应用内置的箭头运算符，表达式等价于<code class="language-plaintext highlighter-rouge">(*point).mem</code>。 首先解引用该指针，然后从所得的对象中获取指定的成员。如果<code class="language-plaintext highlighter-rouge">point</code>所指的类型没有名为<code class="language-plaintext highlighter-rouge">mem</code>的成员，程序会发生错误。</li> <li>如果<code class="language-plaintext highlighter-rouge">point</code>是定义了<code class="language-plaintext highlighter-rouge">operator-&gt;</code>的类的一个对象，则我们使用<code class="language-plaintext highlighter-rouge">point.operator-&gt;()</code>的结果来获取<code class="language-plaintext highlighter-rouge">mem</code>。 其中，如果该结果是一个指针，则执行第1步；如果该结果本身含有重载的<code class="language-plaintext highlighter-rouge">operator-&gt;()</code>，则重复调用当前步骤。 最终，当这一过程结束时程序或者返回了所需的内容，或者返回一些表示程序错误的信息。</li> </ol> <blockquote> <p>所以重载的箭头运算符必须返回类的指针或者自定义了箭头运算符的某个类的对象。</p> </blockquote> <p>箭头运算符：</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;string&gt;
+</span>
+<span class="c1">// 类StringPointer</span>
+<span class="k">class</span> <span class="nc">StringPointer</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">*</span><span class="n">ptr_</span><span class="p">;</span>
+<span class="nl">public:</span>
+    <span class="n">StringPointer</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">val</span><span class="p">)</span><span class="o">:</span> <span class="n">ptr_</span><span class="p">(</span><span class="o">&amp;</span><span class="n">val</span><span class="p">)</span> <span class="p">{}</span>
+    <span class="n">StringPointer</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">*</span><span class="n">val</span><span class="p">)</span><span class="o">:</span> <span class="n">ptr_</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="p">{}</span>
+    <span class="c1">// 箭头运算符</span>
+    <span class="c1">// 注意，箭头运算符的返回类型必须为指针类型或者自定义了箭头运算符的某个类的对象</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">*</span> <span class="k">operator</span><span class="o">-&gt;</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">ptr_</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">// 箭头运算符，用于常量</span>
+    <span class="c1">// 注意，箭头运算符的返回类型必须为指针类型或者自定义了箭头运算符的某个类的对象</span>
+    <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">*</span> <span class="k">operator</span><span class="o">-&gt;</span><span class="p">()</span> <span class="k">const</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">ptr_</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">str</span> <span class="o">=</span> <span class="s">"const strings"</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">str2</span> <span class="o">=</span> <span class="s">"strings"</span><span class="p">;</span>
+    <span class="c1">// 类StringPointer的对象</span>
+    <span class="k">const</span> <span class="n">StringPointer</span> <span class="n">kObj</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>
+    <span class="n">StringPointer</span> <span class="n">obj</span><span class="p">(</span><span class="n">str2</span><span class="p">);</span>
+    <span class="c1">// 输出13</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">kObj</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="c1">// 输出strings appended</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">obj</span><span class="o">-&gt;</span><span class="n">append</span><span class="p">(</span><span class="s">" appended"</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> </div> </div> </main> <hr> <footer> <!-- # Footer content # appears at the bottom of every page's main content --> <p class="text-small text-grey-dk-100 mb-0"> Copyright &copy; 2020-2024 bobokick. Distributed by an <a href="https://github.com/bobokick/Cpp_Guide_detailed/blob/master/LICENSE">Apache License 2.0.</a> </p> <div class="d-flex mt-2"> <p class="text-small text-grey-dk-000 mb-0"> <a href="https://github.com/bobokick/Cpp_Guide_detailed/tree/master/docs/my_collections/_guide_files/chap8/第8章_重载运算符.md" id="edit-this-page">Edit this page on GitHub.</a> </p> </div> </footer> </div> </div> <div class="search-overlay"></div> </div> <script src="https://cdn.jsdelivr.net/npm/mermaid@9.1.3/dist/mermaid.min.js"></script> <script> var config = {} ; mermaid.initialize(config); window.mermaid.init(undefined, document.querySelectorAll('.language-mermaid')); </script> </body> </html>
